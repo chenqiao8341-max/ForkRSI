@@ -1,0 +1,8 @@
+{
+  "run": "/home/qingao/work/ForkMem/runs/v2-source-frozen1",
+  "recorded_episodes": 80,
+  "referenced_outcomes": 120,
+  "successful_outcomes_checked": 91,
+  "all_successes_have_oracle_completion": true,
+  "scope": "completed episode and frozen fork final outcomes; not a security proof against deliberate output forgery"
+}

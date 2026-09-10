@@ -1,0 +1,296 @@
+{
+  "tasks": 32,
+  "runtime_cases": 358,
+  "all_pass": true,
+  "rows": [
+    {
+      "task_id": "resumable_migration_train_000",
+      "fixture_sha256": "806b5ac0fa8b2d06fe227334ad10fbed1d162876ab8bc5efa950c6b290552d41",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 8,
+      "reference_log_sha256": "60d6726d13f59e0874a1be7729e72b11eafe6ba1e7cb6caffced38386beb7634",
+      "reference_tree_sha256": "bd6f613788408c575e3286f904d57a580c9f3037dbe2b2f4ec958b9b2ee2271d"
+    },
+    {
+      "task_id": "resumable_migration_train_011",
+      "fixture_sha256": "03d9acca4d66826aa384d84c88cc4e04723d9f7ca520f3e8de3d4e532cc62145",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 10,
+      "reference_log_sha256": "1b2edaf9008686e0f3971d00e25ff07565858d53f77d28802291be480d36eb07",
+      "reference_tree_sha256": "1f727530e7cca31862a82ea18e769a3a826358219e70ea38f496f701b3e4a7b3"
+    },
+    {
+      "task_id": "resumable_migration_train_101",
+      "fixture_sha256": "638e9c739b86ed680c9db8374c092eba3c53c26dcda0cb8cc9945ece167286d0",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "c6536d0eef8e8d78dba5bee8d9ea9faf8272159e3fa467bc47bc4f906033d5bc",
+      "reference_tree_sha256": "00f8d1e2e575681880f70395962b70d6b455159d3c64e54c911424448086dd9d"
+    },
+    {
+      "task_id": "resumable_migration_train_110",
+      "fixture_sha256": "ac70aa5f90bb9ac222bd9a44056a965ea0f8f80fd1bf47ea74574423b675fc57",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 16,
+      "reference_log_sha256": "b63286feafe1b6278d4db5c6a8f1b8b2a8601d39b163a1d4fdd19d15b10fdd08",
+      "reference_tree_sha256": "e04052c9c2f73159fc9b2aa46f4a862d45b76ff4a9069669ef4f17cdc14ddb2b"
+    },
+    {
+      "task_id": "resumable_migration_held_out_001",
+      "fixture_sha256": "28816a556b3b85564f1c021705fe5fe3a70212d30b5bc2c00b1fe60049fd1cf3",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 10,
+      "reference_log_sha256": "4d2a4ba3af6f585a1f0400f91663ca295e8716ed968b527cfaffd4de33af677a",
+      "reference_tree_sha256": "39bee05c345e35a87667aaf6737127a4000c3c391c18e5b1d4c3f7fb2a8ca6e4"
+    },
+    {
+      "task_id": "resumable_migration_held_out_010",
+      "fixture_sha256": "dd7fe62db652478ca0a3198cb492c0974bea8868fcd33fce32b841895ef7ee8c",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 8,
+      "reference_log_sha256": "9ee1aace68ac163644b9b24bd1fa4773f66d859cca722774f246821b4ac52ddf",
+      "reference_tree_sha256": "d39345c269e62f73a24fe8255aeac934d32db0895ca6aa55574570a3e992c9c7"
+    },
+    {
+      "task_id": "resumable_migration_held_out_100",
+      "fixture_sha256": "3d88d7e298ab3be6da57d036d9e85f3b8cea7e289b82c0cdb6d78f324b1428d8",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 10,
+      "reference_log_sha256": "fa941c5abc6cda2d9f2e69b84ced640143a6f63917a81a73bc95e40d6d90ab3c",
+      "reference_tree_sha256": "b30b7fbe2f603ffecb23eef090cd5f1e540f306370a12bacab837450e8b3eacb"
+    },
+    {
+      "task_id": "resumable_migration_held_out_111",
+      "fixture_sha256": "b3863788c1c0d1027a1f0462d7d0249849aa680d0757ce5494d4f33980c83202",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 20,
+      "reference_log_sha256": "0d86d0f91046fe62bed2a621f722c284a9bbfd6109baf6c48f326d1c0c37b1d6",
+      "reference_tree_sha256": "63dca3c31a39f3fb28c47f8c8c709d6315fd59f6cf7e304429e97181b6df5893"
+    },
+    {
+      "task_id": "resumable_release_train_000",
+      "fixture_sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "81a8e2509f716081e6265fdd5ee8f9a13d57f07e3afdfc29d8e349956ac92d6b",
+      "reference_tree_sha256": "8d1f2dffcefcf91cdda26f769c8d592cb19d4353d291c646ccd704ab00ced81a"
+    },
+    {
+      "task_id": "resumable_release_train_011",
+      "fixture_sha256": "4beb9f6cf1a38c1bde1b32914f8f51971c06fbcd35f576693f0730dd135523b8",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 10,
+      "reference_log_sha256": "dab8776ab186ee80a69eb93663f46bbab38fdf592a6abd55e57b9e4bd9f2c44c",
+      "reference_tree_sha256": "c3924585fcce291ffad866fbb87940c5b3c043684b08157e2aa6240338700428"
+    },
+    {
+      "task_id": "resumable_release_train_101",
+      "fixture_sha256": "2cc6002289da426cd2d2856391d47fdbaf90017aa937c28db07381589db4c4b4",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 12,
+      "reference_log_sha256": "a2a33f06bc293e02e5980e2d547e58460c07dace812869486314e59f2513c8ad",
+      "reference_tree_sha256": "e833d0d1a68797a273e482137b7100bf37b40390e78409d64b4afaed5c2bb4e1"
+    },
+    {
+      "task_id": "resumable_release_train_110",
+      "fixture_sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 18,
+      "reference_log_sha256": "7d49d5c65d01fbb89bedc8910212cdfd3739f036a67d233e08ab7790b8e38fa5",
+      "reference_tree_sha256": "7921466a8d9885ff80c3e0c3da21781f78b7aa529ae93901ffc022874e555572"
+    },
+    {
+      "task_id": "resumable_release_held_out_001",
+      "fixture_sha256": "1654693467eb28ec0b04ddc97c1e65c3e60a209de1bcdf35620dbcab1a7ceb21",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 10,
+      "reference_log_sha256": "9e06e66f3364d8baadf15c3d36ff0daf34d32dcbd4622200029e49e6bf48dfd9",
+      "reference_tree_sha256": "6cfc9bd372b062164d23001f045645fce7a8ade70f9e372dfa2b8245314d504f"
+    },
+    {
+      "task_id": "resumable_release_held_out_010",
+      "fixture_sha256": "f0a66b9baa16b55199b041fab2d67782f97fd942e17206b991879947d65d9504",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "bda2555ef516e2f3181f97b0b175ab474d6ae10979d83ee7a8e0cdadd4ca94e9",
+      "reference_tree_sha256": "a4a24db240d1cbe2c24f787ab138092234900b67b6cd78b4fcefd5da3ec13a82"
+    },
+    {
+      "task_id": "resumable_release_held_out_100",
+      "fixture_sha256": "801b128f253762df8425933e8871e815f5468a3bd3d594f8ecb670a220552d25",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 16,
+      "reference_log_sha256": "1c4371728668f16f9ea938f240e536fac0dac6717a05f0a0655d2153d6d13342",
+      "reference_tree_sha256": "f174c959530c1f626d89079a49cea4efea72f35b210ef464f561eacff0eb30ea"
+    },
+    {
+      "task_id": "resumable_release_held_out_111",
+      "fixture_sha256": "a9f2688ca8b54b2b8791edde66a9dc5504d36f3e5bb6d41fa69415612e2cfd17",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "d740f270342bef9bda4ce76fa7f56d5e8abf9ef30021d34cddb610b94fed9692",
+      "reference_tree_sha256": "6c324211ae54055cfccdd6698ce1bfb41d449d1535820c4c3aa3f5cae815e98e"
+    },
+    {
+      "task_id": "resumable_ingestion_train_000",
+      "fixture_sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 16,
+      "reference_log_sha256": "5499d12b0c5a0c0b00f064195af48754dba8aff0b8fda0cd456dab50a0275905",
+      "reference_tree_sha256": "6649e0f9b0ba37b6ff4a0cba977d8cd69e4dbf746d858fb1a32b23deae148ccf"
+    },
+    {
+      "task_id": "resumable_ingestion_train_011",
+      "fixture_sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 16,
+      "reference_log_sha256": "b6f4e459e96b3d2e5ff815656b73828f4f8fc3500a31df50b3b633937eba3c85",
+      "reference_tree_sha256": "82aa898b3084b7b013f8d71db22ac0e37603ce14f8e282af27defdc81e26fbe5"
+    },
+    {
+      "task_id": "resumable_ingestion_train_101",
+      "fixture_sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 6,
+      "reference_log_sha256": "5b42614b18af19662e6bf8d5ace5eb30e9dc9955f6ff2cace1cd6b57be27c32f",
+      "reference_tree_sha256": "cc800f8b238c36a7e23129384f6cddb56603bb02a69e1aafde9d67444bf409ee"
+    },
+    {
+      "task_id": "resumable_ingestion_train_110",
+      "fixture_sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 6,
+      "reference_log_sha256": "11790bcfbf3860be29ecadbbfbc649b029d4c10a4729845100a187b1cc837049",
+      "reference_tree_sha256": "75ad0b7d0a2eed691afad26ff10f91341a188048c6c039c8b799f1f452a4d943"
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_001",
+      "fixture_sha256": "699c97ee5e5ea685c489ee356286da43a1aa63a715c7b4cfad389318bd3097c5",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 18,
+      "reference_log_sha256": "e9096d06014b0c0e3d19d68e14517f98063d8434170c450ce38373978f70b7b2",
+      "reference_tree_sha256": "62cafa6fb8d5271d07296fb9082538fe95c83e49acc29cb69bddefb3abb7542b"
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_010",
+      "fixture_sha256": "ff052c5299689d787b928f5ed6e169309e1faae3618987b113af63d5ffaeb627",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "6da57eab2ed4cb97858f528f757d6b9865d2258affcb12fe0eddec4855b16f1b",
+      "reference_tree_sha256": "f08fa408f950102ca1289743d74366097faf04ffa4ff8b3e8d3fd1109dc9b44b"
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_100",
+      "fixture_sha256": "453bc66b06f1dedb42ad368c9101211c22d3fe88612b7a11ebd3d65dd5f60ecf",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 6,
+      "reference_log_sha256": "f34234a3eb5e6c2748b9befecb957ac97c4e6924f1c3d6e272ea461614bef0b7",
+      "reference_tree_sha256": "68e3e9821ef51d0719877ad1def550158b78012adfc405e1b524122daf5f78a9"
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_111",
+      "fixture_sha256": "81dc49669d61a09e5742773f6034e19b17c5c0a3907d7f6f84182549a21e640c",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 6,
+      "reference_log_sha256": "e390bb5a96ee9f585ac0ba7b3207c8145b10cc58dac9f0cc1b344544136fb6b4",
+      "reference_tree_sha256": "e2e86158240b500be8b637680c6a198aeca8b7a71fd0fffad53e4387034e50c1"
+    },
+    {
+      "task_id": "resumable_compensation_train_000",
+      "fixture_sha256": "02681676712491be420de6a8afacb5a37baddb22a4bc36a1c18a4c2cd4d1a404",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 4,
+      "reference_log_sha256": "edfbebd6c9d618fe075400e55ea166048e31d39adbb7cb578a2ebd78cfbc8d9e",
+      "reference_tree_sha256": "caa17c9ca21f15d9853beee2ecb8b382200918826f5db50f3723b9bbd4310df8"
+    },
+    {
+      "task_id": "resumable_compensation_train_011",
+      "fixture_sha256": "f786b7f5a8b3ece59430ba7c3cf6f6ee136f815aede43909b1addf8f2f2b0ff3",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 4,
+      "reference_log_sha256": "d02c4113ecb775bdbf304431ab4df3a4849f32e470dcb56b61de3d21b77a8855",
+      "reference_tree_sha256": "e2536d22d0681a136440c04c5ed32554c393df5bcd187fe27de5e1d9f0c4bf8d"
+    },
+    {
+      "task_id": "resumable_compensation_train_101",
+      "fixture_sha256": "e70666cf40c244e04be6e53a7697b1a906d87ca5e1bc2f91bf8267df3e5d822b",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 14,
+      "reference_log_sha256": "1115d0af438b3de333c6529f4a3ac08078e9ab5824c2f94b97674b37f4863915",
+      "reference_tree_sha256": "b2e312d9c0cc6939d6805a2830a5c9017e4f1cd5a0ddc05ff443baae09a991d6"
+    },
+    {
+      "task_id": "resumable_compensation_train_110",
+      "fixture_sha256": "0abc7b736b421007567ea2a0454d2ede724b574bd1ed85e4e099660fc436360d",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 12,
+      "reference_log_sha256": "5da8313136954bc8446d3368ffa4fa3e68d325a089a968b383ec63a4874cafaa",
+      "reference_tree_sha256": "66125471bc79b3d906b958e0daa26aeb9312996fa14dfc1469ad3f1bc328bd79"
+    },
+    {
+      "task_id": "resumable_compensation_held_out_001",
+      "fixture_sha256": "86d0652e95b596a6ae7ad8da21b1c42e2d9289ff9d3f878e7b5ce9d09408d36f",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 4,
+      "reference_log_sha256": "1cbccd140662d5ecd58e5ec608582bfe706e27135e9f822e20ee92a896e4e798",
+      "reference_tree_sha256": "5d74a14acea2104cd535c0f8796b39060e993cb207195849e914363e05a8cbbb"
+    },
+    {
+      "task_id": "resumable_compensation_held_out_010",
+      "fixture_sha256": "17b2cf507039b629c6d20e1e92d6ef7b87ec877bf5703e3991be7778e60cc094",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 4,
+      "reference_log_sha256": "0c0b9eefc22b399db2b3c57b551bc64ce75954e5d11f69ef577d59f4643d99b4",
+      "reference_tree_sha256": "6b2980fb9513cff959319d559cea373311a2226e54c367794c37de04b8899dc2"
+    },
+    {
+      "task_id": "resumable_compensation_held_out_100",
+      "fixture_sha256": "59ed179441e9339c9fe3d9aa5b0a351f8742063cc855f8d92a11e521a6d66019",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 12,
+      "reference_log_sha256": "483b68a796bce0c16190c3d49b9dc15d89a98f8453818bfec0bf01391fbdf9ba",
+      "reference_tree_sha256": "31b2b961cde8daeda3f2ca9553066ca5a025e777a06b74485399ab44f3b83349"
+    },
+    {
+      "task_id": "resumable_compensation_held_out_111",
+      "fixture_sha256": "72099c5de5f8598d00bd1fac427626ca844aad783bb47388fa801cc6552be33b",
+      "initial_fails": true,
+      "reference_passes": true,
+      "runtime_cases": 12,
+      "reference_log_sha256": "4a2351c5a83656e2cd4ea121cab9eba9c6895539cc42254e04752f175ccc5553",
+      "reference_tree_sha256": "ed3ecdd30b20e6dc1601f89cfa44f4bd6fa24932dd2ef4253a90be9172d2b2e1"
+    }
+  ],
+  "scope": "Independent execution of initial and reference programs, not model evaluation or a claimed task success sample."
+}

@@ -1,0 +1,16 @@
+{
+  "task_id": "interval_contract_04",
+  "family": "interval_contract",
+  "split": "held_out",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "half-open"
+  },
+  "files": {
+    "solution.py": "def subtract(interval, blocked):\n    a,b=interval\n    return [(a, min(x,b)) for x,y in sorted(blocked) if a < x < b]\n",
+    "README.md": "Implement subtract(interval, blocked): return sorted, nonempty maximal integer ranges remaining after removing the union of blocked ranges. Preserve interval's endpoint convention from contract.json. Inputs may overlap, repeat, touch, or extend outside the outer interval. Do not mutate inputs. Coordinates may be negative. Return list of tuples. Client edition 4.\n",
+    "contract.json": "{\"endpoints\": \"half-open\", \"coordinate_type\": \"integer\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import subtract\nimport random\nrng=random.Random(124)\nfor n in range(80):\n    a=rng.randint(-8,1); b=rng.randint(2,12)\n    blocks=[tuple(sorted((rng.randint(-10,14),rng.randint(-10,14)))) for _ in range(n%7)]\n    original=list(blocks)\n    points=set(range(a,b+0))\n    for x,y in blocks: points.difference_update(range(x,y+0))\n    expected=[]\n    for x in sorted(points):\n        if expected and x == expected[-1][1]+0: expected[-1]=(expected[-1][0],x+1)\n        else: expected.append((x,x+1))\n    actual=subtract((a,b),blocks)\n    assert actual == expected, ((a,b),blocks,actual,expected)\n    assert blocks == original\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

@@ -1,0 +1,10 @@
+{
+  "task_id": "config_smoke",
+  "family": "config_precedence",
+  "split": "smoke",
+  "description": "Fix resolve_port so explicitly provided environment values take precedence over file settings, while missing environment values use file settings. Preserve valid zero values. The module must export resolve_port(config, environ).",
+  "features": {"precedence": "environment", "zero_valid": "yes"},
+  "files": {"solution.py": "def resolve_port(config, environ):\n    return config.get('port', 8080)\n", "README.md": "Service configuration resolver. Environment dictionary key: APP_PORT. File settings key: port. Values are integers. Zero is a supported ephemeral port.\n"},
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import resolve_port\nassert resolve_port({'port': 9000}, {'APP_PORT': 7000}) == 7000\nassert resolve_port({'port': 9000}, {'APP_PORT': 0}) == 0\nassert resolve_port({'port': 9000}, {}) == 9000\nassert resolve_port({}, {}) == 8080\nprint('4 assertions passed')\n",
+  "factual_action": {"tool": "write", "path": "solution.py", "content": "def resolve_port(config, environ):\n    return environ.get('APP_PORT') or config.get('port', 8080)\n", "thought_summary": "Use environment override when provided."}
+}

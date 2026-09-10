@@ -1,0 +1,9 @@
+task_manifest: data/v2/frozen1/manifest.json
+training_seeds: [11, 23, 37, 41, 53]
+evaluation_seeds: []
+modes: []
+max_steps: 6
+branches: 3
+concurrency: 8
+episode_concurrency: 4
+request_budget: 2500

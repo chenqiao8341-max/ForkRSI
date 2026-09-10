@@ -1,0 +1,16 @@
+{
+  "task_id": "config_precedence_05",
+  "family": "config_precedence",
+  "split": "held_out",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "environment-over-file"
+  },
+  "files": {
+    "solution.py": "def resolve(file_settings, environ, overrides):\n    return int(overrides.get('budget') or environ.get('APP_BUDGET') or file_settings.get('budget') or 25)\n",
+    "README.md": "Implement resolve(file_settings, environ, overrides) returning an integer.\nThe setting is 'budget', environment variable 'APP_BUDGET'; built-in default is 25.\nExplicit overrides have highest priority. Then follow the profile in profile.json.\nAn absent key advances to the next layer. A JSON null at a selected layer resets to the built-in default, without falling through. Empty environment strings mean absent; other values convert with int. Zero is valid.\n",
+    "profile.json": "{\"precedence\": \"environment-over-file\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import resolve\nfor f,e,o,expected in [({}, {}, {}, 25), ({'budget': 7}, {'APP_BUDGET': '9'}, {}, 9), ({'budget': 7}, {'APP_BUDGET': '0'}, {}, 0), ({'budget': 0}, {'APP_BUDGET': '9'}, {}, 9), ({'budget': 7}, {'APP_BUDGET': '9'}, {'budget': None}, 25), ({'budget': 7}, {'APP_BUDGET': ''}, {}, 7), ({'budget': 7}, {'APP_BUDGET': '9'}, {'budget': 0}, 0), ({'budget': None}, {'APP_BUDGET': None}, {}, 25)]:\n    actual = resolve(f,e,o)\n    assert actual == expected, (f,e,o,actual,expected)\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

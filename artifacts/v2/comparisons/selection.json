@@ -1,0 +1,88 @@
+{
+  "paired_win": {
+    "eligible_cells": 2,
+    "all_eligible_keys": [
+      [
+        "resumable_ingestion_held_out_010",
+        211,
+        8
+      ],
+      [
+        "resumable_ingestion_held_out_010",
+        307,
+        8
+      ]
+    ],
+    "selection_rule": "first lexicographic task/seed among all eligible eight-action cells; absence remains absence",
+    "selected": [
+      "resumable_ingestion_held_out_010",
+      211,
+      8
+    ],
+    "case": "artifacts/v2/comparisons/paired_win.json",
+    "all_replays_match": true
+  },
+  "paired_loss": {
+    "eligible_cells": 0,
+    "all_eligible_keys": [],
+    "selection_rule": "first lexicographic task/seed among all eligible eight-action cells; absence remains absence"
+  },
+  "same_outcome_different_repair_cost": {
+    "eligible_cells": 7,
+    "all_eligible_keys": [
+      [
+        "resumable_ingestion_held_out_010",
+        101,
+        8
+      ],
+      [
+        "resumable_ingestion_held_out_100",
+        307,
+        8
+      ],
+      [
+        "resumable_migration_held_out_001",
+        211,
+        8
+      ],
+      [
+        "resumable_migration_held_out_010",
+        211,
+        8
+      ],
+      [
+        "resumable_migration_held_out_100",
+        211,
+        8
+      ],
+      [
+        "resumable_migration_held_out_111",
+        307,
+        8
+      ],
+      [
+        "resumable_release_held_out_010",
+        211,
+        8
+      ]
+    ],
+    "selection_rule": "first lexicographic task/seed among all eligible eight-action cells; absence remains absence",
+    "selected": [
+      "resumable_ingestion_held_out_010",
+      101,
+      8
+    ],
+    "case": "artifacts/v2/comparisons/same_outcome_different_repair_cost.json",
+    "all_replays_match": true
+  },
+  "guarded_win": {
+    "eligible_cells": 0,
+    "all_eligible_keys": [],
+    "selection_rule": "first lexicographic task/seed among all eligible eight-action cells; absence remains absence"
+  },
+  "guarded_loss": {
+    "eligible_cells": 0,
+    "all_eligible_keys": [],
+    "selection_rule": "first lexicographic task/seed among all eligible eight-action cells; absence remains absence"
+  }
+}

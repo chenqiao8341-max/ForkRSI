@@ -1,0 +1,8 @@
+{
+  "run": "/home/qingao/work/ForkMem-eight-action/runs/eight-action-recorded",
+  "distinct_executed_program_versions": 213,
+  "syntax_failure_versions": [],
+  "flagged_versions": 0,
+  "flags": [],
+  "scope": "AST screen for specified internal access, API aliases, global/default state and broad crash catches; not a security proof. Any flags require manual review before asserting contract adherence."
+}

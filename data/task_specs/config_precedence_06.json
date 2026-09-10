@@ -1,0 +1,16 @@
+{
+  "task_id": "config_precedence_06",
+  "family": "config_precedence",
+  "split": "near_miss",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "file-over-environment"
+  },
+  "files": {
+    "solution.py": "def resolve(file_settings, environ, overrides):\n    return int(overrides.get('batch') or environ.get('APP_BATCH') or file_settings.get('batch') or 26)\n",
+    "README.md": "Implement resolve(file_settings, environ, overrides) returning an integer.\nThe setting is 'batch', environment variable 'APP_BATCH'; built-in default is 26.\nExplicit overrides have highest priority. Then follow the profile in profile.json.\nAn absent key advances to the next layer. A JSON null at a selected layer resets to the built-in default, without falling through. Empty environment strings mean absent; other values convert with int. Zero is valid.\n",
+    "profile.json": "{\"precedence\": \"file-over-environment\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import resolve\nfor f,e,o,expected in [({}, {}, {}, 26), ({'batch': 7}, {'APP_BATCH': '9'}, {}, 7), ({'batch': 7}, {'APP_BATCH': '0'}, {}, 7), ({'batch': 0}, {'APP_BATCH': '9'}, {}, 0), ({'batch': 7}, {'APP_BATCH': '9'}, {'batch': None}, 26), ({'batch': 7}, {'APP_BATCH': ''}, {}, 7), ({'batch': 7}, {'APP_BATCH': '9'}, {'batch': 0}, 0), ({'batch': None}, {'APP_BATCH': None}, {}, 26)]:\n    actual = resolve(f,e,o)\n    assert actual == expected, (f,e,o,actual,expected)\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

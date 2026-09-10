@@ -1,0 +1,196 @@
+{
+  "dataset": "workflow-dev1",
+  "source_revision": "a803cf1",
+  "episodes": 16,
+  "first_test_successes": 13,
+  "normal_path_successes": 15,
+  "final_successes": 15,
+  "transfer_evaluations": 0,
+  "rows": [
+    {
+      "task_id": "resumable_migration_development_101",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 14,
+      "case_total": 14,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_migration_development_000",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 8,
+      "case_total": 8,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_migration_development_011",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 10,
+      "case_total": 10,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_release_development_011",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 10,
+      "case_total": 10,
+      "final_success": true,
+      "steps": 6,
+      "first_test_step": 6,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_migration_development_110",
+      "first_test_success": false,
+      "normal_path_success": true,
+      "first_case_successes": 14,
+      "case_total": 16,
+      "final_success": true,
+      "steps": 7,
+      "first_test_step": 5,
+      "failed_case_ids": [
+        8,
+        15
+      ]
+    },
+    {
+      "task_id": "resumable_release_development_101",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 12,
+      "case_total": 12,
+      "final_success": true,
+      "steps": 6,
+      "first_test_step": 6,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_ingestion_development_000",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 16,
+      "case_total": 16,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_release_development_110",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 18,
+      "case_total": 18,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_release_development_000",
+      "first_test_success": false,
+      "normal_path_success": true,
+      "first_case_successes": 13,
+      "case_total": 14,
+      "final_success": false,
+      "steps": 8,
+      "first_test_step": 6,
+      "failed_case_ids": [
+        13
+      ]
+    },
+    {
+      "task_id": "resumable_ingestion_development_011",
+      "first_test_success": false,
+      "normal_path_success": false,
+      "first_case_successes": 13,
+      "case_total": 16,
+      "final_success": true,
+      "steps": 7,
+      "first_test_step": 5,
+      "failed_case_ids": [
+        0,
+        8,
+        15
+      ]
+    },
+    {
+      "task_id": "resumable_ingestion_development_110",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 6,
+      "case_total": 6,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_ingestion_development_101",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 6,
+      "case_total": 6,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_compensation_development_000",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 4,
+      "case_total": 4,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_compensation_development_011",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 4,
+      "case_total": 4,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_compensation_development_101",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 14,
+      "case_total": 14,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    },
+    {
+      "task_id": "resumable_compensation_development_110",
+      "first_test_success": true,
+      "normal_path_success": true,
+      "first_case_successes": 12,
+      "case_total": 12,
+      "final_success": true,
+      "steps": 5,
+      "first_test_step": 5,
+      "failed_case_ids": []
+    }
+  ]
+}

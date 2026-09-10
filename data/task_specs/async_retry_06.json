@@ -1,0 +1,16 @@
+{
+  "task_id": "async_retry_06",
+  "family": "async_retry",
+  "split": "near_miss",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "new-per-attempt"
+  },
+  "files": {
+    "solution.py": "async def deliver(client, payload, attempts, make_key, pause):\n    for i in range(attempts):\n        try:\n            return await client.send(payload, make_key())\n        except Exception:\n            await pause(i)\n    return None\n",
+    "README.md": "Implement async deliver(client, payload, attempts, make_key, pause). client.send(payload, key) is async and returns a receipt. attempts is the total allowed sends; nonpositive attempts raise ValueError before any other calls. Consult protocol.json for key identity scope (event_id). Retry only TimeoutError, preserving the final exception when exhausted. Cancellation and other errors propagate. Between attempts await pause with delays 1, 2, 4,...; no pause after success or the last failure. Do not change payload.\n",
+    "protocol.json": "{\"key_scope\": \"new-per-attempt\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nimport asyncio\nfrom solution import deliver\nasync def check():\n    for failures in range(4):\n        keys=[]; pauses=[]; sends=[]; error=TimeoutError('uncertain delivery')\n        def make_key():\n            key=f'k{len(keys)}'; keys.append(key); return key\n        async def pause(delay): pauses.append(delay)\n        class Client:\n            async def send(self,payload,key):\n                sends.append(key)\n                if len(sends)<=failures: raise error\n                return {'receipt': payload['value']}\n        payload={'value':7}\n        try:\n            result=await deliver(Client(),payload,3,make_key,pause)\n            assert failures<3 and result=={'receipt':7}\n        except TimeoutError as caught:\n            assert failures==3 and caught is error\n        assert len(sends)==min(failures+1,3)\n        assert pauses==[1,2][:min(failures,2)], pauses\n        assert len(keys)==(len(sends) if True else 1)\n        assert sends==keys if True else len(set(sends))==1\n        assert payload=={'value':7}\n    calls=[]\n    def key(): calls.append('key'); return 'x'\n    async def pause(delay): calls.append('pause')\n    class Bad:\n        async def send(self,payload,key): raise RuntimeError('fatal')\n    try: await deliver(Bad(),{},0,key,pause)\n    except ValueError: pass\n    else: raise AssertionError('invalid attempts accepted')\n    assert calls==[]\n    try: await deliver(Bad(),{},3,key,pause)\n    except RuntimeError: pass\n    else: raise AssertionError('nonretryable swallowed')\n    assert 'pause' not in calls\nasyncio.run(check())\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

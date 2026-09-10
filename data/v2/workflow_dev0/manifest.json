@@ -1,0 +1,339 @@
+{
+  "version": "workflow-dev0",
+  "status": "development; not a frozen final evaluation",
+  "training_combinations": [
+    0,
+    3,
+    5,
+    6
+  ],
+  "transfer_combinations": [
+    1,
+    2,
+    4,
+    7
+  ],
+  "note": "Development tasks reuse training-side contexts only; cluster repeated contexts together. Transfer outcomes must stay unopened during calibration.",
+  "tasks": [
+    {
+      "task_id": "workflow_migration_development_101",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_migration_development_101.json",
+      "sha256": "9fe7fea2b4e18f576b7cd74163c05df9fe138af4bedf6248b1873cb9b2917383",
+      "semantic_context": "migration-101"
+    },
+    {
+      "task_id": "workflow_migration_development_110",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_migration_development_110.json",
+      "sha256": "2c87bd6be933f11186d530ffffbd31bef9f2b79350f691005b1ff2a6af1c8159",
+      "semantic_context": "migration-110"
+    },
+    {
+      "task_id": "workflow_migration_train_000",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_migration_train_000.json",
+      "sha256": "507ce52f48969d0970bd48b3bd347a41850ef17f2ff553ef16d977d44489cb1a",
+      "semantic_context": "migration-000"
+    },
+    {
+      "task_id": "workflow_migration_train_011",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_migration_train_011.json",
+      "sha256": "328e4c4219dac63167483b5a07f6f921eec32e40394a9abb3c3ead1a2ae4cfea",
+      "semantic_context": "migration-011"
+    },
+    {
+      "task_id": "workflow_migration_train_101",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_migration_train_101.json",
+      "sha256": "a9a14d904def9064f04e9e68c1f5a4473593516067c181883494588695176bd4",
+      "semantic_context": "migration-101"
+    },
+    {
+      "task_id": "workflow_migration_train_110",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_migration_train_110.json",
+      "sha256": "46f5f6548bb04683a4e32eda73c6be401f3411654fd115fcf6e08e37a2087aab",
+      "semantic_context": "migration-110"
+    },
+    {
+      "task_id": "workflow_migration_held_out_001",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_migration_held_out_001.json",
+      "sha256": "f4a82ab07fb9b43d441a7e4d7a44138e55b03ec08a6b98d4bffb8717d32610e8",
+      "semantic_context": "migration-001"
+    },
+    {
+      "task_id": "workflow_migration_held_out_010",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_migration_held_out_010.json",
+      "sha256": "747f95eef7976082791c4f2791e30ff6d03750cfc235cb492baa8d4bc7b92911",
+      "semantic_context": "migration-010"
+    },
+    {
+      "task_id": "workflow_migration_held_out_100",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_migration_held_out_100.json",
+      "sha256": "7080845b18b3098e7bcd2532d0248d5136129f1ac2916c669982c219f54eefe3",
+      "semantic_context": "migration-100"
+    },
+    {
+      "task_id": "workflow_migration_held_out_111",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_migration_held_out_111.json",
+      "sha256": "972597603e1a24a88b524d499addea19656c74340da5696bfb94418b9650591e",
+      "semantic_context": "migration-111"
+    },
+    {
+      "task_id": "workflow_release_development_101",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_release_development_101.json",
+      "sha256": "a4ea4ba6ff4b1a5103bb9892a35376bc0502aafa40c0150d478dec53dd114d3a",
+      "semantic_context": "release-101"
+    },
+    {
+      "task_id": "workflow_release_development_110",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_release_development_110.json",
+      "sha256": "d55bf0d4a31d8d3d573ed9508a24d1428fbbb23d22b7fdc71c21aef749df8464",
+      "semantic_context": "release-110"
+    },
+    {
+      "task_id": "workflow_release_train_000",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_release_train_000.json",
+      "sha256": "0d2c041357ba3020a868b39d1f7a49ed9eb4284de82204d3102b4d564182547e",
+      "semantic_context": "release-000"
+    },
+    {
+      "task_id": "workflow_release_train_011",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_release_train_011.json",
+      "sha256": "2b8ffaf84b00691b9f4bc8c6aae3c8ddddbfcdcbb0ccd7f4e5e2e6164eb7af42",
+      "semantic_context": "release-011"
+    },
+    {
+      "task_id": "workflow_release_train_101",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_release_train_101.json",
+      "sha256": "949c15ad92ad9d38f34d21525cb54719462101f8e8c5d9bb698c7c3341a369ec",
+      "semantic_context": "release-101"
+    },
+    {
+      "task_id": "workflow_release_train_110",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_release_train_110.json",
+      "sha256": "817571d61afffa843c3cbd1bcb2b9c4521e605a3922483d3b94e821ab378d2ce",
+      "semantic_context": "release-110"
+    },
+    {
+      "task_id": "workflow_release_held_out_001",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_release_held_out_001.json",
+      "sha256": "9f562ebdd5a3a6b53f27aa252c4c6b1e9ac48a38028a737b91d142067425aece",
+      "semantic_context": "release-001"
+    },
+    {
+      "task_id": "workflow_release_held_out_010",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_release_held_out_010.json",
+      "sha256": "b7e422f355389f66ebbfb45c36e26493f1ef55389846b03b1dff74c6204f1a31",
+      "semantic_context": "release-010"
+    },
+    {
+      "task_id": "workflow_release_held_out_100",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_release_held_out_100.json",
+      "sha256": "c0d5a5400ebd7fdf8061795d2340d6e4419e3197fad940b797ae5d8d28038b19",
+      "semantic_context": "release-100"
+    },
+    {
+      "task_id": "workflow_release_held_out_111",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_release_held_out_111.json",
+      "sha256": "fadba49d4c84207a3bf3f12014a41c756df9c9a202f7bbfa1f7d2349230cace6",
+      "semantic_context": "release-111"
+    },
+    {
+      "task_id": "workflow_ingestion_development_101",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_development_101.json",
+      "sha256": "c1a6218091d38249bff838d4aeca9b908b57291ae68b81f45ff05b8df9088663",
+      "semantic_context": "ingestion-101"
+    },
+    {
+      "task_id": "workflow_ingestion_development_110",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_development_110.json",
+      "sha256": "73751144beb45b8c8e3456bbfb921f59cc5533a4a760071d5fbb1b4cb97e194b",
+      "semantic_context": "ingestion-110"
+    },
+    {
+      "task_id": "workflow_ingestion_train_000",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_train_000.json",
+      "sha256": "e2669a4f4c035973f9e7da135bab088cb85d1a454e7b604c98c38d3ae6edfc28",
+      "semantic_context": "ingestion-000"
+    },
+    {
+      "task_id": "workflow_ingestion_train_011",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_train_011.json",
+      "sha256": "328c6882400b8c49359635b1b5399fda5790eaabf8a9db7e019c2d52ed29dcf6",
+      "semantic_context": "ingestion-011"
+    },
+    {
+      "task_id": "workflow_ingestion_train_101",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_train_101.json",
+      "sha256": "256af3a30fd9760a1e8f50f3e77d1b2db9983675ff852d401f91543140860b57",
+      "semantic_context": "ingestion-101"
+    },
+    {
+      "task_id": "workflow_ingestion_train_110",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_train_110.json",
+      "sha256": "d5dd2a88745815e484922731222f316808e2880896a246ff206d9ab0510392a9",
+      "semantic_context": "ingestion-110"
+    },
+    {
+      "task_id": "workflow_ingestion_held_out_001",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_held_out_001.json",
+      "sha256": "220a7e8f35f0d3f168957177f10dfd20b9918daf6854a959fd45466fcc8d8711",
+      "semantic_context": "ingestion-001"
+    },
+    {
+      "task_id": "workflow_ingestion_held_out_010",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_held_out_010.json",
+      "sha256": "5cd1f5a451900baed09c2475d03af1c0b3fd9ce8212df7ebbb2b08eca513369b",
+      "semantic_context": "ingestion-010"
+    },
+    {
+      "task_id": "workflow_ingestion_held_out_100",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_held_out_100.json",
+      "sha256": "99ef88cdea2fb756cce4133669c49227f75646079579931e5ab869ab89bf1818",
+      "semantic_context": "ingestion-100"
+    },
+    {
+      "task_id": "workflow_ingestion_held_out_111",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_ingestion_held_out_111.json",
+      "sha256": "61cfc8b85dd5a232f828310add6588658ed43387896baa9477097c03b1105d49",
+      "semantic_context": "ingestion-111"
+    },
+    {
+      "task_id": "workflow_compensation_development_101",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_compensation_development_101.json",
+      "sha256": "9055c0bee61a8919ba89d0caf7278a6c5d324ac7b72733b20ea52a36e2fc3d5a",
+      "semantic_context": "compensation-101"
+    },
+    {
+      "task_id": "workflow_compensation_development_110",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev0/workflow_compensation_development_110.json",
+      "sha256": "83fe44ba1416b292bab20a42d449e30911a4691490e86f786ca1b800ac3f6bd1",
+      "semantic_context": "compensation-110"
+    },
+    {
+      "task_id": "workflow_compensation_train_000",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_compensation_train_000.json",
+      "sha256": "953146b222540742599918553df7e4395af84d7eb52a01eafa24c3c7c35d6ad1",
+      "semantic_context": "compensation-000"
+    },
+    {
+      "task_id": "workflow_compensation_train_011",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_compensation_train_011.json",
+      "sha256": "0f3288bd16a34c275728fa0bfad5be2092e04e2921857c0e25c4428c7b0f87ad",
+      "semantic_context": "compensation-011"
+    },
+    {
+      "task_id": "workflow_compensation_train_101",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_compensation_train_101.json",
+      "sha256": "b3a1367fdc0d880a638747e294cf8c634e4bfb2ab040ac9a8e7dcebc516a7634",
+      "semantic_context": "compensation-101"
+    },
+    {
+      "task_id": "workflow_compensation_train_110",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev0/workflow_compensation_train_110.json",
+      "sha256": "62d1c35177b48d1a149a858097aabc2664deb4c7c0c090b2f2339f1523f7e1a7",
+      "semantic_context": "compensation-110"
+    },
+    {
+      "task_id": "workflow_compensation_held_out_001",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_compensation_held_out_001.json",
+      "sha256": "3d4d91041fc7a8da9db8e73d9a2460cf7601a0f69f0a3f47f4dad3323887044e",
+      "semantic_context": "compensation-001"
+    },
+    {
+      "task_id": "workflow_compensation_held_out_010",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_compensation_held_out_010.json",
+      "sha256": "1585a2bcd99d8d51e5ee8b76a66b9d1de20bbd34f1c90c92df5fb34e126a9f7f",
+      "semantic_context": "compensation-010"
+    },
+    {
+      "task_id": "workflow_compensation_held_out_100",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_compensation_held_out_100.json",
+      "sha256": "fa1095fdc2f637d0acefa35d3f01373d0e9cf892161add5f74d5ddd7f7dae831",
+      "semantic_context": "compensation-100"
+    },
+    {
+      "task_id": "workflow_compensation_held_out_111",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev0/workflow_compensation_held_out_111.json",
+      "sha256": "4871e7de0a61e372b37a7da52b46f672a522f6308fd1061068fe912043297355",
+      "semantic_context": "compensation-111"
+    }
+  ]
+}

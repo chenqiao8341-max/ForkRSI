@@ -1,0 +1,28 @@
+[project]
+name = "forkmem"
+version = "0.1.0"
+description = "Execution-verified counterfactual memory for coding agents"
+requires-python = ">=3.13"
+dependencies = ["httpx>=0.28", "pydantic>=2.10", "langgraph>=1.0", "langgraph-checkpoint-sqlite>=3.0", "pyyaml>=6.0", "typer>=0.16", "numpy>=2", "matplotlib>=3.9"]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=1", "ruff>=0.12", "mypy>=1.15", "types-PyYAML"]
+
+[project.scripts]
+forkmem = "forkmem.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+extend-exclude = ["data/reference_solutions"]
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true

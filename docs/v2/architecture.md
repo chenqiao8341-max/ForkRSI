@@ -1,0 +1,19 @@
+# Paired operational evidence architecture
+
+Earlier research history is retained locally. This publication retains its git/checkpoint, sandbox, client and append-only DecisionFork infrastructure, adding a workflow benchmark and evidence renderer.
+
+The **code checkpoint** and **runtime recovery state** are different objects. A counterfactual edits the program at the same git checkpoint as the factual edit, then generates any remaining coding-agent continuation under the same action budget. Each final program is executed from identical simulator initial states and scheduled interruptions. This is a full-program intervention across multiple runtime decisions, not a claim that the LLM directly selects each operational API action or that every changed operation has an isolated causal effect.
+
+`WorkflowAPI` checks operation preconditions, resource limits and safety invariants, preserving invalid execution even if later state looks correct. `ResumableAPI` models interruption after atomic external effects; an open ingestion transaction rolls back, while durable service state and leases survive. The supervisor invokes the controller again with fresh locals. Programs receive public contracts and observable state; no external services are modified.
+
+The oracle records every runtime case and its decision trace. Whole-episode success is conjunction over all cases and obligations. `workflows.analysis` verifies log hashes and aligns factual/alternative comparisons by case ID **and identical crash schedule**. It records repairs, regressions and changed operation sequences. Missing structured evidence (such as an import failure) remains missing; it is not fabricated as a measured component vector.
+
+`workflows.memory.views` produces eight evidence views from frozen source data. Unverified views use a first proposed program before execution feedback or continuation repairs. Negative-only uses the independent observed-failure table, including failures without a fork. Verified views require a fully successful source program. Flat and paired verified views receive the same final successful program IDs; the paired view additionally includes factual code, failure observations and aligned contrasts. Selection favors agreement on visible context facts and diverse source contexts, without target outcomes or random UUID tie breaks.
+
+The source context is an evidence scope, **not a learned proof of target applicability**. New combinations are explicitly untested and require adaptation and execution. This version uses analogical retrieval with explicit guards and diagnostics; it does not claim to infer minimal causal predicates from sparse source observations. Exact full-profile retrieval remains an ablation. Removing explicit guards still leaves contextual clues in code and traces.
+
+Memory is compiled before transfer. Exact tokenizer counts and a shared character ceiling bound injection. Identical memory bodies/task/seed/action-budget cells share an execution; every alias is recorded. This avoids attributing stochastic empty-memory differences to memory architecture. Incremental and attributable costs are reported separately so reuse cannot double-count compute or make an equivalent condition appear free.
+
+The transfer runner validates task/corpus hashes, records immutable source/transfer revisions, preserves partial failures and checks memory equality on resume. Complete-grid evaluation validates executed prompt bodies, aliases, output hashes, oracle completion and paired statistics. No held-out result mutates memory or the protocol.
+
+This is a local non-adversarial research simulator. Python task code is not assumed to defeat reflection or forge simulator internals; the sandbox limits host effects and the audit examines actual execution evidence. It is not a hardened multi-tenant operational service.

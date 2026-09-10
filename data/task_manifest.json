@@ -1,0 +1,229 @@
+{
+  "version": "microrepo-v1",
+  "tasks": [
+    {
+      "task_id": "config_precedence_00",
+      "family": "config_precedence",
+      "split": "train",
+      "path": "data/task_specs/config_precedence_00.json",
+      "sha256": "73111e937f74f1d3de21cb398a024f4ece260dbaf44bfb4e4d8d551e4cb762d7"
+    },
+    {
+      "task_id": "config_precedence_01",
+      "family": "config_precedence",
+      "split": "train",
+      "path": "data/task_specs/config_precedence_01.json",
+      "sha256": "20580469cef6d323aa58f7ba76c2142ad8126fc65c87c5006a40d3a6043690ab"
+    },
+    {
+      "task_id": "config_precedence_02",
+      "family": "config_precedence",
+      "split": "train",
+      "path": "data/task_specs/config_precedence_02.json",
+      "sha256": "19c4d392aad9ea1ae9cb029155f30644f97ed4257e3fddbedc011c06ee32bee0"
+    },
+    {
+      "task_id": "config_precedence_03",
+      "family": "config_precedence",
+      "split": "held_out",
+      "path": "data/task_specs/config_precedence_03.json",
+      "sha256": "327e08616872775b225a04e51402c261173c7e81cd23a7ab808dac8f5d6f4dbb"
+    },
+    {
+      "task_id": "config_precedence_04",
+      "family": "config_precedence",
+      "split": "held_out",
+      "path": "data/task_specs/config_precedence_04.json",
+      "sha256": "46f907f6f510dee7cb8353794e1a2b3d0f1e4f561b36459c06f0fccd3e8c4296"
+    },
+    {
+      "task_id": "config_precedence_05",
+      "family": "config_precedence",
+      "split": "held_out",
+      "path": "data/task_specs/config_precedence_05.json",
+      "sha256": "2c253063bfd93ea880d96fb7b8afb58a4b7b9caf33cf8921f902ff0661e83519"
+    },
+    {
+      "task_id": "config_precedence_06",
+      "family": "config_precedence",
+      "split": "near_miss",
+      "path": "data/task_specs/config_precedence_06.json",
+      "sha256": "cd577e955b159eb5699c391e2569ce09996b8e8a0ba21ea0ef7a4727e53a834a"
+    },
+    {
+      "task_id": "config_precedence_07",
+      "family": "config_precedence",
+      "split": "near_miss",
+      "path": "data/task_specs/config_precedence_07.json",
+      "sha256": "520688fcb60bd142a9d62c4003f385f42c596b183f04d64cc2451cb126b7ab10"
+    },
+    {
+      "task_id": "interval_contract_00",
+      "family": "interval_contract",
+      "split": "train",
+      "path": "data/task_specs/interval_contract_00.json",
+      "sha256": "4c0fc27a54b4931a79d268421f24dcea100281534fe6b68b23ce5a02709124d3"
+    },
+    {
+      "task_id": "interval_contract_01",
+      "family": "interval_contract",
+      "split": "train",
+      "path": "data/task_specs/interval_contract_01.json",
+      "sha256": "6dae73ad5e07b6ca8b2f965bb6c225e6ef6d34b2a7059e4c4deba67b480432d8"
+    },
+    {
+      "task_id": "interval_contract_02",
+      "family": "interval_contract",
+      "split": "train",
+      "path": "data/task_specs/interval_contract_02.json",
+      "sha256": "6dccf72b37f3d3c374a36f2a534c06970e4e7ff144a1608f6edb0964e09f2651"
+    },
+    {
+      "task_id": "interval_contract_03",
+      "family": "interval_contract",
+      "split": "held_out",
+      "path": "data/task_specs/interval_contract_03.json",
+      "sha256": "98d921c3c7f258f4caef984abfeeb66acc927a6b1d9fd675aa35b9bced5589d3"
+    },
+    {
+      "task_id": "interval_contract_04",
+      "family": "interval_contract",
+      "split": "held_out",
+      "path": "data/task_specs/interval_contract_04.json",
+      "sha256": "6ab20282bc4302412442bccdca6e842dced77e737d1f7653992b3643cbcbd997"
+    },
+    {
+      "task_id": "interval_contract_05",
+      "family": "interval_contract",
+      "split": "held_out",
+      "path": "data/task_specs/interval_contract_05.json",
+      "sha256": "22b2243f9079ccddd3aec328a22a509005366ddb50e6816b6ced80ab2846fb95"
+    },
+    {
+      "task_id": "interval_contract_06",
+      "family": "interval_contract",
+      "split": "near_miss",
+      "path": "data/task_specs/interval_contract_06.json",
+      "sha256": "b864a5e5af18eb3689d0f789d651d994b023a481245d452098d03d0d69b8875f"
+    },
+    {
+      "task_id": "interval_contract_07",
+      "family": "interval_contract",
+      "split": "near_miss",
+      "path": "data/task_specs/interval_contract_07.json",
+      "sha256": "4c7b90e1f515892881e98654da54fef5cef90c0d6c5ecaf3670bb43b1fae148d"
+    },
+    {
+      "task_id": "async_retry_00",
+      "family": "async_retry",
+      "split": "train",
+      "path": "data/task_specs/async_retry_00.json",
+      "sha256": "eeab8a28faf9621a9b845d25a8e04f6f5788c4cc9cbb6955a850ac953edb1971"
+    },
+    {
+      "task_id": "async_retry_01",
+      "family": "async_retry",
+      "split": "train",
+      "path": "data/task_specs/async_retry_01.json",
+      "sha256": "a7dbb0aa9ef8280dce343414538ed177ca757e05a3767bef0451b7910b6dd4fb"
+    },
+    {
+      "task_id": "async_retry_02",
+      "family": "async_retry",
+      "split": "train",
+      "path": "data/task_specs/async_retry_02.json",
+      "sha256": "e1ed430f65df151c4558637c0ef0b99fe34025fc9bf46be3b8be11ccf11c47b2"
+    },
+    {
+      "task_id": "async_retry_03",
+      "family": "async_retry",
+      "split": "held_out",
+      "path": "data/task_specs/async_retry_03.json",
+      "sha256": "32eaa1b45a80f3830ca1822dea18a508366a61afa264dafc23cb351082d3dfbf"
+    },
+    {
+      "task_id": "async_retry_04",
+      "family": "async_retry",
+      "split": "held_out",
+      "path": "data/task_specs/async_retry_04.json",
+      "sha256": "9477e7ea816dd9541c50702199854a24a99cd6a41075eaa985c2ce67a6474e13"
+    },
+    {
+      "task_id": "async_retry_05",
+      "family": "async_retry",
+      "split": "held_out",
+      "path": "data/task_specs/async_retry_05.json",
+      "sha256": "399b26846af1f3a8be9913cc7a1dd9446e86de30c2c23392306f0433aa042bfd"
+    },
+    {
+      "task_id": "async_retry_06",
+      "family": "async_retry",
+      "split": "near_miss",
+      "path": "data/task_specs/async_retry_06.json",
+      "sha256": "7580e631a59dbf57bfcac437e50f369497a4429eecb8e88e1cd659e717fcd840"
+    },
+    {
+      "task_id": "async_retry_07",
+      "family": "async_retry",
+      "split": "near_miss",
+      "path": "data/task_specs/async_retry_07.json",
+      "sha256": "79acbfa5d8fa226c77a2108823fa77a94190873cf1146625db8c9e9035cb5d20"
+    },
+    {
+      "task_id": "json_merge_00",
+      "family": "json_merge",
+      "split": "train",
+      "path": "data/task_specs/json_merge_00.json",
+      "sha256": "9766f14d7c32aef94529a777902aa338321f8e59568253fca3aac8b863d96835"
+    },
+    {
+      "task_id": "json_merge_01",
+      "family": "json_merge",
+      "split": "train",
+      "path": "data/task_specs/json_merge_01.json",
+      "sha256": "3afa86aa39b3191b253f636e96b198dfdec3937c4d6c67e32624ae84c1832bff"
+    },
+    {
+      "task_id": "json_merge_02",
+      "family": "json_merge",
+      "split": "train",
+      "path": "data/task_specs/json_merge_02.json",
+      "sha256": "0d455b5dc1accfc769179a5a6154cb57c8266eafd209a4459f74e062eec71ffa"
+    },
+    {
+      "task_id": "json_merge_03",
+      "family": "json_merge",
+      "split": "held_out",
+      "path": "data/task_specs/json_merge_03.json",
+      "sha256": "9b491383b69265dee4122473d5c1c5c300edcfaa173774b021aefdf99d3097a3"
+    },
+    {
+      "task_id": "json_merge_04",
+      "family": "json_merge",
+      "split": "held_out",
+      "path": "data/task_specs/json_merge_04.json",
+      "sha256": "f869e54d2dd247656d86b705784ba8df9c45ed7f7c435c4c1a3127fc5ff01a24"
+    },
+    {
+      "task_id": "json_merge_05",
+      "family": "json_merge",
+      "split": "held_out",
+      "path": "data/task_specs/json_merge_05.json",
+      "sha256": "7ef3bc519b62f2a26c651766948e878dfb1fea0a91cf015e03fc6e819e5de74b"
+    },
+    {
+      "task_id": "json_merge_06",
+      "family": "json_merge",
+      "split": "near_miss",
+      "path": "data/task_specs/json_merge_06.json",
+      "sha256": "628b8637acb859d7bd4e90a06eca15da052f6066fd7f044b7e618b0c391a185b"
+    },
+    {
+      "task_id": "json_merge_07",
+      "family": "json_merge",
+      "split": "near_miss",
+      "path": "data/task_specs/json_merge_07.json",
+      "sha256": "a8bdf2007cf56cb18ab4f48e2a0718a5fa209bd7589e65b3f19d1d7c2f55d9d1"
+    }
+  ]
+}

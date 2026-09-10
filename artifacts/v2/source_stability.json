@@ -1,0 +1,10 @@
+{
+  "source_run": "/home/qingao/work/ForkMem/runs/v2-source-frozen1",
+  "forks": 11,
+  "unique_alternative_branches": 29,
+  "additional_replay_executions": 58,
+  "all_replays_match": true,
+  "repeatedly_verified_branches": 22,
+  "stable_forks_with_positive_alternative": 9,
+  "scope": "repeatability at the original checkpoint, not cross-instance generalization"
+}

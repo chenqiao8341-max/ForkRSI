@@ -1,0 +1,16 @@
+{
+  "task_id": "json_merge_05",
+  "family": "json_merge",
+  "split": "held_out",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "delete-null"
+  },
+  "files": {
+    "solution.py": "def merge(document, patch):\n    result=dict(document)\n    result.update(patch)\n    return result\n",
+    "README.md": "Implement merge(document, patch) for the patch profile in schema.json. Object patches recursively merge object members; merging an object into a non-object starts from an empty object. Non-object patches replace the entire value. Arrays are atomic replacement values. Neither input may be mutated, and output mutable containers must not alias either input. Profile edition 5; keys and values are arbitrary JSON values.\n",
+    "schema.json": "{\"null_member_semantics\": \"delete-null\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import merge\nimport copy\nfor document,patch,expected in [({'field_5': 1}, {'field_5': None}, {}), ({'nested': {'a': 1, 'b': 2}}, {'nested': {'a': None, 'c': 3}}, {'nested': {'b': 2, 'c': 3}}), (7, {'x': {'y': 2}}, {'x': {'y': 2}}), ({'x': [1, 2]}, {'x': [3]}, {'x': [3]}), ({'x': 1}, None, None), ([1, 2], [3], [3]), ({}, {'missing': None}, {})]:\n    before=copy.deepcopy((document,patch))\n    result=merge(document,patch)\n    assert result==expected, (document,patch,result,expected)\n    assert (document,patch)==before\n    if isinstance(result,dict): result['touch']=1\n    if isinstance(result,list): result.append('touch')\n    assert (document,patch)==before, 'aliasing root'\ndoc={'nested':{'items':[1,2]}}; patch={'extra':{'items':[3]}}\nresult=merge(doc,patch)\nresult['nested']['items'].append(4); result['extra']['items'].append(5)\nassert doc=={'nested':{'items':[1,2]}} and patch=={'extra':{'items':[3]}}, 'aliasing nested'\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

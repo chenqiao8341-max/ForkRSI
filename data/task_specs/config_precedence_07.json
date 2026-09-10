@@ -1,0 +1,16 @@
+{
+  "task_id": "config_precedence_07",
+  "family": "config_precedence",
+  "split": "near_miss",
+  "description": "Repair solution.py to satisfy this repository's documented API and data contract. Inspect the provided files; preserve the public function signature.",
+  "features": {
+    "profile": "file-over-environment"
+  },
+  "files": {
+    "solution.py": "def resolve(file_settings, environ, overrides):\n    return int(overrides.get('window') or environ.get('APP_WINDOW') or file_settings.get('window') or 27)\n",
+    "README.md": "Implement resolve(file_settings, environ, overrides) returning an integer.\nThe setting is 'window', environment variable 'APP_WINDOW'; built-in default is 27.\nExplicit overrides have highest priority. Then follow the profile in profile.json.\nAn absent key advances to the next layer. A JSON null at a selected layer resets to the built-in default, without falling through. Empty environment strings mean absent; other values convert with int. Zero is valid.\n",
+    "profile.json": "{\"precedence\": \"file-over-environment\"}"
+  },
+  "verifier": "import sys\nsys.path.insert(0, '/task')\nfrom solution import resolve\nfor f,e,o,expected in [({}, {}, {}, 27), ({'window': 7}, {'APP_WINDOW': '9'}, {}, 7), ({'window': 7}, {'APP_WINDOW': '0'}, {}, 7), ({'window': 0}, {'APP_WINDOW': '9'}, {}, 0), ({'window': 7}, {'APP_WINDOW': '9'}, {'window': None}, 27), ({'window': 7}, {'APP_WINDOW': ''}, {}, 7), ({'window': 7}, {'APP_WINDOW': '9'}, {'window': 0}, 0), ({'window': None}, {'APP_WINDOW': None}, {}, 27)]:\n    actual = resolve(f,e,o)\n    assert actual == expected, (f,e,o,actual,expected)\n\nprint('FORKMEM_VERIFIER_COMPLETE')\n",
+  "dataset_version": "microrepo-v1"
+}

@@ -1,0 +1,60 @@
+{
+  "distinct_injected_source_programs": 4,
+  "all_source_reexecutions_pass": true,
+  "flat_and_paired_program_ids_and_bytes_match": true,
+  "rows": [
+    {
+      "identity": "b77cdb0442c74795b75284483538f3c3:42859ae1250d4c45a9f0a8fa3d890da8",
+      "source_task": "resumable_ingestion_train_011",
+      "rendered_code_sha256": "180cfa63e97b725ebc285c57c6161d5ed41190ead15fe9b72106c5f5f0dca1e2",
+      "source_tree_matches": true,
+      "source_oracle_passes": true,
+      "target_contexts_receiving_record": [
+        "resumable_ingestion_held_out_001",
+        "resumable_ingestion_held_out_010",
+        "resumable_ingestion_held_out_100",
+        "resumable_ingestion_held_out_111"
+      ]
+    },
+    {
+      "identity": "e08d2992ed2c4b088085360859486ebf:55690539883e40a5a819f03274296696",
+      "source_task": "resumable_migration_train_000",
+      "rendered_code_sha256": "1e988a71a1096351090cdc031da367894bbff687af74567d8fe16d451e1d9d34",
+      "source_tree_matches": true,
+      "source_oracle_passes": true,
+      "target_contexts_receiving_record": [
+        "resumable_migration_held_out_001",
+        "resumable_migration_held_out_010",
+        "resumable_migration_held_out_100",
+        "resumable_migration_held_out_111"
+      ]
+    },
+    {
+      "identity": "42b196ec91ff4b6aa8e1ec1f1e5ec9ba:7fc5004183a24be9ac3e7325620f5118",
+      "source_task": "resumable_migration_train_110",
+      "rendered_code_sha256": "b659172805a2621a3ae2cc076dd050280011859aff33c51d2d54b36c65c0a707",
+      "source_tree_matches": true,
+      "source_oracle_passes": true,
+      "target_contexts_receiving_record": [
+        "resumable_migration_held_out_001",
+        "resumable_migration_held_out_010",
+        "resumable_migration_held_out_100",
+        "resumable_migration_held_out_111"
+      ]
+    },
+    {
+      "identity": "0b1f1987597b41bd91f844d4e0399a83:3f66cee8c35e4325aba40dcab65999cd",
+      "source_task": "resumable_release_train_000",
+      "rendered_code_sha256": "d15dc1b9cdb385d1c92cb63859a35e801267e6e3a1a7ab8a7d3356e6e29feeaf",
+      "source_tree_matches": true,
+      "source_oracle_passes": true,
+      "target_contexts_receiving_record": [
+        "resumable_release_held_out_001",
+        "resumable_release_held_out_010",
+        "resumable_release_held_out_100",
+        "resumable_release_held_out_111"
+      ]
+    }
+  ],
+  "scope": "Source-contract validation only; no target outcomes inspected, no transfer memory updated, and no new distinct hypotheses counted."
+}

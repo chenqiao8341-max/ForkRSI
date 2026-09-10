@@ -1,0 +1,439 @@
+{
+  "version": "workflow-dev1",
+  "status": "development; transfer outcomes unopened",
+  "predecessor": "workflow-dev0: development no-memory 8/8, archived; recovery mechanism added before transfer inference",
+  "tasks": [
+    {
+      "task_id": "resumable_migration_development_000",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_migration_development_000.json",
+      "sha256": "fc6e0665f606a6e972901245d470038e7238080f58a5e7cb44877e8700bde499",
+      "semantic_context": "migration-000",
+      "runtime_case_count": 8
+    },
+    {
+      "task_id": "resumable_migration_development_011",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_migration_development_011.json",
+      "sha256": "53befd9f0c50c3c4f9dffe675eb1a2c19f5852ee2a0e978c64bf65b49612cac4",
+      "semantic_context": "migration-011",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_migration_development_101",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_migration_development_101.json",
+      "sha256": "773d9e1115be2d5bfc8fc0a25ffd49b242bf27fb2f77e05a0c5a39516ba13141",
+      "semantic_context": "migration-101",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_migration_development_110",
+      "family": "workflow_migration",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_migration_development_110.json",
+      "sha256": "fbe6a177d460daca2745c011b79e1a0859f4e25f6e69b9818960a41cedf74302",
+      "semantic_context": "migration-110",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_migration_train_000",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_migration_train_000.json",
+      "sha256": "806b5ac0fa8b2d06fe227334ad10fbed1d162876ab8bc5efa950c6b290552d41",
+      "semantic_context": "migration-000",
+      "runtime_case_count": 8
+    },
+    {
+      "task_id": "resumable_migration_train_011",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_migration_train_011.json",
+      "sha256": "03d9acca4d66826aa384d84c88cc4e04723d9f7ca520f3e8de3d4e532cc62145",
+      "semantic_context": "migration-011",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_migration_train_101",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_migration_train_101.json",
+      "sha256": "638e9c739b86ed680c9db8374c092eba3c53c26dcda0cb8cc9945ece167286d0",
+      "semantic_context": "migration-101",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_migration_train_110",
+      "family": "workflow_migration",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_migration_train_110.json",
+      "sha256": "ac70aa5f90bb9ac222bd9a44056a965ea0f8f80fd1bf47ea74574423b675fc57",
+      "semantic_context": "migration-110",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_migration_held_out_001",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_migration_held_out_001.json",
+      "sha256": "28816a556b3b85564f1c021705fe5fe3a70212d30b5bc2c00b1fe60049fd1cf3",
+      "semantic_context": "migration-001",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_migration_held_out_010",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_migration_held_out_010.json",
+      "sha256": "dd7fe62db652478ca0a3198cb492c0974bea8868fcd33fce32b841895ef7ee8c",
+      "semantic_context": "migration-010",
+      "runtime_case_count": 8
+    },
+    {
+      "task_id": "resumable_migration_held_out_100",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_migration_held_out_100.json",
+      "sha256": "3d88d7e298ab3be6da57d036d9e85f3b8cea7e289b82c0cdb6d78f324b1428d8",
+      "semantic_context": "migration-100",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_migration_held_out_111",
+      "family": "workflow_migration",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_migration_held_out_111.json",
+      "sha256": "b3863788c1c0d1027a1f0462d7d0249849aa680d0757ce5494d4f33980c83202",
+      "semantic_context": "migration-111",
+      "runtime_case_count": 20
+    },
+    {
+      "task_id": "resumable_release_development_000",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_release_development_000.json",
+      "sha256": "1dc4949c6b133cf99bb2ae22807c4f865c82f18427d87b9e48add4b8a406af7f",
+      "semantic_context": "release-000",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_release_development_011",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_release_development_011.json",
+      "sha256": "9f5e73ea6b3e7c7b458dd658ffbfd5534ea422907c30bd6e72fbe61175819d07",
+      "semantic_context": "release-011",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_release_development_101",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_release_development_101.json",
+      "sha256": "880c456bc360d40cfa3c353127ff7a093321059d0d16b1f1db4f58bc595b07a6",
+      "semantic_context": "release-101",
+      "runtime_case_count": 12
+    },
+    {
+      "task_id": "resumable_release_development_110",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_release_development_110.json",
+      "sha256": "f5ed4d55d0607cddb9b9f3f6c5f83621f2baea83bde0f45c067fe90192747813",
+      "semantic_context": "release-110",
+      "runtime_case_count": 18
+    },
+    {
+      "task_id": "resumable_release_train_000",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_release_train_000.json",
+      "sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "semantic_context": "release-000",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_release_train_011",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_release_train_011.json",
+      "sha256": "4beb9f6cf1a38c1bde1b32914f8f51971c06fbcd35f576693f0730dd135523b8",
+      "semantic_context": "release-011",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_release_train_101",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_release_train_101.json",
+      "sha256": "2cc6002289da426cd2d2856391d47fdbaf90017aa937c28db07381589db4c4b4",
+      "semantic_context": "release-101",
+      "runtime_case_count": 12
+    },
+    {
+      "task_id": "resumable_release_train_110",
+      "family": "workflow_release",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_release_train_110.json",
+      "sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "semantic_context": "release-110",
+      "runtime_case_count": 18
+    },
+    {
+      "task_id": "resumable_release_held_out_001",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_release_held_out_001.json",
+      "sha256": "1654693467eb28ec0b04ddc97c1e65c3e60a209de1bcdf35620dbcab1a7ceb21",
+      "semantic_context": "release-001",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "resumable_release_held_out_010",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_release_held_out_010.json",
+      "sha256": "f0a66b9baa16b55199b041fab2d67782f97fd942e17206b991879947d65d9504",
+      "semantic_context": "release-010",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_release_held_out_100",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_release_held_out_100.json",
+      "sha256": "801b128f253762df8425933e8871e815f5468a3bd3d594f8ecb670a220552d25",
+      "semantic_context": "release-100",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_release_held_out_111",
+      "family": "workflow_release",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_release_held_out_111.json",
+      "sha256": "a9f2688ca8b54b2b8791edde66a9dc5504d36f3e5bb6d41fa69415612e2cfd17",
+      "semantic_context": "release-111",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_ingestion_development_000",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_development_000.json",
+      "sha256": "226d05a4d7591bb022afb530e97f28758a7a94d2187116bf502868b22b044587",
+      "semantic_context": "ingestion-000",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_ingestion_development_011",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_development_011.json",
+      "sha256": "d90ab4edb6cfdcd567bcbaa17ee9bab7a1b0d6cbccc88d43c43de48df995d989",
+      "semantic_context": "ingestion-011",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_ingestion_development_101",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_development_101.json",
+      "sha256": "afc2718c759ca8d9e829a7e1bbaab6b365e603cef50daf7a1f4a620d0319f2c7",
+      "semantic_context": "ingestion-101",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_ingestion_development_110",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_development_110.json",
+      "sha256": "b073b5275ded9cce1ee3b737b7aeeab89a31a09cd291c4e996f62bc0fa5669c8",
+      "semantic_context": "ingestion-110",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_ingestion_train_000",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+      "sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "semantic_context": "ingestion-000",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_ingestion_train_011",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_011.json",
+      "sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "semantic_context": "ingestion-011",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "resumable_ingestion_train_101",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_101.json",
+      "sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "semantic_context": "ingestion-101",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_ingestion_train_110",
+      "family": "workflow_ingestion",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_110.json",
+      "sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "semantic_context": "ingestion-110",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_001",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_held_out_001.json",
+      "sha256": "699c97ee5e5ea685c489ee356286da43a1aa63a715c7b4cfad389318bd3097c5",
+      "semantic_context": "ingestion-001",
+      "runtime_case_count": 18
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_010",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_held_out_010.json",
+      "sha256": "ff052c5299689d787b928f5ed6e169309e1faae3618987b113af63d5ffaeb627",
+      "semantic_context": "ingestion-010",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_100",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_held_out_100.json",
+      "sha256": "453bc66b06f1dedb42ad368c9101211c22d3fe88612b7a11ebd3d65dd5f60ecf",
+      "semantic_context": "ingestion-100",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_ingestion_held_out_111",
+      "family": "workflow_ingestion",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_held_out_111.json",
+      "sha256": "81dc49669d61a09e5742773f6034e19b17c5c0a3907d7f6f84182549a21e640c",
+      "semantic_context": "ingestion-111",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "resumable_compensation_development_000",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_compensation_development_000.json",
+      "sha256": "56cb6ec20705a7152e0d54e6ba07673699704ba4eca6429a021b594da56f8f97",
+      "semantic_context": "compensation-000",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_development_011",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_compensation_development_011.json",
+      "sha256": "1026b0d894fd32bbb29df53a1dc072487d382e3bf30412feb9f612ce9e8fce06",
+      "semantic_context": "compensation-011",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_development_101",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_compensation_development_101.json",
+      "sha256": "2d01ee8d3f2294a3b24bf869f6bcdaa28e1bd4c05ea9179b56d00ea5448929b1",
+      "semantic_context": "compensation-101",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_compensation_development_110",
+      "family": "workflow_compensation",
+      "split": "development",
+      "path": "data/v2/workflow_dev1/resumable_compensation_development_110.json",
+      "sha256": "4682dda5cf2d111950d862da097f05bd8dce4c2f411d34bdb5bbdc754d7bc3fc",
+      "semantic_context": "compensation-110",
+      "runtime_case_count": 12
+    },
+    {
+      "task_id": "resumable_compensation_train_000",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_compensation_train_000.json",
+      "sha256": "02681676712491be420de6a8afacb5a37baddb22a4bc36a1c18a4c2cd4d1a404",
+      "semantic_context": "compensation-000",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_train_011",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_compensation_train_011.json",
+      "sha256": "f786b7f5a8b3ece59430ba7c3cf6f6ee136f815aede43909b1addf8f2f2b0ff3",
+      "semantic_context": "compensation-011",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_train_101",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_compensation_train_101.json",
+      "sha256": "e70666cf40c244e04be6e53a7697b1a906d87ca5e1bc2f91bf8267df3e5d822b",
+      "semantic_context": "compensation-101",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "resumable_compensation_train_110",
+      "family": "workflow_compensation",
+      "split": "train",
+      "path": "data/v2/workflow_dev1/resumable_compensation_train_110.json",
+      "sha256": "0abc7b736b421007567ea2a0454d2ede724b574bd1ed85e4e099660fc436360d",
+      "semantic_context": "compensation-110",
+      "runtime_case_count": 12
+    },
+    {
+      "task_id": "resumable_compensation_held_out_001",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_compensation_held_out_001.json",
+      "sha256": "86d0652e95b596a6ae7ad8da21b1c42e2d9289ff9d3f878e7b5ce9d09408d36f",
+      "semantic_context": "compensation-001",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_held_out_010",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_compensation_held_out_010.json",
+      "sha256": "17b2cf507039b629c6d20e1e92d6ef7b87ec877bf5703e3991be7778e60cc094",
+      "semantic_context": "compensation-010",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "resumable_compensation_held_out_100",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_compensation_held_out_100.json",
+      "sha256": "59ed179441e9339c9fe3d9aa5b0a351f8742063cc855f8d92a11e521a6d66019",
+      "semantic_context": "compensation-100",
+      "runtime_case_count": 12
+    },
+    {
+      "task_id": "resumable_compensation_held_out_111",
+      "family": "workflow_compensation",
+      "split": "held_out",
+      "path": "data/v2/workflow_dev1/resumable_compensation_held_out_111.json",
+      "sha256": "72099c5de5f8598d00bd1fac427626ca844aad783bb47388fa801cc6552be33b",
+      "semantic_context": "compensation-111",
+      "runtime_case_count": 12
+    }
+  ]
+}

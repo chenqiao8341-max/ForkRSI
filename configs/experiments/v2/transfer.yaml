@@ -1,0 +1,12 @@
+task_manifest: data/v2/frozen1/manifest.json
+evaluation_seeds: [101, 211, 307]
+action_budgets: [8]
+modes: [none, negative, imagined, paired_unverified, flat_verified, fork_verified, legacy_verified, unguarded_verified]
+memory_token_cap: 6000
+memory_character_cap: 20000
+memory_records: 2
+concurrency: 8
+episode_concurrency: 4
+request_budget: 8500
+primary_contrast: fork_verified minus flat_verified at eight actions
+secondary_contrasts: all other conditions; mechanism-level outcomes

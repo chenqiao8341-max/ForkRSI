@@ -1,0 +1,9 @@
+{
+  "source_manifest_sha256": "99b406da2b63b368af741beae29b0a492bb10708f3f1a91a7f392620b816014a",
+  "revision": "a803cf17d299c184d36fb62f066a62de9c7a5b6e",
+  "split": "development only",
+  "seed": 17,
+  "max_steps": 8,
+  "episode_concurrency": 4,
+  "request_budget": 160
+}
