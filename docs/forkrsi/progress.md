@@ -74,3 +74,5 @@ worker30783已核对存活，loaded code1ffc779，所有18个任务的候选池�
 ### 2026-09-30T19:37:01.171115+00:00 实例对象协议与新批次
 
 campaign-v1在首个开发任务前因第二源RuleSet提炼反复输出Schema+实例而失败，0任务执行；六次调用全部保留，见pre-development-json-trial.json。原修复提示“Return the exact schema”存在实例/Schema歧义。公共v3明确只输出符合规范的实例、不要复制Schema；严格解析、四次尝试、模型和所有预算不变。新campaign-v2不复用旧编译缓存，全对照统一v3，源6分叉和成功程序IDs不变。此为公共工程修复，不能算C/I效果。最终仍未打开。
+
+2026-09-30T19:38:30.826838+00:00 新worker31328确认存活，loaded revision96b1f3e，v3相关9项回归21.37s通过；首个RuleSet一次严格通过。旧campaign-v1所有成本保留；源候选池不变。

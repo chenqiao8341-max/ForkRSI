@@ -99,7 +99,7 @@ source-v2 在第4个训练任务耗尽四次 Action JSON 修复预算（输出�
 <!-- FORKRSI_CURRENT_STATE_BEGIN -->
 ## 当前状态（2026-09-30T19:31:53.616838+00:00）
 
-权威工作目录/root/autodl-tmp/ForkRSI；ModelScope Qwen3.5-4B冻结本地单卡服务运行。源已封存：6完整分叉、3通过全恢复验证的正向程序，来源Qwen1个、订阅辅助2个；15AST标记已逐项审查。全部失败、取消、未执行槽位及实际费用保留，订阅token不可测，不能声称纯Qwen自主源改进。完整回归82项通过，源来源接口兼容检查1项通过。实际C/I演化、I重置与公平选择已启动，worker30783已核对存活；最终尚未打开，目标active，200元上限保持。详情见artifacts/forkrsi/pre-search-status.json、source-seal-summary.json和docs/forkrsi/reproduce.md。
+权威工作目录/root/autodl-tmp/ForkRSI；ModelScope Qwen3.5-4B冻结本地单卡服务运行。源已封存：6完整分叉、3通过全恢复验证的正向程序，来源Qwen1个、订阅辅助2个；15AST标记已逐项审查。全部失败、取消、未执行槽位及实际费用保留，订阅token不可测，不能声称纯Qwen自主源改进。完整回归82项通过，源来源接口兼容检查1项通过。实际C/I演化、I重置与公平选择已启动，campaign-v2 worker31328已核对存活，统一实例JSON协议v3；旧campaign-v1已在0任务阶段失败保留；最终尚未打开，目标active，200元上限保持。详情见artifacts/forkrsi/pre-search-status.json、source-seal-summary.json和docs/forkrsi/reproduce.md。
 <!-- FORKRSI_CURRENT_STATE_END -->
 
 ### 2026-10-01 JSON 修复上下文
