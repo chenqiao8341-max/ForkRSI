@@ -11,7 +11,7 @@ from typing import Any
 
 import yaml
 
-from forkmem.agent import run_task
+from forkmem.agent import resume_episode, run_task
 from forkmem.counterfactual import fork_episode, locate_pivots
 from forkmem.environment import digest, git
 from forkmem.llm import LLMClient, ModelResponseError, parse_json
@@ -153,15 +153,96 @@ async def benchmark(config_path: Path, output: Path, *, resume: bool = False) ->
                 return saved
             target = output / phase / f"seed_{seed}" / mode / entry["task_id"]
             target.parent.mkdir(parents=True, exist_ok=True)
-            row = await run_task(
-                Path(entry["path"]),
-                target,
-                client,
-                store=store if phase == "evaluation" else None,
-                mode=mode,
-                seed=seed,
-                max_steps=config["max_steps"],
-            )
+            row: dict[str, Any]
+            if resume and target.exists():
+                attempts = [
+                    target,
+                    *sorted(target.parent.glob(target.name + "__resume_*")),
+                ]
+                finished = [
+                    p
+                    for p in attempts
+                    if (p / "episode.json").exists() and (p / "result.json").exists()
+                ]
+                if finished:
+                    target = finished[-1]
+                    row = json.loads((target / "episode.json").read_text())
+                    if (
+                        row["task_id"] != entry["task_id"]
+                        or row["seed"] != seed
+                        or row["mode"] != mode
+                        or row["success"]
+                        != json.loads((target / "result.json").read_text())["outcome"][
+                            "success"
+                        ]
+                    ):
+                        raise ValueError(
+                            "unrecorded completed episode does not match cell"
+                        )
+                else:
+                    partials = [
+                        p
+                        for p in attempts
+                        if (p / "runner.json").exists()
+                        and (p / "checkpoints.sqlite").exists()
+                    ]
+                    if not partials:
+                        raise ValueError(
+                            "partial episode lacks native recovery checkpoint"
+                        )
+                    prior = max(
+                        partials,
+                        key=lambda p: (p / "checkpoints.sqlite").stat().st_mtime_ns,
+                    )
+                    settings = json.loads((prior / "runner.json").read_text())
+                    if (
+                        settings["seed"] != seed
+                        or settings["max_steps"] != config["max_steps"]
+                    ):
+                        raise ValueError("partial episode budget/seed differs")
+                    original = target
+                    retry = 1
+                    target = original.with_name(original.name + f"__resume_{retry}")
+                    while target.exists():
+                        retry += 1
+                        target = original.with_name(original.name + f"__resume_{retry}")
+                    restored = await resume_episode(prior, target, client)
+                    # Keep the full persisted prefix for later pivot selection/audits.
+                    # These events retain original execution refs, not new executions.
+                    (target / "trajectory.jsonl").write_text(
+                        "".join(json.dumps(e) + "\n" for e in restored["messages"])
+                    )
+                    task = json.loads(Path(entry["path"]).read_text())
+                    row = {
+                        "episode_id": settings["episode_id"],
+                        "task_id": task["task_id"],
+                        "task_path": str(Path(entry["path"]).resolve()),
+                        "split": task["split"],
+                        "family": task["family"],
+                        "mode": mode,
+                        "seed": seed,
+                        "model": client.model,
+                        "max_steps": config["max_steps"],
+                        "verifier": settings["verifier"],
+                        "repo": str(target / "repo"),
+                        "success": restored["outcome"]["success"],
+                        "steps": restored["step"],
+                        "code_commit": revision,
+                        "decision_failure": restored.get("decision_failure"),
+                        "native_resume_source": str(prior),
+                        "trajectory_prefix_policy": "copied persisted events; no duplicate executions",
+                    }
+                    (target / "episode.json").write_text(json.dumps(row, indent=2))
+            else:
+                row = await run_task(
+                    Path(entry["path"]),
+                    target,
+                    client,
+                    store=store if phase == "evaluation" else None,
+                    mode=mode,
+                    seed=seed,
+                    max_steps=config["max_steps"],
+                )
             row.update(
                 phase=phase, episode_dir=str(target), experiment_revision=revision
             )

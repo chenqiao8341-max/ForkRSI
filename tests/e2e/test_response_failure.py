@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import httpx
+import pytest
 
 from forkmem.agent import run_task
 from forkmem.llm import LLMClient
@@ -155,3 +156,103 @@ async def test_exhausted_source_proposal_is_retained_without_positive_memory(
     )
     await benchmark.benchmark(config, output, resume=True)
     assert calls == 5  # Resume must not replenish the exhausted proposal slot.
+
+
+async def test_cancelled_sibling_resumes_same_remaining_actions(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    import asyncio
+
+    import yaml
+    from langgraph.errors import NodeCancelledError
+
+    from forkmem import benchmark
+    from forkmem.environment import digest
+
+    original_git = benchmark.git
+    monkeypatch.setattr(
+        benchmark,
+        "git",
+        lambda root, *args: "" if args[0] == "status" else original_git(root, *args),
+    )
+    fixture = json.loads(Path("data/task_specs/config_smoke.json").read_text())
+    fixture.update(task_id="cancelled", split="train")
+    task = tmp_path / "source.json"
+    task.write_text(json.dumps(fixture))
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "tasks": [
+                    {
+                        "task_id": "cancelled",
+                        "split": "train",
+                        "path": str(task),
+                        "sha256": digest(task.read_bytes()),
+                    }
+                ]
+            }
+        )
+    )
+    config = tmp_path / "config.yaml"
+    config.write_text(
+        yaml.safe_dump(
+            {
+                "task_manifest": str(manifest),
+                "training_seeds": [0],
+                "evaluation_seeds": [],
+                "modes": [],
+                "max_steps": 2,
+                "branches": 2,
+                "concurrency": 1,
+                "episode_concurrency": 1,
+                "request_budget": 10,
+            }
+        )
+    )
+    calls = 0
+
+    def respond(request: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise asyncio.CancelledError()
+        action = (
+            {"tool": "read", "path": "README.md"} if calls == 1 else {"tool": "finish"}
+        )
+        return httpx.Response(
+            200,
+            json={
+                "choices": [{"message": {"content": json.dumps(action)}}],
+            },
+        )
+
+    monkeypatch.setattr(
+        benchmark,
+        "LLMClient",
+        lambda path, **kwargs: LLMClient(
+            path,
+            transport=httpx.MockTransport(respond),
+            **kwargs,
+        ),
+    )
+    output = tmp_path / "source"
+    with pytest.raises(NodeCancelledError):
+        await benchmark.benchmark(config, output)
+    original = output / "training/seed_0/none/cancelled"
+    prefix = (original / "trajectory.jsonl").read_bytes()
+    assert len(prefix.splitlines()) == 1
+    result = await benchmark.benchmark(config, output, resume=True)
+    row = json.loads(result.read_text())
+    assert calls == 3
+    assert row["steps"] == 2
+    assert row["native_resume_source"] == str(original)
+    trace = [
+        json.loads(s)
+        for s in (Path(row["episode_dir"]) / "trajectory.jsonl")
+        .read_text()
+        .splitlines()
+    ]
+    assert [e["action"]["tool"] for e in trace] == ["read", "finish"]
+    assert (original / "trajectory.jsonl").read_bytes() == prefix

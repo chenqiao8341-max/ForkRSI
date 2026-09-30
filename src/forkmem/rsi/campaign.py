@@ -23,8 +23,9 @@ from forkmem.rsi.compiler import EvidenceMode, MemoryCompiler, source_packet
 from forkmem.rsi.improver import propose_compiler, propose_improver
 from forkmem.rsi.ledger import StrategyLedger, canonical, sha
 from forkmem.rsi.models import INITIAL_COMPILER, INITIAL_IMPROVER
+from forkmem.rsi.qualification import reviewed_flags
 from forkmem.workflows.analysis import PREFIX, read_workflow_cases
-from forkmem.workflows.memory import views
+from forkmem.workflows.memory import final_code, views
 
 Json = dict[str, Any]
 
@@ -227,7 +228,21 @@ class Campaign:
             f.model_dump(mode="json") for f in self.store.all()
         ]:
             raise ValueError("source SQLite and JSON disagree")
+        screen_path = self.source / "program-audit.json"
+        review_path = self.source / "program-audit-review.json"
+        flags = reviewed_flags(load(screen_path), load(review_path))
+        for fork in self.store.all():
+            for branch in fork.alternatives:
+                if branch.evidence_status.value in {
+                    "replay_verified",
+                    "repeatedly_verified",
+                } and not flags.get(digest(final_code(branch).encode()), True):
+                    raise ValueError(
+                        "contract-invalid source cannot enter candidate pool"
+                    )
         return {
+            "source_program_audit_sha256": digest(screen_path.read_bytes()),
+            "source_program_review_sha256": digest(review_path.read_bytes()),
             "protocol_sha256": digest(self.protocol_path.read_bytes()),
             "manifest_sha256": digest(self.manifest_path.read_bytes()),
             "corpus_sha256": digest((self.source / "corpus.json").read_bytes()),

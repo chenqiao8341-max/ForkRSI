@@ -18,6 +18,7 @@ from forkmem.environment import digest
 from forkmem.models import DecisionFork
 from forkmem.rsi.campaign import authenticated_result, load, save, usage
 from forkmem.rsi.ledger import sha
+from forkmem.rsi.qualification import qualify_row, reviewed_flags
 from forkmem.workflows.memory import final_code
 
 Json = dict[str, Any]
@@ -65,6 +66,13 @@ def statistics(rows: list[Json], none: list[Json]) -> Json:
     return {
         "semantic_tasks": len(tasks),
         "episode_cells": len(rows),
+        "raw_verifier_successes": sum(r["verifier_success"] for r in rows),
+        "raw_first_validation_successes": sum(
+            r["first_validation_verifier_success"] for r in rows
+        ),
+        "contract_disqualified_final_passes": sum(
+            r["verifier_success"] and not r["contract_adherent"] for r in rows
+        ),
         "complete_safe_successes": sum(r["success"] for r in rows),
         "complete_safe_success_rate": mean(
             mean(float(r["success"]) for r in group) for group in grouped.values()
@@ -90,7 +98,9 @@ def main() -> None:
     parser.add_argument(
         "--campaign", type=Path, default=Path("runs/forkrsi/campaign-v1")
     )
-    parser.add_argument("--source", type=Path, default=Path("runs/forkrsi/source-package-v1"))
+    parser.add_argument(
+        "--source", type=Path, default=Path("runs/forkrsi/source-package-v1")
+    )
     parser.add_argument(
         "--output", type=Path, default=Path("artifacts/forkrsi/pilot-v1")
     )
@@ -190,6 +200,16 @@ def main() -> None:
         save(out / "unresolved-program-flags.json", unresolved)
         raise ValueError("original program-screen flags require recorded manual review")
 
+    source_review = reviewed_flags(source_flags, reviews[0])
+    campaign_review = reviewed_flags(target_flags, reviews[1])
+    raw_results = results
+    results = {
+        mode: {
+            **result,
+            "rows": [qualify_row(row, campaign_review) for row in result["rows"]],
+        }
+        for mode, result in raw_results.items()
+    }
     none = results["none"]["rows"]
     table = {mode: statistics(result["rows"], none) for mode, result in results.items()}
     pairs = {}
@@ -220,7 +240,14 @@ def main() -> None:
     ):
         raise ValueError("I reset is not aligned")
     reset["paired_difference"] = paired_interval(
-        search["reset"]["I0"]["result"]["rows"], search["reset"]["I1"]["result"]["rows"]
+        [
+            qualify_row(r, campaign_review)
+            for r in search["reset"]["I0"]["result"]["rows"]
+        ],
+        [
+            qualify_row(r, campaign_review)
+            for r in search["reset"]["I1"]["result"]["rows"]
+        ],
     )
     with closing(sqlite3.connect(root / "strategies.sqlite")) as db:
         db.row_factory = sqlite3.Row
@@ -318,6 +345,12 @@ def main() -> None:
         "selected": search["selections"],
         "versions": versions,
         "comparisons": comparisons,
+        "qualification_policy": {
+            "safe_success": "authenticated complete verifier success plus unchanged screen/manual flag review",
+            "raw_selection": "fixed search/selection objective uses raw verifier results; no outcome-driven strategy reselection",
+            "source_reviewed_flags": source_review,
+            "raw_final_results_path": str(root / "final-result.json"),
+        },
         "program_screen": {
             "source": source_flags,
             "campaign": target_flags,
