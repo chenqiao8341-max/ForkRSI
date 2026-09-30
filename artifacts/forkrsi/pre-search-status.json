@@ -1,29 +1,29 @@
 {
-  "checked_utc": "2026-09-30T18:00:20.361858+00:00",
+  "checked_utc": "2026-09-30T18:18:54.228748+00:00",
   "code_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
   "remote_workspace": "/root/autodl-tmp/ForkRSI",
   "model": "Qwen3.5-4B",
   "source_v1": "terminal failed original prompt trial; all records and costs preserved",
   "source_v2_status": {
-    "completed_episodes": 6,
+    "completed_episodes": 13,
     "last": {
-      "episode_id": "resumable_release_train_110-f5d0f12aa862",
-      "task_id": "resumable_release_train_110",
-      "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_110.json",
+      "episode_id": "resumable_ingestion_train_110-a05865dcd418",
+      "task_id": "resumable_ingestion_train_110",
+      "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_110.json",
       "split": "train",
-      "family": "workflow_release",
+      "family": "workflow_ingestion",
       "mode": "none",
       "seed": 1701,
       "model": "Qwen3.5-4B",
       "max_steps": 8,
-      "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/verifier.py",
-      "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/repo",
+      "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110/verifier.py",
+      "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110/repo",
       "success": false,
       "steps": 8,
-      "code_commit": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
+      "code_commit": "fdb445790ed42f64947389c474e569fa32a980f5",
       "decision_failure": null,
       "phase": "training",
-      "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110",
+      "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110",
       "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
     },
     "state": "running"
@@ -32,11 +32,11 @@
     "pid": 21968,
     "revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
   },
-  "completed_training_tasks": 6,
+  "completed_training_tasks": 13,
   "training_full_successes": 2,
   "C_I_campaign": "not started; awaiting eligible actual fork corpus",
   "final_outcomes_opened": false,
-  "runtime_tests": "8 relevant e2e tests passed; rsi qualification/compiler/ledger 5 passed; strict mypy agent/benchmark/rsi passed",
+  "runtime_tests": "81 full-suite tests passed in 46.83s; see artifacts/forkrsi/checks-current.json",
   "budget": {
     "limit_cny": 200.0,
     "hourly_cny": 1.5,
@@ -49,5 +49,7 @@
     "phase_wall_limit_hours": 6,
     "status": "active",
     "basis": "User report, 2026-09-30; use conservative accrued cost; verify before every experiment batch."
-  }
+  },
+  "source_worker_confirmed_live": true,
+  "completed_source_forks": 0
 }

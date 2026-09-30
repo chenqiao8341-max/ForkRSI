@@ -97,9 +97,9 @@ ForkMem 已实现：任务失败 → 同代码检查点分叉 → 执行完整�
 source-v2 在第4个训练任务耗尽四次 Action JSON 修复预算（输出重复注释并截断）后终止；此前3个完整任务中1个通过。所有日志与费用保留。统一规则 verify-current-code-v1：解析修复耗尽时，不再调用模型或改写代码，消耗下一个终止动作并以原 verifier 验证已有代码。源分叉提案若耗尽修复预算，仅保留失败槽位与事实失败，无未执行正向记忆；恢复不会补充这个槽位。规则对源任务、分叉延续及全部后续对照一致；不改变严格解析、四次重试、动作预算、冻结模型、验证器或最终任务。中断任务仅在检查实际四次失败、原生检查点、代码树及剩余预算吻合后按此规则封存，并备份原检查点。
 
 <!-- FORKRSI_CURRENT_STATE_BEGIN -->
-## 当前状态（2026-09-30T18:00:20.361858+00:00）
+## 当前状态（2026-09-30T18:18:54.228748+00:00）
 
-权威工作目录：/root/autodl-tmp/ForkRSI；已提交版本：f928c164ad7fce361c67ec2f9f9a8f86b55545fe。ModelScope Qwen3.5-4B 权重已下载完整，冻结单卡本地服务运行中。source-v1 失败校准记录及成本保留；source-v2 当前状态 running，已完整执行 6 个训练任务，其中 2 个完整通过。训练成功尚不等于同检查点正向分叉；C/I 比较和最终评测尚未开始，等待真实分叉的合格证据。协议耗尽与原生检查点恢复均已实现并通过相关集成测试，原验证器未更改。原始 verifier 通过和审查后安全成功分别报告。最新预算与阶段详情见 artifacts/forkrsi/budget.json 与 artifacts/forkrsi/pre-search-status.json。
+权威工作目录：/root/autodl-tmp/ForkRSI。ModelScope Qwen3.5-4B 权重下载完整，冻结单卡本地服务运行中。source-v1 失败记录及全部费用保留；source-v2 状态 running，进程 PID 21968 已核对存活=True，完整执行 13 个训练任务、2 个完整通过、0 个完整任务分叉。任务成功不等于正向分叉，更不等于 RSI。
 
-持久目标仍 active；后续继续源分叉、C/I 演化、公平对照、I 重置比较、冻结最终评测与研究报告，不以当前训练通过宣称 RSI。
+完整回归 81 项测试通过，原 verifier 未修改。统一协议失败终止与原生检查点恢复保留原剩余动作预算和全部日志。C/I 比较及最终评测尚未开始；后续继续源分叉审查、C/I 演化、公平对照、I 重置比较、冻结最终评测和研究报告。详情见 artifacts/forkrsi/pre-search-status.json；最新保守预算见 artifacts/forkrsi/budget.json。持久目标仍 active，原主目标与 200 元上限保持。
 <!-- FORKRSI_CURRENT_STATE_END -->
