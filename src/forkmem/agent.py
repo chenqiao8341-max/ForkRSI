@@ -297,18 +297,49 @@ async def resume_episode(
     ) as saver:
         runner.graph = runner.builder.compile(checkpointer=saver)
         snapshot = await runner.graph.aget_state(runner.config)
-        if not snapshot.values or not snapshot.next:
-            raise ValueError("choose a nonterminal checkpoint to resume")
-        runner.env = base.fork(
-            snapshot.values["environment_checkpoint"], output / "repo", output / "logs"
-        )
-        if runner.env.tree_hash() != snapshot.values["environment_tree_hash"]:
-            raise ValueError("filesystem does not match persisted graph checkpoint")
+        empty_initial = not snapshot.values
+        if empty_initial:
+            trajectory = episode / "trajectory.jsonl"
+            if (
+                trajectory.exists()
+                and trajectory.read_text().strip()
+                or git(base.root, "status", "--porcelain")
+            ):
+                raise ValueError(
+                    "missing graph checkpoint after existing edits/actions"
+                )
+            # A sibling can be cancelled after runner/DB creation but before START
+            # is persisted. No action has executed; preserve the untouched initial
+            # repository and use the original full remaining action budget.
+            checkpoint = git(base.root, "rev-parse", "HEAD")
+            runner.env = base.fork(checkpoint, output / "repo", output / "logs")
+            initial: AgentState = {
+                "task": settings["task"],
+                "messages": [],
+                "action": {},
+                "step": 0,
+                "done": False,
+                "checkpoint": checkpoint,
+                "outcome": {},
+                "environment_checkpoint": checkpoint,
+                "environment_tree_hash": runner.env.tree_hash(),
+            }
+        else:
+            if not snapshot.next:
+                raise ValueError("choose a nonterminal checkpoint to resume")
+            runner.env = base.fork(
+                snapshot.values["environment_checkpoint"],
+                output / "repo",
+                output / "logs",
+            )
+            if runner.env.tree_hash() != snapshot.values["environment_tree_hash"]:
+                raise ValueError("filesystem does not match persisted graph checkpoint")
         (output / "resume.json").write_text(
             json.dumps(
                 {
                     "source_episode": str(episode),
                     "source_config": snapshot.config,
+                    "empty_initial_checkpoint": empty_initial,
                     "policy": "same remaining action budget; fresh per-invocation wall timeout",
                 },
                 indent=2,
@@ -317,7 +348,12 @@ async def resume_episode(
         (output / "runner.json").write_text(
             json.dumps({**settings, "repo": str(runner.env.root)}, indent=2)
         )
-        result = dict(await runner.graph.ainvoke(None, snapshot.config))
+        result = dict(
+            await runner.graph.ainvoke(
+                initial if empty_initial else None,
+                runner.config if empty_initial else snapshot.config,
+            )
+        )
         await runner.export_history()
     (output / "result.json").write_text(json.dumps(result, indent=2))
     return result

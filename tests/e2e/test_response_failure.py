@@ -256,3 +256,66 @@ async def test_cancelled_sibling_resumes_same_remaining_actions(
     ]
     assert [e["action"]["tool"] for e in trace] == ["read", "finish"]
     assert (original / "trajectory.jsonl").read_bytes() == prefix
+
+
+async def test_cancelled_before_start_preserves_untouched_initial_repo(
+    tmp_path: Path,
+) -> None:
+    from forkmem.agent import resume_episode
+    from forkmem.environment import RepoEnvironment
+
+    source = tmp_path / "source"
+    source.mkdir()
+    verifier = source / "verifier.py"
+    verifier.write_text("from solution import answer\nassert answer() == 42\n")
+    env = RepoEnvironment.create(
+        source / "repo",
+        {"solution.py": "def answer():\n    return 0\n"},
+        verifier,
+        source / "logs",
+    )
+    (source / "checkpoints.sqlite").touch()
+    (source / "runner.json").write_text(
+        json.dumps(
+            {
+                "task": "Return 42",
+                "repo": str(env.root),
+                "verifier": str(verifier),
+                "editable": ["solution.py"],
+                "max_steps": 2,
+                "wall_seconds": 240,
+                "seed": 0,
+                "run_id": "agent",
+                "episode_id": "cancelled-before-start",
+                "memory_prompt": "",
+            }
+        )
+    )
+    client = LLMClient(
+        tmp_path / "calls.jsonl",
+        request_budget=1,
+        transport=httpx.MockTransport(
+            lambda request: httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {
+                            "message": {
+                                "content": '{"tool":"finish"}',
+                            }
+                        }
+                    ]
+                },
+            )
+        ),
+    )
+    try:
+        result = await resume_episode(source, tmp_path / "resumed", client)
+    finally:
+        await client.close()
+    assert result["step"] == 1
+    assert result["outcome"]["success"] is False
+    assert json.loads((tmp_path / "resumed/resume.json").read_text())[
+        "empty_initial_checkpoint"
+    ]
+    assert (source / "repo/solution.py").read_text() == "def answer():\n    return 0\n"

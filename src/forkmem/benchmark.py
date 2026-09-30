@@ -94,7 +94,7 @@ async def benchmark(config_path: Path, output: Path, *, resume: bool = False) ->
             json.loads(line)
             for line in (output / "results.jsonl").read_text().splitlines()
         ]
-        if resume
+        if resume and (output / "results.jsonl").exists()
         else []
     )
     completed = {
