@@ -76,3 +76,7 @@ worker30783已核对存活，loaded code1ffc779，所有18个任务的候选池�
 campaign-v1在首个开发任务前因第二源RuleSet提炼反复输出Schema+实例而失败，0任务执行；六次调用全部保留，见pre-development-json-trial.json。原修复提示“Return the exact schema”存在实例/Schema歧义。公共v3明确只输出符合规范的实例、不要复制Schema；严格解析、四次尝试、模型和所有预算不变。新campaign-v2不复用旧编译缓存，全对照统一v3，源6分叉和成功程序IDs不变。此为公共工程修复，不能算C/I效果。最终仍未打开。
 
 2026-09-30T19:38:30.826838+00:00 新worker31328确认存活，loaded revision96b1f3e，v3相关9项回归21.37s通过；首个RuleSet一次严格通过。旧campaign-v1所有成本保留；源候选池不变。
+
+### 2026-09-30T19:59:21.316904+00:00 实际首个C候选及行为变化
+
+初始success-only C4开发任务全部失败、原日志认证通过；9提交版本无原AST标记。I0真实生成C-ef123e9bd953c8b8866de6e8，两个字段实质改变。首项配对任务固定同候选IDs，实际记忆sha不同且458→242tokens，双方完整任务均失败。四任务完整比较仍在运行，后续I演化/重置/最终/报告仍待完成；目标active。
