@@ -1,0 +1,10 @@
+{
+  "checked_utc": "2026-09-30T19:31:53.616838+00:00",
+  "correction": "Earlier progress summaries incorrectly reported source-v2 zero complete forks. Authoritative SQLite snapshot has two, one falsified ingestion alternative and one Qwen replay-verified release program (10/10 recovery cases). Subscription proposals were generated from an incomplete status summary; ingestion still lacked a qualified positive. Extra release hypotheses are retained and shared, without selective deletion. Original proposal inputs/outputs/manifests stay immutable.",
+  "source_v2_forks": 2,
+  "source_v2_positive_programs": 1,
+  "all_packaged_forks": 6,
+  "all_positive_programs": 3,
+  "source_package": "runs/forkrsi/source-package-v1",
+  "subscription_accounting": "Provider token usage is unknown; source-v3 cancelled request has actual server usage supplement7838tokens."
+}

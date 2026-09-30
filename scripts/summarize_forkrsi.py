@@ -24,6 +24,65 @@ from forkmem.workflows.memory import final_code
 Json = dict[str, Any]
 
 
+def source_cost_record(path: Path) -> Json:
+    raw = usage(path / "llm.jsonl")
+    combined = dict(raw)
+    supplements = []
+    supplement_path = path / "usage-supplement.json"
+    if supplement_path.exists():
+        seen = set()
+        for record in load(supplement_path)["records"]:
+            key = record["client_request_id"]
+            if key in seen:
+                raise ValueError("duplicate cancelled request supplement")
+            seen.add(key)
+            client_line = (
+                Path(record["client_log_path"])
+                .read_text()
+                .splitlines()[record["client_line_1based"] - 1]
+            )
+            server_line = (
+                Path(record["server_log_path"])
+                .read_text()
+                .splitlines()[record["server_line_1based"] - 1]
+            )
+            if (
+                digest(client_line.encode()) != record["client_record_sha256"]
+                or digest(server_line.encode()) != record["server_record_sha256"]
+                or digest(Path(record["source_stop_file"]).read_bytes())
+                != record["source_stop_sha256"]
+            ):
+                raise ValueError("cancelled request raw accounting changed")
+            client, server = json.loads(client_line), json.loads(server_line)
+            if (
+                client["request_id"] != key
+                or client.get("usage")
+                or client["seed"] != server["seed"]
+                or server != record["server_record"]
+                or server["usage"] != record["usage"]
+            ):
+                raise ValueError("invalid cancelled request usage supplement")
+            measured = record["usage"]
+            if measured["total_tokens"] != (
+                measured["prompt_tokens"] + measured["completion_tokens"]
+            ):
+                raise ValueError("invalid server measured usage")
+            for field in ("prompt_tokens", "completion_tokens", "total_tokens"):
+                combined[field] += measured[field]
+            supplements.append(record)
+    manifest = load(path / "manifest.json")
+    return {
+        "path": str(path),
+        "raw_client_usage": raw,
+        "cancelled_server_completion_supplements": supplements,
+        "usage": combined,
+        "requests_policy": "supplement tokens only; cancelled client request is already counted",
+        "status": load(path / "status.json"),
+        "subscription_assistance": manifest.get("subscription_assistance"),
+        "subscription_usage_policy": "retained prompts/outputs and proposal session count; provider token usage unknown, never interpreted as measured zero",
+    }
+
+
 def paired_interval(first: list[Json], second: list[Json]) -> Json:
     left = {(r["task_id"], r["seed"]): r for r in first}
     right = {(r["task_id"], r["seed"]): r for r in second}
@@ -272,14 +331,12 @@ def main() -> None:
             raise ValueError("new I was not actually used for C generation")
     source_runs = []
     for p in sorted(source.parent.glob("source-v*")):
-        if p.is_dir() and (p / "llm.jsonl").exists():
-            source_runs.append(
-                {
-                    "path": str(p),
-                    "usage": usage(p / "llm.jsonl"),
-                    "status": load(p / "status.json"),
-                }
-            )
+        if (
+            p.is_dir()
+            and (p / "status.json").exists()
+            and (p / "manifest.json").exists()
+        ):
+            source_runs.append(source_cost_record(p))
     extraction_calls = [
         json.loads(s) for s in (root / "strategy-llm.jsonl").read_text().splitlines()
     ]

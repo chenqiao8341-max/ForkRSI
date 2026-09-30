@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-09-30T19:19:49.566117+00:00",
+  "checked_utc": "2026-09-30T19:31:53.616838+00:00",
   "code_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
   "remote_workspace": "/root/autodl-tmp/ForkRSI",
   "model": "Qwen3.5-4B",
@@ -58,19 +58,41 @@
     "completed_training": 16,
     "full_passes": 2,
     "failed_training": 14,
-    "forks": 0,
+    "forks": 2,
     "calls": 154,
-    "missing_usage_records": 0
+    "missing_usage_records": 0,
+    "positive_programs": 1
   },
   "source_v3": {
-    "state": "running",
+    "state": "interrupted_or_failed",
     "worker_pid": 27869,
     "worker_revision": "61b7ad88c1e969569ba85aa84ce43fb4ccd854dc",
     "json_protocol": "forkrsi-json-response-repair-v2",
     "requested_source_cells": 14,
     "request_budget": 104,
-    "new_training_executions": 0
+    "new_training_executions": 0,
+    "completed_source_cells": 3,
+    "forks": 0,
+    "recorded_requests": 13,
+    "completed_response_requests": 12,
+    "cancelled_requests": 1,
+    "accounting": "one7838-tokenactualserversupplement"
   },
   "campaign_state": "not_started",
-  "persistent_goal": "active"
+  "persistent_goal": "active",
+  "source_package": {
+    "state": "complete",
+    "forks": 6,
+    "positive_programs": 3,
+    "ast_flags": 15,
+    "reviewed_flags": 15
+  },
+  "source_v4_subscription": {
+    "state": "complete",
+    "forks": 2,
+    "positive_programs": 2,
+    "new_training_executions": 0,
+    "qwen_requests": 0,
+    "subscription_token_usage": null
+  }
 }
