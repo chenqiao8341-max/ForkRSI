@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-09-30T19:31:53.616838+00:00",
+  "checked_utc": "2026-09-30T19:34:50.615933+00:00",
   "code_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
   "remote_workspace": "/root/autodl-tmp/ForkRSI",
   "model": "Qwen3.5-4B",
@@ -78,7 +78,7 @@
     "cancelled_requests": 1,
     "accounting": "one7838-tokenactualserversupplement"
   },
-  "campaign_state": "not_started",
+  "campaign_state": "search_running",
   "persistent_goal": "active",
   "source_package": {
     "state": "complete",
@@ -94,5 +94,10 @@
     "new_training_executions": 0,
     "qwen_requests": 0,
     "subscription_token_usage": null
+  },
+  "campaign_worker": {
+    "pid": 30783,
+    "phase": "search",
+    "started_unix": 1790796811.0069606
   }
 }

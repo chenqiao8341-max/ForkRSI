@@ -1,0 +1,22 @@
+{
+  "checked_utc": "2026-09-30T19:34:50.615933+00:00",
+  "state": "search_running",
+  "worker": {
+    "pid": 30783,
+    "phase": "search",
+    "started_unix": 1790796811.0069606
+  },
+  "worker_live_confirmed": true,
+  "loaded_code_revision": "1ffc779",
+  "inputs": {
+    "source_program_audit_sha256": "2e92d0dba42e8fdfac16ad5c2c39b3283b6f2cdf6041e3bedbed2025a09601fa",
+    "source_program_review_sha256": "5eb274dbe0222997a4a40f0d9c1e3fcb6e90a8a981dcbf6a4290ceb7087bd990",
+    "protocol_sha256": "b0dc990784df8bac453beeb7453753ce0749a8f7274e6e25ad208f4034fcc15e",
+    "manifest_sha256": "bed788c4dc75eb3eb352a8b481a21c48225912fd02e9a0612ccfa7d23d61e148",
+    "corpus_sha256": "941639dfdc18e2f620b599861b60ed17f5961cc0bb2d3edb41c73c9d2daf5ec4",
+    "code_revision": "1ffc7792c3e9c27a53059e5b2b3c3936fb673580",
+    "source_manifest_sha256": "a391d6f11c4ea7a94954c27b198326c817f5977ff56d0557f8731799b08c4d40"
+  },
+  "completed_final_evaluations": 0,
+  "goal_status": "active"
+}
