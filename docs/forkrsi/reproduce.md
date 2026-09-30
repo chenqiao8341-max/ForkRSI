@@ -83,3 +83,7 @@ source-v1/v2无合格正向分叉，修复v2的source-v3首槽仍耗尽严格解
 ### 2026-09-30T19:37:01.171115+00:00 实例对象协议与新批次
 
 campaign-v1在首个开发任务前因第二源RuleSet提炼反复输出Schema+实例而失败，0任务执行；六次调用全部保留，见pre-development-json-trial.json。原修复提示“Return the exact schema”存在实例/Schema歧义。公共v3明确只输出符合规范的实例、不要复制Schema；严格解析、四次尝试、模型和所有预算不变。新campaign-v2不复用旧编译缓存，全对照统一v3，源6分叉和成功程序IDs不变。此为公共工程修复，不能算C/I效果。最终仍未打开。
+
+## Final record delivery
+
+After the final grid, complete the unchanged AST/manual qualification and run python scripts/summarize_forkrsi.py. Write docs/forkrsi/report.md, commit report-only artifacts, then run python scripts/export_forkrsi_delivery.py with a fresh --output directory. The exporter rejects incomplete final/report records and a live campaign worker. It exports tracked code/config/documents, every raw runs/forkrsi record including failed trials/checkpoints and the strategy SQLite database, research artifacts, and a verified Git history bundle. Per-file SHA256 plus archive/bundle hashes and a stability recheck authenticate the snapshot. Weights are obtained separately from the recorded ModelScope source and verified against model-files.json. Restore /root/autodl-tmp/ForkRSI for historical absolute log/checkpoint paths. Use the frozen final code revision in final-freeze.json for any sealed final resume; later report-only commits do not change the sealed strategies or permit reselection.
