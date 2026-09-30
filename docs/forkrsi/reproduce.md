@@ -91,3 +91,17 @@ After the final grid, complete the unchanged AST/manual qualification and run py
 ## Actual recursive-generation authentication
 
 Run python scripts/audit_forkrsi_generation.py to inspect the current append-only strategy ledger using read-only SQLite. It checks version/content identity, actual parent differences, successful raw proposal responses, the actual versioned I fields in the submitted request, evidence references and generation seeds. Failed proposal attempts remain in the logs; they do not become generated versions. After search completes, add --require-complete to require both changed I versions to have actually generated changed C children. This authenticates generation, not effectiveness; independent measured selection and I reset still determine the empirical conclusions.
+
+## ModelScope snapshot download and verification
+
+The original completed downloader used modelscope-hub==0.4.5 and ms-hub download, separate from the inference runtime. Its exact shell script, install log, download log/status and dependency freeze are preserved under runs/forkrsi/model-download. The download completed 2026-09-30T22:39:51+08:00. No immutable hub commit was captured: the original CLI omitted --revision and used its default master. Recorded SHA256 values define the expected files; any changed download must fail verification instead of silently replacing the research model.
+
+~~~bash
+cd /root/autodl-tmp/ForkRSI
+python3 -m venv /root/autodl-tmp/modelscope-download-env
+/root/autodl-tmp/modelscope-download-env/bin/python -m pip install -r configs/forkrsi/modelscope-download-requirements.txt
+MODELSCOPE_ENDPOINT=https://modelscope.cn /root/autodl-tmp/modelscope-download-env/bin/ms-hub download Qwen/Qwen3.5-4B --local-dir /root/autodl-tmp/models/Qwen3.5-4B --max-workers 4
+python3 scripts/verify_forkrsi_model.py
+~~~
+
+The verifier reads all 14 files in artifacts/forkrsi/model-files.json, including both safetensors shards, and checks sizes plus full SHA256. The listed files total 9,342,905,771 bytes; both weight shards total 9,319,828,096 bytes. The downloader also wrote .gitattributes, outside that original 14-file manifest. Current full verification is recorded in runs/forkrsi/model-verification-latest.json. These disk hashes and the server's weights_frozen/inference-mode startup record establish separate parts of the fixed-model evidence.
