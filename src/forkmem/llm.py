@@ -15,7 +15,7 @@ import httpx
 from pydantic import BaseModel, ValidationError
 
 T = TypeVar("T", bound=BaseModel)
-PROMPT_VERSION = "forkrsi-json-schema-feedback-v1"
+PROMPT_VERSION = "forkrsi-json-response-repair-v2"
 
 
 class ModelResponseError(ValueError):
@@ -107,7 +107,7 @@ class LLMClient:
         if len(prompt) > 64000:
             raise ValueError("prompt exceeds 64000 character budget")
         request_id = uuid4().hex
-        messages = [
+        base_messages = [
             {
                 "role": "system",
                 "content": "Return only a JSON object matching this schema. Do not include markdown. "
@@ -115,6 +115,7 @@ class LLMClient:
             },
             {"role": "user", "content": prompt},
         ]
+        messages = list(base_messages)
         for attempt in range(4):
             async with self.semaphore:
                 if self.remaining <= 0:
@@ -163,6 +164,7 @@ class LLMClient:
                     response.raise_for_status()
                     body = response.json()
                     event["usage"] = body.get("usage", {})
+                    event["finish_reason"] = body["choices"][0].get("finish_reason")
                     content = body["choices"][0]["message"]["content"]
                     event["response"] = content
                     result = parse_json(content, schema)
@@ -182,16 +184,31 @@ class LLMClient:
                     )
                     event["schema_errors"] = details
                     feedback = json.dumps(details, ensure_ascii=False)[:1500]
-                    messages.append(
-                        {
-                            "role": "user",
-                            "content": "Your previous response was invalid JSON/schema. "
-                            "Return the exact schema, all required fields, no extra fields. "
-                            "Follow each field type exactly; quote precondition values when "
-                            "their schema requires strings. Validation errors: "
-                            + feedback,
-                        }
+                    repair = (
+                        "Your previous response was invalid JSON/schema. "
+                        "Return the exact schema, all required fields, no extra fields. "
+                        "Follow each field type exactly; quote precondition values when "
+                        "their schema requires strings. Escape quotes and newlines in "
+                        "JSON string fields. Keep the complete response compact without "
+                        "repeated commentary. The previous response may be clipped for "
+                        "context; generate one complete corrected object. Validation errors: "
+                        + feedback
                     )
+                    # Error offsets are useful only when the model can see its own
+                    # invalid response. Keep just the last response, bounded by the
+                    # existing character budget; never rewrite code or relax parsing.
+                    available = max(
+                        0,
+                        64000
+                        - sum(len(m["content"]) for m in base_messages)
+                        - len(repair)
+                        - 256,
+                    )
+                    previous = str(event.get("response", ""))[: min(16000, available)]
+                    messages = list(base_messages)
+                    if previous:
+                        messages.append({"role": "assistant", "content": previous})
+                    messages.append({"role": "user", "content": repair})
                     if attempt == 3:
                         raise ModelResponseError(request_id) from None
                 except httpx.HTTPError as exc:

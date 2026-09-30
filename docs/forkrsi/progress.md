@@ -46,3 +46,7 @@ Terminal batch recovery also preserves cancelled sibling episodes. benchmark res
 ### 2026-10-01 完整回归验证
 
 协议失败终止、原生检查点恢复和安全成功资格判定的当前实现完整回归：81 passed in 46.83s。原 verifier 未修改。日志及哈希见 artifacts/forkrsi/checks-current.json；这些结果仅证明基础实现的回归检查，不作为 C/I 自改进效果。
+
+### 2026-10-01 JSON 修复上下文
+
+source-v2 的首个实际 Proposals 调用连续出现 JSON 语法错误。原修复对话只追加错误位置，未给模型上一份错误输出，无法定位要修正的对象。后续公共协议 forkrsi-json-response-repair-v2 在原四次尝试和严格解析不变的条件下，仅带回上一份真实错误输出（最多16000字符，按原字符预算进一步收缩），要求生成完整紧凑 JSON；不改写程序值或放宽解析。实时 source-v2 仍使用已加载的 v1，未因这一修改重启；所有对照将在 C/I 搜索与最终评测前统一冻结到 v2。原始输出、修复提示、版本和失败成本保留。此为源侧协议诊断后的公共工程修复，不算 C/I 学习效果。

@@ -63,3 +63,7 @@ If an Action response exhausts four schema attempts, verify-current-code-v1 term
 Contract qualification is fixed before C/I search and final outcomes: the unchanged original AST screen and recorded boolean/rationale review gate positive source eligibility. Failed programs and all raw verifier results remain recorded. Final and first-validation safe success exclude actual reviewed contract violations, with raw verifier success separately reported. Search/selection records retain the predeclared verifier objective; audit qualification never triggers post-final strategy tuning or reselection. No AST-screen result is claimed to prove adversarial Python safety.
 
 Terminal batch recovery also preserves cancelled sibling episodes. benchmark resumes their matching native graph/filesystem checkpoint into a new directory, keeping the same remaining action budget and seed; the existing resume API grants a fresh per-invocation wall timeout. Full trajectory prefixes retain original execution references and are not counted as extra replicates. Source-v2 had two newly created release101 repositories with zero executed actions when its sibling failed; the original folders remain intact.
+
+### 2026-10-01 JSON 修复上下文
+
+source-v2 的首个实际 Proposals 调用连续出现 JSON 语法错误。原修复对话只追加错误位置，未给模型上一份错误输出，无法定位要修正的对象。后续公共协议 forkrsi-json-response-repair-v2 在原四次尝试和严格解析不变的条件下，仅带回上一份真实错误输出（最多16000字符，按原字符预算进一步收缩），要求生成完整紧凑 JSON；不改写程序值或放宽解析。实时 source-v2 仍使用已加载的 v1，未因这一修改重启；所有对照将在 C/I 搜索与最终评测前统一冻结到 v2。原始输出、修复提示、版本和失败成本保留。此为源侧协议诊断后的公共工程修复，不算 C/I 学习效果。

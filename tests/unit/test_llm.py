@@ -17,6 +17,10 @@ async def test_json_repair_and_provenance(tmp_path: Path) -> None:
         if calls == 2:
             message = json.loads(request.content)["messages"][-1]["content"]
             assert "Validation errors" in message and "json_invalid" in message
+            assert json.loads(request.content)["messages"][-2] == {
+                "role": "assistant",
+                "content": "bad json",
+            }
         content = "bad json" if calls == 1 else '{"tool":"finish"}'
         return httpx.Response(
             200,
@@ -98,3 +102,39 @@ def test_proposal_wrapper_normalization_preserves_values() -> None:
     flat["proposals"][0]["evidence_status"] = "replay_verified"
     with pytest.raises(ValueError):
         parse_json(json.dumps(flat), Proposals)
+
+
+async def test_repair_context_contains_only_last_bounded_actual_response(
+    tmp_path: Path,
+) -> None:
+    calls = 0
+    bad = ["invalid " * 4000, "another invalid object"]
+
+    def respond(request: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        messages = json.loads(request.content)["messages"]
+        if calls:
+            previous = messages[-2]
+            assert previous["role"] == "assistant"
+            assert previous["content"] == bad[calls - 1][:16000]
+            assert len([m for m in messages if m["role"] == "assistant"]) == 1
+        content = bad[calls] if calls < 2 else '{"tool":"finish"}'
+        calls += 1
+        return httpx.Response(
+            200, json={"choices": [{"message": {"content": content}}]}
+        )
+
+    client = LLMClient(
+        tmp_path / "calls.jsonl",
+        request_budget=3,
+        transport=httpx.MockTransport(respond),
+    )
+    try:
+        assert (await client.generate("test", Action)).tool == "finish"
+    finally:
+        await client.close()
+    events = [
+        json.loads(s) for s in (tmp_path / "calls.jsonl").read_text().splitlines()
+    ]
+    assert calls == 3
+    assert events[0]["response"] == bad[0]  # Raw output stays complete in provenance.
