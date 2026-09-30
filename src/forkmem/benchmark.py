@@ -14,7 +14,7 @@ import yaml
 from forkmem.agent import run_task
 from forkmem.counterfactual import fork_episode, locate_pivots
 from forkmem.environment import digest, git
-from forkmem.llm import LLMClient, parse_json
+from forkmem.llm import LLMClient, ModelResponseError, parse_json
 from forkmem.memory import SQLiteForkStore
 from forkmem.models import (
     Action,
@@ -71,7 +71,7 @@ async def benchmark(config_path: Path, output: Path, *, resume: bool = False) ->
                 *old.get("resume_history", []),
                 {
                     "revision": revision,
-                    "reason": "resume completed episodes; structural proposal JSON compatibility",
+                    "reason": "resume completed episodes; current recorded protocol failure handling",
                     "previous_state": state,
                 },
             ],
@@ -218,6 +218,13 @@ async def benchmark(config_path: Path, output: Path, *, resume: bool = False) ->
             if not pivots:
                 continue
             fork_dir = output / "forks" / f"seed_{row['seed']}_{row['task_id']}"
+            failure_path = (
+                output
+                / "proposal-failures"
+                / f"seed_{row['seed']}_{row['task_id']}.json"
+            )
+            if failure_path.exists():
+                continue  # Exhausted proposal slot remains exhausted on resume.
             complete_paths = [
                 path
                 for path in sorted(
@@ -260,13 +267,30 @@ async def benchmark(config_path: Path, output: Path, *, resume: bool = False) ->
                     fork_dir = original_dir.with_name(
                         original_dir.name + f"_retry_{retry}"
                     )
-                destination = await fork_episode(
-                    episode_dir,
-                    fork_dir,
-                    client,
-                    branches=config["branches"],
-                    cached_proposals=cached,
-                )
+                try:
+                    destination = await fork_episode(
+                        episode_dir,
+                        fork_dir,
+                        client,
+                        branches=config["branches"],
+                        cached_proposals=cached,
+                    )
+                except ModelResponseError as exc:
+                    failure_path.parent.mkdir(parents=True, exist_ok=True)
+                    failure_path.write_text(
+                        json.dumps(
+                            {
+                                "episode": str(episode_dir),
+                                "partial_fork": str(fork_dir),
+                                "request_id": exc.request_id,
+                                "error_type": type(exc).__name__,
+                                "policy": "exhausted proposal slot; no unexecuted positive evidence",
+                            },
+                            indent=2,
+                        )
+                        + "\n"
+                    )
+                    continue
                 if recovery:
                     (fork_dir / "proposal_recovery.json").write_text(
                         json.dumps(recovery, indent=2)

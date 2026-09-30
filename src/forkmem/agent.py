@@ -8,7 +8,7 @@ import sqlite3
 import time
 from contextlib import closing
 from pathlib import Path
-from typing import Any, TypedDict
+from typing import Any, NotRequired, TypedDict
 from uuid import uuid4
 
 from langgraph.checkpoint.memory import InMemorySaver
@@ -16,7 +16,7 @@ from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.graph import END, START, StateGraph
 
 from forkmem.environment import RepoEnvironment, digest, git
-from forkmem.llm import LLMClient
+from forkmem.llm import LLMClient, ModelResponseError
 from forkmem.memory import ForkStore, negative_context, render_memory, retrieve
 from forkmem.models import Action, Outcome, StateFingerprint
 
@@ -31,6 +31,7 @@ class AgentState(TypedDict):
     outcome: dict[str, Any]
     environment_checkpoint: str
     environment_tree_hash: str
+    decision_failure: NotRequired[dict[str, str]]
 
 
 class AgentRunner:
@@ -107,14 +108,33 @@ class AgentRunner:
             "to produce a changed complete write and test again within the remaining budget. "
             "Never submit unchanged incomplete source or repeat reads until the budget expires."
         )
-        action = await self.client.generate(
-            prompt,
-            Action,
-            seed=self.seed + state["step"],
-            episode_id=self.episode_id,
-            run_id=self.run_id,
-        )
+        try:
+            action = await self.client.generate(
+                prompt,
+                Action,
+                seed=self.seed + state["step"],
+                episode_id=self.episode_id,
+                run_id=self.run_id,
+            )
+        except ModelResponseError as exc:
+            return self.response_failure(exc)
         return {"action": action.model_dump()}
+
+    @staticmethod
+    def response_failure(exc: ModelResponseError) -> dict[str, Any]:
+        # No fabricated edit and no extra model request. Apply the existing final
+        # verification to the current repository, consuming one terminal action.
+        return {
+            "action": Action(
+                tool="finish",
+                thought_summary="Model schema repair exhausted; verify existing code.",
+            ).model_dump(),
+            "decision_failure": {
+                "error_type": type(exc).__name__,
+                "request_id": exc.request_id,
+                "policy": "verify_current_code_without_extra_model_request",
+            },
+        }
 
     async def execute(self, state: AgentState) -> dict[str, Any]:
         action = Action.model_validate(state["action"])
@@ -143,6 +163,10 @@ class AgentRunner:
             "step": state["step"],
             "checkpoint": checkpoint,
             "action": action.model_dump(),
+            "action_origin": "protocol_failure_finalization"
+            if state.get("decision_failure")
+            else "model_response",
+            "decision_failure": state.get("decision_failure"),
             "feedback": feedback,
             "outcome": outcome.model_dump() if outcome else None,
             "tree_sha256": self.env.tree_hash(),
@@ -183,6 +207,7 @@ class AgentRunner:
                 {
                     "task": task,
                     "agent_prompt_version": "forkrsi-next-action-v1",
+                    "response_failure_policy": "verify-current-code-v1",
                     "repo": str(self.env.root),
                     "verifier": str(self.env.verifier),
                     "editable": self.env.editable,
@@ -365,6 +390,7 @@ async def run_task(
         "success": result["outcome"]["success"],
         "steps": result["step"],
         "code_commit": git(Path.cwd(), "rev-parse", "HEAD"),
+        "decision_failure": result.get("decision_failure"),
     }
     (output / "episode.json").write_text(json.dumps(metadata, indent=2))
     return metadata

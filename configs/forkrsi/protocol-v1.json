@@ -52,5 +52,6 @@
   "agent_prompt_version": "forkrsi-next-action-v1; calibrated only on source-side read loops; frozen for all controls",
   "extraction_seed_policy": "same seed per shared positive source, independent of C lineage/evidence mode; reuse identical prompt+seed extraction",
   "no_op_policy": "retain/evaluate no-op C candidates and costs; they consume proposal slots but cannot be selected as changed compilers",
-  "json_protocol": "forkrsi-json-schema-feedback-v1; unchanged strict parsing, four-attempt cap, bounded validation diagnostics"
+  "json_protocol": "forkrsi-json-schema-feedback-v1; unchanged strict parsing, four-attempt cap, bounded validation diagnostics",
+  "response_failure_policy": "verify-current-code-v1: four failed JSON attempts terminate the task by verifying existing code, without extra requests or edits; exhausted source proposal slots retained without evidence"
 }

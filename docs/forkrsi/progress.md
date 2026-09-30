@@ -26,3 +26,7 @@ Before any C/I search, extraction seeds were fixed per source positive ID across
 
 Source-v1 terminal failure: {"status": {"state": "interrupted_or_failed", "error_type": "ValueError", "completed_episodes": 16}, "completed_forks": 2, "verified": 0, "falsified": 4, "corpus_snapshot_sha256": "4ab8e2f3614fb40f03e25f494dc5dffb5e52c4d6251bc5b5b1bb22b4bb47f1d2", "termination": "four Proposals JSON repair attempts exhausted; original failed status preserved"}
 No whole verified alternative is available from this trial; four completed alternatives are falsified. Remaining incomplete comparisons are not promoted. Corpus snapshot is explicitly partial; original interrupted_or_failed status is unchanged. JSON repair now includes bounded concrete validation errors (without input values); strict parsing/code preservation and four-attempt cap unchanged. All17 relevant tests and8-file strict type check pass. Fresh source-v2 uses the common calibrated agent/protocol; all terminal source batches will be packaged with their original state and actual complete forks, never fabricated as complete executions.
+
+### 2026-10-01 协议失败的统一终止规则
+
+source-v2 在第4个训练任务耗尽四次 Action JSON 修复预算（输出重复注释并截断）后终止；此前3个完整任务中1个通过。所有日志与费用保留。统一规则 verify-current-code-v1：解析修复耗尽时，不再调用模型或改写代码，消耗下一个终止动作并以原 verifier 验证已有代码。源分叉提案若耗尽修复预算，仅保留失败槽位与事实失败，无未执行正向记忆；恢复不会补充这个槽位。规则对源任务、分叉延续及全部后续对照一致；不改变严格解析、四次重试、动作预算、冻结模型、验证器或最终任务。中断任务仅在检查实际四次失败、原生检查点、代码树及剩余预算吻合后按此规则封存，并备份原检查点。

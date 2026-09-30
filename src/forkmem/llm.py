@@ -18,6 +18,14 @@ T = TypeVar("T", bound=BaseModel)
 PROMPT_VERSION = "forkrsi-json-schema-feedback-v1"
 
 
+class ModelResponseError(ValueError):
+    """A model response exhausted its fixed four-attempt schema repair budget."""
+
+    def __init__(self, request_id: str):
+        super().__init__("model JSON repair budget exhausted")
+        self.request_id = request_id
+
+
 def normalize_proposals(data: Any) -> Any:
     """Move only unambiguous misplaced fields; never change proposed code/values."""
     if not isinstance(data, dict) or not isinstance(data.get("proposals"), list):
@@ -185,7 +193,7 @@ class LLMClient:
                         }
                     )
                     if attempt == 3:
-                        raise ValueError("model JSON repair budget exhausted") from None
+                        raise ModelResponseError(request_id) from None
                 except httpx.HTTPError as exc:
                     event["status"] = "transport_error"
                     event["error_type"] = type(exc).__name__
