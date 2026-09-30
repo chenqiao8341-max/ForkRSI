@@ -54,3 +54,7 @@ source-v2 的首个实际 Proposals 调用连续出现 JSON 语法错误。原�
 ### 2026-10-01 修复协议后的源分叉批次
 
 source-v2 的16个训练任务均已完整执行，2个通过，14个失败。旧 v1 的两个提案槽位已耗尽四次尝试，随后提案仍有语法/字段错误；为使用已修复的对话上下文，结束旧分叉阶段并完整保留实际数据，不重跑训练。source-v3 预先记录这14个真实失败任务的原检查点、文件/任务/verifier哈希，使用统一 v2 公共协议生成新分叉；最多104个模型请求由各剩余动作预算的最坏情况推导，每任务最多2个实际替代分支。原耗尽槽位不补充；新批次是新的源提案预算，全部旧/新增成本报告。source-v3 results.jsonl仅引用原任务供审查，不是14次新训练或新独立样本。使用 python scripts/run_forkrsi_repaired_sources.py；三批次终结后用 package_forkrsi_sources.py 合并完整实际分叉，再审查正向资格、冻结候选池并启动 C/I 搜索。
+
+### 2026-09-30T19:19:49.566117+00:00 实际旧批次终止及修复源运行
+
+核对旧 worker21968 时它已因 no distinct valid candidate 自行终止；未发信号、没有新引入的取消调用。source-v2 16训练/2完整通过/14失败，154调用均有usage，无完整新分叉。source-v3 worker27869、loaded revision61b7ad88，104新请求上限，引用14失败父任务不是新训练。公共v2全回归82 passed in49.79s，记录在checks-current.json。C/I搜索、重置及最终尚未开始，目标继续active。

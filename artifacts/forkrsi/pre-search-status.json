@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-09-30T18:18:54.228748+00:00",
+  "checked_utc": "2026-09-30T19:19:49.566117+00:00",
   "code_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
   "remote_workspace": "/root/autodl-tmp/ForkRSI",
   "model": "Qwen3.5-4B",
@@ -51,5 +51,26 @@
     "basis": "User report, 2026-09-30; use conservative accrued cost; verify before every experiment batch."
   },
   "source_worker_confirmed_live": true,
-  "completed_source_forks": 0
+  "completed_source_forks": 0,
+  "source_v2": {
+    "state": "interrupted_or_failed",
+    "terminal_error": "no distinct valid candidate; no memory written",
+    "completed_training": 16,
+    "full_passes": 2,
+    "failed_training": 14,
+    "forks": 0,
+    "calls": 154,
+    "missing_usage_records": 0
+  },
+  "source_v3": {
+    "state": "running",
+    "worker_pid": 27869,
+    "worker_revision": "61b7ad88c1e969569ba85aa84ce43fb4ccd854dc",
+    "json_protocol": "forkrsi-json-response-repair-v2",
+    "requested_source_cells": 14,
+    "request_budget": 104,
+    "new_training_executions": 0
+  },
+  "campaign_state": "not_started",
+  "persistent_goal": "active"
 }

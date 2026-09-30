@@ -1,12 +1,8 @@
 {
-  "checked_utc": "2026-09-30T18:13:00.444859+00:00",
-  "revision": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
-  "pytest": {
-    "command": "source scripts/forkrsi_env.sh; python -m pytest -q",
-    "passed": 81,
-    "duration_seconds": 46.83,
-    "log": "/root/autodl-tmp/ForkRSI/runs/forkrsi/pytest-current.log",
-    "sha256": "32c96ec46f7bce1e0f5379e42babee8a3d9542633d03d3c79aaf29d56f19f78b"
-  },
-  "scope": "full existing suite plus response failure/native recovery/contract qualification; infrastructure validation, not recursive improvement evidence"
+  "checked_utc": "2026-09-30T19:19:49.566117+00:00",
+  "code_revision": "61b7ad88c1e969569ba85aa84ce43fb4ccd854dc",
+  "full_pytest": "82 passed in 49.79s",
+  "full_pytest_log": "/root/autodl-tmp/ForkRSI/runs/forkrsi/pytest-json-v2-current.log",
+  "full_pytest_log_sha256": "cf4173f3d1aaf1955c89f60fc4c8f9decc75360bd31be175005f88294b8513cc",
+  "scope": "full regression after JSON response context v2; infrastructure evidence, not source success or RSI effect"
 }
