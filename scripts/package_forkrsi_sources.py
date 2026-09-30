@@ -19,7 +19,11 @@ def main() -> None:
         "--batches",
         nargs="+",
         type=Path,
-        default=[Path("runs/forkrsi/source-v1"), Path("runs/forkrsi/source-v2")],
+        default=[
+            Path("runs/forkrsi/source-v1"),
+            Path("runs/forkrsi/source-v2"),
+            Path("runs/forkrsi/source-v3"),
+        ],
     )
     parser.add_argument(
         "--output", type=Path, default=Path("runs/forkrsi/source-package-v1")

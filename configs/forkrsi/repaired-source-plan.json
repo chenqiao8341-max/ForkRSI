@@ -1,0 +1,435 @@
+{
+  "version": "source-v3-context-repair",
+  "parent": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2",
+  "json_protocol": "forkrsi-json-response-repair-v2",
+  "branches": 2,
+  "request_budget": 104,
+  "scope": "all 14 actual failed source-v2 episodes; no training rerun; new proposal budget, old exhausted slots remain unchanged; same remaining action budget at original modifying checkpoint",
+  "episodes": [
+    {
+      "row": {
+        "episode_id": "resumable_release_train_000-a35c3c6cf90e",
+        "task_id": "resumable_release_train_000",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_000.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "278c773232bfa96668789f8811c8b9b85e762c6a",
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000",
+        "experiment_revision": "278c773232bfa96668789f8811c8b9b85e762c6a"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "5f62862d97ee5b16e8aea20c432c4534d4fec8b00259dbc29d06e2a279e99c1c",
+        "result.json": "50c88f0c18c9894bb77d68169214b6942057485026edee998e229477a71003fc",
+        "trajectory.jsonl": "3ce44b474839819a2fb28eb06745a7c3e601db743c659dfa119da510e31ae95a"
+      },
+      "task_sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "verifier_sha256": "232f13f89838f4853fba48d0d90fff32ebf84f15563ec80c72bf0268cdc1d9cc"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_release_train_000-fc5410f07d3b",
+        "task_id": "resumable_release_train_000",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_000.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_000/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_000/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "278c773232bfa96668789f8811c8b9b85e762c6a",
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_000",
+        "experiment_revision": "278c773232bfa96668789f8811c8b9b85e762c6a"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "c5de6efeb72ab8a58fed12f7d2858df00c253311da283f0d30ce4f525c8fa309",
+        "result.json": "124d53471d960d7c1bbe7f9e9fc830cfa3c7b5391294a7bc7991b27ccd69792a",
+        "trajectory.jsonl": "52f032b4c1495bd8fc3a307bab254894dbdb99f4aae17ee5c2dabeef3c73751e"
+      },
+      "task_sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "verifier_sha256": "232f13f89838f4853fba48d0d90fff32ebf84f15563ec80c72bf0268cdc1d9cc"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_release_train_011-ce2d18dfe8e2",
+        "task_id": "resumable_release_train_011",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_011.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_011/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_011/repo",
+        "success": false,
+        "steps": 6,
+        "code_commit": "ee438e7a29fb2cb1ca050ec4e5c4c331340fe84d",
+        "decision_failure": {
+          "error_type": "ModelResponseError",
+          "request_id": "54028ce355494277a3d9165d09183803",
+          "policy": "verify_current_code_without_extra_model_request"
+        },
+        "initial_policy_revision": "278c773232bfa96668789f8811c8b9b85e762c6a",
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_011",
+        "experiment_revision": "ee438e7a29fb2cb1ca050ec4e5c4c331340fe84d"
+      },
+      "pivot_index": 3,
+      "hashes": {
+        "episode.json": "611d80636a0525bb450933567abbec9c3dd714033de45205c0aa36e1a00c4601",
+        "result.json": "d31d70b7eba1565334a352064943a18bbae5f2b07bec6c29cafe281fab6668e1",
+        "trajectory.jsonl": "f14ab1130b505f3c8cb3913ef8e8ec04596c9b8f8675944732849390d850432b"
+      },
+      "task_sha256": "4beb9f6cf1a38c1bde1b32914f8f51971c06fbcd35f576693f0730dd135523b8",
+      "verifier_sha256": "fbdb379bc6b2c165177ed5bc6d380c2d9639bcf696ac94e066966df7481cfa2f"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_release_train_110-f5d0f12aa862",
+        "task_id": "resumable_release_train_110",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_110.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "f7918e542adf661709c64be9fed6374ee5c973534530be1d2c489f1d2f58837d",
+        "result.json": "3772a080686b6a94db2cb3650b55f1381bc5f142dd5ef7624f98dfb6263e0e3a",
+        "trajectory.jsonl": "0702139dcef3a611d33075d532135817a12751b8c23a12a5696d57296fca0f2c"
+      },
+      "task_sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "verifier_sha256": "31c6559ffa6dc6059995a46f9fd950811b2288420a303fa4dbe455223af7517b"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_000-2c179dff7f21",
+        "task_id": "resumable_ingestion_train_000",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "24f7a700c2d93023ae695392ab7d16748c36b5b87e366b40f46fb9ec9d968c78",
+        "result.json": "503faa47b1d9d8eb3fc5d9e8b7272bb75bf59a943602cc1754db011ebc46f3b0",
+        "trajectory.jsonl": "3616defd68addb78d52c0897829d88db522c3df4e455a13a98a5b2a44d8c252e"
+      },
+      "task_sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "verifier_sha256": "158b2e7d8b7db59c3fcae7e745f879c9f1ed40b547d86150aa6cb144cc73f9d9"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_release_train_101-2a44380047f8",
+        "task_id": "resumable_release_train_101",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_101.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_101/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_101__resume_2/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
+        "decision_failure": null,
+        "native_resume_source": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_101",
+        "trajectory_prefix_policy": "copied persisted events; no duplicate executions",
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_101__resume_2",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "d8b2420b6f60d11b79391c5b591b828dc527f9e8278f2222de978fa1775170a2",
+        "result.json": "a88f8e10c1d8746c8850549f157d056aa22e2f404e05ee44a0d5b8dbfe889fd6",
+        "trajectory.jsonl": "4b3c0d2b0a93a5c8d2aea2b1201efd77ee7674445714ff1a077ab6a433a55fc2"
+      },
+      "task_sha256": "2cc6002289da426cd2d2856391d47fdbaf90017aa937c28db07381589db4c4b4",
+      "verifier_sha256": "e990989779e3aadd8b66c4aa4988fefc5b9f82a42506778a421db5e6368a8aef"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_011-463e905393a9",
+        "task_id": "resumable_ingestion_train_011",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_011.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_011/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_011/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_011",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "ddd7ea94d41820afa9746e133ff724971fa7f766e318a760a6a9785426138389",
+        "result.json": "65af2d4526b1a4b4b3e9e003051e43767a0c0f2e1c59d01d5c028105b6e05d1f",
+        "trajectory.jsonl": "40b112a630eb2e2146fe9ddda122ca3fd158fb5098945d5b55f82ca609105fc8"
+      },
+      "task_sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "verifier_sha256": "b7c38c083290b36975c9d12cd9c4169603507bc7650a5e1ac37c0ffec88fab2d"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_release_train_110-16b46fa0c743",
+        "task_id": "resumable_release_train_110",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_110.json",
+        "split": "train",
+        "family": "workflow_release",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_110/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_110/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_release_train_110",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "74f980c4abde24b2f6c101345f6069b71c26881622d51002e9834d32508bd7c7",
+        "result.json": "0c30fe5a81c71bc4e23158f93a4d308e03ab8c9ebb361599068cb584a76231b4",
+        "trajectory.jsonl": "a3a5b322899db1f0596115a193f28b06f0932b05ed259ca8b9ce54da15d02ded"
+      },
+      "task_sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "verifier_sha256": "31c6559ffa6dc6059995a46f9fd950811b2288420a303fa4dbe455223af7517b"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_101-3c5a8036b1c1",
+        "task_id": "resumable_ingestion_train_101",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_101.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_101/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_101/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_101",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "08d654ec79aae26e90b2a87bead534730d518d1a3fd81041e3821ae9dbfd0701",
+        "result.json": "a9bf69878d76db4b404b574f1ecbcf67ea46ee82cb0cf9c878528e4c631cfa18",
+        "trajectory.jsonl": "062fbc42230528f6d92e8b2d4dcbe6d4496101b83abb2f849bb92af76bd3a840"
+      },
+      "task_sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "verifier_sha256": "d91e8f7a084b64eb67b37c7e081e7acd8e9dc7e6e6a379576270c90266bf2477"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_000-0defb0c5a0cc",
+        "task_id": "resumable_ingestion_train_000",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_000/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_000/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "fdb445790ed42f64947389c474e569fa32a980f5",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_000",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "ba38d6f2d44f7fad593d9fa8af016e581fefc6691537bcbbcb1e80781ea5e27b",
+        "result.json": "2292ed19e0e6d1868502a8d7450657fdd2985f5b23e9f7caa6e9b7fa947565d5",
+        "trajectory.jsonl": "0c0b497a3d499b706cedeca3c169d8026a9f83c4b376e8738fee1787e5137103"
+      },
+      "task_sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "verifier_sha256": "158b2e7d8b7db59c3fcae7e745f879c9f1ed40b547d86150aa6cb144cc73f9d9"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_110-a05865dcd418",
+        "task_id": "resumable_ingestion_train_110",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_110.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1701,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "fdb445790ed42f64947389c474e569fa32a980f5",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_110",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "573b9dbf760847d7d2790ec8ad74af9f40ce12304db99a48be5222aae40698d5",
+        "result.json": "35f6e02d234678af1ea471dcca7c6a77e7dccadd7e01d49f78bb22347214375a",
+        "trajectory.jsonl": "d6a86cee838ca7256073099a65f8ff0f8f697fe6911685c03d3f0397c4ba25a2"
+      },
+      "task_sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "verifier_sha256": "62748c798fc833b9f1bad6a3af4ee1e381d3941af341be14c26c67e232ec3b74"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_011-bfc773d46070",
+        "task_id": "resumable_ingestion_train_011",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_011.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_011/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_011/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "4dff6d4177decb0a29861e458f7beaa210913968",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_011",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "2ed10186885f7be4d15371be5bf3613cfdea63fb26848608a0baf750b9417bef",
+        "result.json": "548c1eadb75abcc41fb9d9c2cf5db5d85cea878b1de7bf74c1dc5cb97fe7e4a0",
+        "trajectory.jsonl": "a48a597a829111e0c9fb883cd26ff2e33508d75e3f51a21903afd0cf1f53b749"
+      },
+      "task_sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "verifier_sha256": "b7c38c083290b36975c9d12cd9c4169603507bc7650a5e1ac37c0ffec88fab2d"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_101-922279384f33",
+        "task_id": "resumable_ingestion_train_101",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_101.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_101/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_101/repo",
+        "success": false,
+        "steps": 6,
+        "code_commit": "4dff6d4177decb0a29861e458f7beaa210913968",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_101",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 5,
+      "hashes": {
+        "episode.json": "58eb137854e139a06bebf3f76c0e0c0542c41197857a0b3dacc00f998ebb1e8b",
+        "result.json": "28c0b87fdaf190ff1ed067cd3e2b851ae7ecd466877d48c4c874f746bdc14328",
+        "trajectory.jsonl": "3a12e5070cd1a88a51ba4682fc0a41cb7f92773daeea5c954a877f29fca264fe"
+      },
+      "task_sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "verifier_sha256": "d91e8f7a084b64eb67b37c7e081e7acd8e9dc7e6e6a379576270c90266bf2477"
+    },
+    {
+      "row": {
+        "episode_id": "resumable_ingestion_train_110-fa8bee40720c",
+        "task_id": "resumable_ingestion_train_110",
+        "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_110.json",
+        "split": "train",
+        "family": "workflow_ingestion",
+        "mode": "none",
+        "seed": 1702,
+        "model": "Qwen3.5-4B",
+        "max_steps": 8,
+        "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_110/verifier.py",
+        "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_110/repo",
+        "success": false,
+        "steps": 8,
+        "code_commit": "4dff6d4177decb0a29861e458f7beaa210913968",
+        "decision_failure": null,
+        "phase": "training",
+        "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1702/none/resumable_ingestion_train_110",
+        "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+      },
+      "pivot_index": 7,
+      "hashes": {
+        "episode.json": "a17c43513ea8a3ca5fc137e7baa2ba7f286fb729af5f9208f1038c0fcd03ec79",
+        "result.json": "a10fcf406399ed9b66baedfe3ce7633d5099e37f96e4b0d91f9fa13915d1e024",
+        "trajectory.jsonl": "6f775d5438ba5761966aef9a640d446b5569e7f80977ddd90468644d3ea4bd69"
+      },
+      "task_sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "verifier_sha256": "62748c798fc833b9f1bad6a3af4ee1e381d3941af341be14c26c67e232ec3b74"
+    }
+  ]
+}
