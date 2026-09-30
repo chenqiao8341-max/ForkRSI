@@ -1,0 +1,87 @@
+{
+  "origin": "current Codex assistant, user GPT subscription, explicitly allowed low-frequency source assistance",
+  "provider_model": "not exposed as a verifiable model identifier in this session",
+  "billing": "existing subscription; no paid API call",
+  "model_token_usage": null,
+  "usage_note": "No API tokenizer usage is available for subscription reasoning; retain exact input/output characters and disclosure, do not impute zero measured inference cost.",
+  "assistant_proposal_sessions": 1,
+  "new_training_executions": 0,
+  "qwen_continuation_requests_expected": 0,
+  "reason": "source-v1/v2 lacked qualified positives; first repaired source-v3 proposal slot also exhausted strict parsing. Shared source assistance supplies hypotheses, never verifier evidence.",
+  "created_utc": "2026-09-30T19:23:53.224207+00:00",
+  "entries": [
+    {
+      "family": "release",
+      "parent": {
+        "row": {
+          "episode_id": "resumable_release_train_000-a35c3c6cf90e",
+          "task_id": "resumable_release_train_000",
+          "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_000.json",
+          "split": "train",
+          "family": "workflow_release",
+          "mode": "none",
+          "seed": 1701,
+          "model": "Qwen3.5-4B",
+          "max_steps": 8,
+          "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000/verifier.py",
+          "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000/repo",
+          "success": false,
+          "steps": 8,
+          "code_commit": "278c773232bfa96668789f8811c8b9b85e762c6a",
+          "phase": "training",
+          "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_000",
+          "experiment_revision": "278c773232bfa96668789f8811c8b9b85e762c6a"
+        },
+        "pivot_index": 7,
+        "hashes": {
+          "episode.json": "5f62862d97ee5b16e8aea20c432c4534d4fec8b00259dbc29d06e2a279e99c1c",
+          "result.json": "50c88f0c18c9894bb77d68169214b6942057485026edee998e229477a71003fc",
+          "trajectory.jsonl": "3ce44b474839819a2fb28eb06745a7c3e601db743c659dfa119da510e31ae95a"
+        },
+        "task_sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+        "verifier_sha256": "232f13f89838f4853fba48d0d90fff32ebf84f15563ec80c72bf0268cdc1d9cc"
+      },
+      "input": "configs/forkrsi/subscription-source-v1/release-input.json",
+      "input_sha256": "045d7c93b6399fa9c8b6f16628ec19b01a8f38700492c95ac03956a8c4e243c3",
+      "output": "configs/forkrsi/subscription-source-v1/release-output.json",
+      "output_sha256": "b3a3576d8ace121dfaf0370d50b8ec332d4d890248f98ff081e4bc44ad7f4a1c"
+    },
+    {
+      "family": "ingestion",
+      "parent": {
+        "row": {
+          "episode_id": "resumable_ingestion_train_000-2c179dff7f21",
+          "task_id": "resumable_ingestion_train_000",
+          "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+          "split": "train",
+          "family": "workflow_ingestion",
+          "mode": "none",
+          "seed": 1701,
+          "model": "Qwen3.5-4B",
+          "max_steps": 8,
+          "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000/verifier.py",
+          "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000/repo",
+          "success": false,
+          "steps": 8,
+          "code_commit": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+          "decision_failure": null,
+          "phase": "training",
+          "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_ingestion_train_000",
+          "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+        },
+        "pivot_index": 7,
+        "hashes": {
+          "episode.json": "24f7a700c2d93023ae695392ab7d16748c36b5b87e366b40f46fb9ec9d968c78",
+          "result.json": "503faa47b1d9d8eb3fc5d9e8b7272bb75bf59a943602cc1754db011ebc46f3b0",
+          "trajectory.jsonl": "3616defd68addb78d52c0897829d88db522c3df4e455a13a98a5b2a44d8c252e"
+        },
+        "task_sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+        "verifier_sha256": "158b2e7d8b7db59c3fcae7e745f879c9f1ed40b547d86150aa6cb144cc73f9d9"
+      },
+      "input": "configs/forkrsi/subscription-source-v1/ingestion-input.json",
+      "input_sha256": "d557603ffe070dd14c5343170241d9c366bd74fa8a64e03520bbe9b69ce94cfe",
+      "output": "configs/forkrsi/subscription-source-v1/ingestion-output.json",
+      "output_sha256": "777494167781d60d5c81c4023a68014658bd8d8620ebe114966e8161e1ab11c6"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "proposals": [
+    {
+      "action": {
+        "tool": "write",
+        "path": "solution.py",
+        "content": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"probed\"] and not s[\"green\"] and not s[\"workers_paused\"]:\n        return\n    if not s[\"signed\"]:\n        s = api.apply(\"verify_artifact\")\n    if not s[\"probed\"]:\n        s = api.apply(\"pause_batch_workers\")\n        s = api.apply(\"allocate_green\")\n        s = api.apply(\"warm_green\")\n        s = api.apply(\"probe_health\")\n    if s[\"healthy\"]:\n        if s[\"sticky_sessions\"] and not s[\"drained\"]:\n            s = api.apply(\"drain_sticky_sessions\")\n        if not s[\"new_traffic\"]:\n            s = api.apply(\"switch_traffic\")\n        if s[\"blue\"]:\n            s = api.apply(\"retire_blue\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_release\")\n    else:\n        if s[\"green\"]:\n            s = api.apply(\"discard_green\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_abort\")\n",
+        "thought_summary": "Repair terminal cleanup and avoid repeating completed probe; leave setup grouped as a minimal intervention."
+      },
+      "mechanism": "Completed probe and cleanup are recognized; interrupted pre-probe setup may still repeat pause/allocation.",
+      "predicted_outcome": "May complete the clean path; full recovery is uncertain because a crash before probe can repeat a state-changing setup operation.",
+      "requires": {},
+      "excludes": {},
+      "risk": 0.8
+    },
+    {
+      "action": {
+        "tool": "write",
+        "path": "solution.py",
+        "content": "def run(api):\n    s = api.inspect(\"state\")\n    if not s[\"signed\"]:\n        s = api.apply(\"verify_artifact\")\n    if not s[\"probed\"]:\n        if not s[\"capacity\"]:\n            s = api.apply(\"pause_batch_workers\")\n        if not s[\"green\"]:\n            s = api.apply(\"allocate_green\")\n        if not s[\"warm\"]:\n            s = api.apply(\"warm_green\")\n        s = api.apply(\"probe_health\")\n    if s[\"healthy\"]:\n        if s[\"sticky_sessions\"] and not s[\"drained\"]:\n            s = api.apply(\"drain_sticky_sessions\")\n        if not s[\"new_traffic\"]:\n            s = api.apply(\"switch_traffic\")\n        if s[\"blue\"]:\n            s = api.apply(\"retire_blue\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_release\")\n    else:\n        if s[\"green\"]:\n            s = api.apply(\"discard_green\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_abort\")\n",
+        "thought_summary": "Reconstruct each unfinished release phase from returned public state; keep aborted replacements discarded."
+      },
+      "mechanism": "Guard every pre-probe phase independently; use probed as the durable boundary to avoid reallocating after abort, and finish outstanding cleanup separately.",
+      "predicted_outcome": "Expected to satisfy normal execution and full source recovery cases; this remains a hypothesis until the unchanged verifier executes.",
+      "requires": {},
+      "excludes": {},
+      "risk": 0.25
+    }
+  ]
+}

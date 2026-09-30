@@ -1,0 +1,30 @@
+{
+  "proposals": [
+    {
+      "action": {
+        "tool": "write",
+        "path": "solution.py",
+        "content": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"acknowledged\"]:\n        if s[\"leased\"]:\n            api.apply(\"release_lease\")\n        return\n    if not s[\"leased\"]:\n        s = api.apply(\"claim\")\n    if not s[\"applied\"]:\n        if s[\"transactional\"]:\n            s = api.apply(\"begin\")\n            s = api.apply(\"apply_transactional\")\n        else:\n            s = api.apply(\"apply_direct\")\n        s = api.apply(\"stage_outbox\")\n        if s[\"transactional\"]:\n            s = api.apply(\"commit_transaction\")\n        else:\n            s = api.apply(\"persist_direct\")\n    if not s[\"delivered\"]:\n        if s[\"deduplicating_sink\"]:\n            s = api.apply(\"deliver_idempotently\")\n        else:\n            if not s[\"receipt_checked\"]:\n                s = api.apply(\"check_delivery_receipt\")\n            s = api.apply(\"deliver_once\")\n    s = api.apply(\"acknowledge\")\n    api.apply(\"release_lease\")\n",
+        "thought_summary": "Use documented apply dispatch and returned state; couple initial apply/outbox/commit as one repair block."
+      },
+      "mechanism": "Repairs unsupported methods and stale state; an applied-but-uncommitted restart can still skip durability steps.",
+      "predicted_outcome": "May pass the clean path; restart after direct application or outbox staging is uncertain because durability is inside the not-applied guard.",
+      "requires": {},
+      "excludes": {},
+      "risk": 0.75
+    },
+    {
+      "action": {
+        "tool": "write",
+        "path": "solution.py",
+        "content": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"acknowledged\"]:\n        if s[\"leased\"]:\n            api.apply(\"release_lease\")\n        return\n    if not s[\"leased\"]:\n        s = api.apply(\"claim\")\n    if not s[\"committed\"]:\n        if not s[\"applied\"]:\n            if s[\"transactional\"]:\n                if not s[\"transaction\"]:\n                    s = api.apply(\"begin\")\n                s = api.apply(\"apply_transactional\")\n            else:\n                s = api.apply(\"apply_direct\")\n        if not s[\"outbox\"]:\n            s = api.apply(\"stage_outbox\")\n        if s[\"transactional\"]:\n            s = api.apply(\"commit_transaction\")\n        else:\n            s = api.apply(\"persist_direct\")\n    if not s[\"delivered\"]:\n        if s[\"deduplicating_sink\"]:\n            s = api.apply(\"deliver_idempotently\")\n        else:\n            if not s[\"receipt_checked\"]:\n                s = api.apply(\"check_delivery_receipt\")\n            s = api.apply(\"deliver_once\")\n    if not s[\"acknowledged\"]:\n        s = api.apply(\"acknowledge\")\n    if s[\"leased\"]:\n        api.apply(\"release_lease\")\n",
+        "thought_summary": "Reconstruct application, outbox, durability, delivery and cleanup as separate obligations."
+      },
+      "mechanism": "Durability continues while not committed even when applied is already true; acknowledgement and lease cleanup are independent terminal obligations.",
+      "predicted_outcome": "Expected to pass complete source recovery; transaction rollback is reconstructed from fresh public state without suppressing crashes.",
+      "requires": {},
+      "excludes": {},
+      "risk": 0.25
+    }
+  ]
+}
