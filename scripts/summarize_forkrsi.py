@@ -155,7 +155,7 @@ def statistics(rows: list[Json], none: list[Json]) -> Json:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--campaign", type=Path, default=Path("runs/forkrsi/campaign-v1")
+        "--campaign", type=Path, default=Path("runs/forkrsi/campaign-v2")
     )
     parser.add_argument(
         "--source", type=Path, default=Path("runs/forkrsi/source-package-v1")
@@ -337,6 +337,16 @@ def main() -> None:
             and (p / "manifest.json").exists()
         ):
             source_runs.append(source_cost_record(p))
+    prior_campaign_trials = [
+        {
+            "path": str(p),
+            "status": load(p / "status.json"),
+            "strategy_usage": usage(p / "strategy-llm.jsonl"),
+            "task_episode_records": len(list(p.rglob("episode.json"))),
+        }
+        for p in sorted(root.parent.glob("campaign-v*"))
+        if p.is_dir() and p.resolve() != root.resolve() and (p / "status.json").exists()
+    ]
     extraction_calls = [
         json.loads(s) for s in (root / "strategy-llm.jsonl").read_text().splitlines()
     ]
@@ -395,6 +405,7 @@ def main() -> None:
         "I_reset": reset,
         "source_summary": source_summary,
         "source_collection_costs_including_failed_calibration": source_runs,
+        "prior_campaign_trials_including_failed_extraction": prior_campaign_trials,
         "strategy_costs_by_schema": strategy_costs,
         "execution_costs_by_stage": execution_costs,
         "C0": search["C0"],

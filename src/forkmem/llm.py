@@ -15,7 +15,7 @@ import httpx
 from pydantic import BaseModel, ValidationError
 
 T = TypeVar("T", bound=BaseModel)
-PROMPT_VERSION = "forkrsi-json-response-repair-v2"
+PROMPT_VERSION = "forkrsi-json-instance-repair-v3"
 
 
 class ModelResponseError(ValueError):
@@ -110,7 +110,10 @@ class LLMClient:
         base_messages = [
             {
                 "role": "system",
-                "content": "Return only a JSON object matching this schema. Do not include markdown. "
+                "content": "Return one JSON instance object satisfying the schema below. "
+                "The schema is a specification, not the response: do not copy the "
+                "schema document or print it before the answer. Include all required "
+                "instance values and no extra fields. Do not include markdown. Schema: "
                 + json.dumps(schema.model_json_schema()),
             },
             {"role": "user", "content": prompt},
@@ -186,7 +189,8 @@ class LLMClient:
                     feedback = json.dumps(details, ensure_ascii=False)[:1500]
                     repair = (
                         "Your previous response was invalid JSON/schema. "
-                        "Return the exact schema, all required fields, no extra fields. "
+                        "Return one instance object satisfying the schema, all required values, "
+                        "no extra fields. Do not return or prepend the schema document. "
                         "Follow each field type exactly; quote precondition values when "
                         "their schema requires strings. Escape quotes and newlines in "
                         "JSON string fields. Keep the complete response compact without "

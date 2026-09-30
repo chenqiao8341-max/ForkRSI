@@ -52,8 +52,8 @@
   "agent_prompt_version": "forkrsi-next-action-v1; calibrated only on source-side read loops; frozen for all controls",
   "extraction_seed_policy": "same seed per shared positive source, independent of C lineage/evidence mode; reuse identical prompt+seed extraction",
   "no_op_policy": "retain/evaluate no-op C candidates and costs; they consume proposal slots but cannot be selected as changed compilers",
-  "json_protocol": "forkrsi-json-response-repair-v2; unchanged strict parsing and four attempts; last actual invalid response shown within bounded context; calibrated on source JSON syntax errors before C/I search",
+  "json_protocol": "forkrsi-json-instance-repair-v3; one instance object, never the schema document; unchanged strict parsing and four attempts; last actual invalid response within bounded context",
   "response_failure_policy": "verify-current-code-v1: four failed JSON attempts terminate the task by verifying existing code, without extra requests or edits; exhausted source proposal slots retained without evidence",
   "contract_qualification": "unchanged original AST screen plus recorded boolean review of every flag; flagged contract-invalid positives cannot enter source pool; report raw verifier outcomes and qualified safe/first success separately; no post-final strategy reselection",
-  "source_json_protocol_note": "live source-v2 worker retains v1 schema-feedback policy; no live worker restarted for this change; actual per-call versions and all source costs preserved"
+  "source_json_protocol_note": "Actual source calls retain v1/v2 per-call versions. Pre-development campaign-v1 ended after schema echo in extraction, zero task episodes. All later C/I and final controls use v3 in fresh campaign-v2; source corpus stays fixed."
 }

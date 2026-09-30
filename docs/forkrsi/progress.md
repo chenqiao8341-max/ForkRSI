@@ -70,3 +70,7 @@ source-v1/v2无合格正向分叉，修复v2的source-v3首槽仍耗尽严格解
 ### 2026-09-30T19:34:50.615933+00:00 C/I实际搜索启动
 
 worker30783已核对存活，loaded code1ffc779，所有18个任务的候选池固定成功源IDs：发布两个、摄取一个，原flat/fork表示实际token766/3537与428/1373。C/I提案、开发选择及I重置由同一持久进程推进，最终未打开；详情campaign-live-start.json。
+
+### 2026-09-30T19:37:01.171115+00:00 实例对象协议与新批次
+
+campaign-v1在首个开发任务前因第二源RuleSet提炼反复输出Schema+实例而失败，0任务执行；六次调用全部保留，见pre-development-json-trial.json。原修复提示“Return the exact schema”存在实例/Schema歧义。公共v3明确只输出符合规范的实例、不要复制Schema；严格解析、四次尝试、模型和所有预算不变。新campaign-v2不复用旧编译缓存，全对照统一v3，源6分叉和成功程序IDs不变。此为公共工程修复，不能算C/I效果。最终仍未打开。

@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-09-30T19:37:01.171115+00:00",
+  "root": "runs/forkrsi/campaign-v1",
+  "state": "interrupted_or_failed",
+  "failure": "Strict RuleSet extraction exhausted after model emitted schema plus instance with trailing brace",
+  "completed_task_episodes": 0,
+  "usage": {
+    "prompt_tokens": 8260,
+    "completion_tokens": 2402,
+    "total_tokens": 10662,
+    "requests": 6,
+    "parse_errors": 5,
+    "transport_errors": 0
+  },
+  "engineering_fix": "v3 clarifies instance rather than schema; no parser normalization or budget changes",
+  "fresh_campaign": "runs/forkrsi/campaign-v2",
+  "scope": "pre-development protocol failure, not C/I evolution, retain all costs and raw responses"
+}
