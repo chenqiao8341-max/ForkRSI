@@ -178,15 +178,47 @@ class MemoryCompiler:
             "Use exact evidence_ids from this packet; do not invent identifiers.\n"
             + canonical(packet)
         )
-        rules = await self.client.generate(
-            prompt,
-            RuleSet,
-            seed=int(key[:8], 16),
-            max_tokens=1800,
-            run_id="compile-" + mode,
-            episode_id=compiler_id,
-            branch_id=packet["positive_program_id"],
+        # Extraction seeds depend only on the shared positive source. Changing
+        # C lineage/provenance must not silently turn a no-op into a new sample.
+        seed = int(
+            sha(
+                {
+                    "source": packet["positive_program_id"],
+                    "phase": "source-extraction-v1",
+                }
+            )[:8],
+            16,
         )
+        extraction_key = sha({"prompt": prompt, "seed": seed})
+        extraction_path = self.cache / "extractions" / (extraction_key + ".json")
+        extraction_path.parent.mkdir(parents=True, exist_ok=True)
+        if extraction_path.is_file():
+            extraction = json.loads(extraction_path.read_text())
+            if (
+                extraction["prompt_sha256"] != digest(prompt.encode())
+                or extraction["seed"] != seed
+            ):
+                raise ValueError("extraction cache provenance mismatch")
+            rules = RuleSet.model_validate(extraction["rules"])
+        else:
+            rules = await self.client.generate(
+                prompt,
+                RuleSet,
+                seed=seed,
+                max_tokens=1800,
+                run_id="compile-" + mode,
+                episode_id=compiler_id,
+                branch_id=packet["positive_program_id"],
+            )
+            validate_references(rules, allowed)
+            extraction = {
+                "prompt_sha256": digest(prompt.encode()),
+                "seed": seed,
+                "rules": rules.model_dump(mode="json"),
+            }
+            temporary = extraction_path.with_suffix(".tmp")
+            temporary.write_text(json.dumps(extraction, indent=2))
+            temporary.replace(extraction_path)
         validate_references(rules, allowed)
         saved = {
             "compiler_id": compiler_id,
@@ -196,9 +228,13 @@ class MemoryCompiler:
             "source_scope": packet["source_scope"],
             "rules": rules.model_dump(mode="json"),
             "prompt_sha256": digest(prompt.encode()),
+            "extraction_key": extraction_key,
+            "extraction_seed": seed,
             "status": "source-derived hypothesis; not target-verified",
         }
-        path.write_text(json.dumps(saved, indent=2))
+        temporary = path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(saved, indent=2))
+        temporary.replace(path)
         return saved
 
     def render(

@@ -14,6 +14,9 @@ async def test_json_repair_and_provenance(tmp_path: Path) -> None:
     async def respond(request: httpx.Request) -> httpx.Response:
         nonlocal calls
         calls += 1
+        if calls == 2:
+            message = json.loads(request.content)["messages"][-1]["content"]
+            assert "Validation errors" in message and "json_invalid" in message
         content = "bad json" if calls == 1 else '{"tool":"finish"}'
         return httpx.Response(
             200,
@@ -39,6 +42,8 @@ async def test_json_repair_and_provenance(tmp_path: Path) -> None:
     ]
     assert [e["status"] for e in logs] == ["parse_error", "ok"]
     assert logs[0]["request_id"] == logs[1]["request_id"]
+    assert logs[0]["schema_errors"][0]["type"] == "json_invalid"
+    assert "input" not in logs[0]["schema_errors"][0]
     assert all(e["prompt_version"] and e["usage"]["total_tokens"] == 10 for e in logs)
 
 

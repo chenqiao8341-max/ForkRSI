@@ -15,7 +15,7 @@ import httpx
 from pydantic import BaseModel, ValidationError
 
 T = TypeVar("T", bound=BaseModel)
-PROMPT_VERSION = "forkmem-json-v2"
+PROMPT_VERSION = "forkrsi-json-schema-feedback-v1"
 
 
 def normalize_proposals(data: Any) -> Any:
@@ -163,10 +163,25 @@ class LLMClient:
                 except (ValidationError, ValueError, KeyError, TypeError) as exc:
                     event["status"] = "parse_error"
                     event["error_type"] = type(exc).__name__
+                    details = (
+                        exc.errors(
+                            include_url=False,
+                            include_context=False,
+                            include_input=False,
+                        )[:6]
+                        if isinstance(exc, ValidationError)
+                        else [{"type": type(exc).__name__, "msg": str(exc)[:500]}]
+                    )
+                    event["schema_errors"] = details
+                    feedback = json.dumps(details, ensure_ascii=False)[:1500]
                     messages.append(
                         {
                             "role": "user",
-                            "content": "Your previous response was invalid JSON/schema. Return the exact schema, all required fields, no extra fields.",
+                            "content": "Your previous response was invalid JSON/schema. "
+                            "Return the exact schema, all required fields, no extra fields. "
+                            "Follow each field type exactly; quote precondition values when "
+                            "their schema requires strings. Validation errors: "
+                            + feedback,
                         }
                     )
                     if attempt == 3:

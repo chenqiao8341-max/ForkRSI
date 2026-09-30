@@ -48,5 +48,9 @@
   "evidence": "only complete authenticated source branches are positive; preserve rejected and falsified evidence",
   "statistics": "semantic task is unit; seeds and recovery cases clustered within task; exploratory small pilot",
   "selection": "generate only on development feedback; select among C0 and all actual candidates on a separate 2-task selection set, same objective and no further proposals",
-  "wall_seconds": 240
+  "wall_seconds": 240,
+  "agent_prompt_version": "forkrsi-next-action-v1; calibrated only on source-side read loops; frozen for all controls",
+  "extraction_seed_policy": "same seed per shared positive source, independent of C lineage/evidence mode; reuse identical prompt+seed extraction",
+  "no_op_policy": "retain/evaluate no-op C candidates and costs; they consume proposal slots but cannot be selected as changed compilers",
+  "json_protocol": "forkrsi-json-schema-feedback-v1; unchanged strict parsing, four-attempt cap, bounded validation diagnostics"
 }

@@ -86,6 +86,27 @@ class AgentRunner:
             for event in state["messages"]
         ]
         prompt = f"You are a coding agent. Solve the task in this isolated Python repository.\nTask: {state['task']}\nAvailable files: {git(self.env.root, 'ls-files')}\nTools: read(path), search(content), write(path,content), test(), finish(). Only {self.env.editable} may be changed. write replaces the complete file. Test is a deterministic external verifier; never try to bypass it. Read the source and contract before editing. You have {self.max_steps - state['step']} actions left.\nPrior-task memory (may be inapplicable; check the current contract):\n{self.memory_prompt}\nCurrent trajectory:\n{json.dumps(observations, ensure_ascii=False)[-40000:]}"
+        public_files = git(self.env.root, "ls-files").splitlines()
+        read_paths = {
+            e["action"]["path"]
+            for e in state["messages"]
+            if e["action"]["tool"] == "read"
+        }
+        missing = [
+            name
+            for name in ("README.md", "deployment.json", "solution.py")
+            if name in public_files and name not in read_paths
+        ]
+        prompt += (
+            "\nThe trajectory lists actions ALREADY executed, not actions to repeat. "
+            "Choose exactly one NEXT action that advances the task. "
+            "Do not reread an unchanged file whose contents are already in the trajectory. "
+            f"Files already read: {sorted(read_paths)}. Still unread public task files: {missing}. "
+            "Read missing contract/deployment/source context first. Once available, write the "
+            "complete repaired solution.py, then test it. If a test failed, use that failure "
+            "to produce a changed complete write and test again within the remaining budget. "
+            "Never submit unchanged incomplete source or repeat reads until the budget expires."
+        )
         action = await self.client.generate(
             prompt,
             Action,
@@ -161,6 +182,7 @@ class AgentRunner:
             json.dumps(
                 {
                     "task": task,
+                    "agent_prompt_version": "forkrsi-next-action-v1",
                     "repo": str(self.env.root),
                     "verifier": str(self.env.verifier),
                     "editable": self.env.editable,

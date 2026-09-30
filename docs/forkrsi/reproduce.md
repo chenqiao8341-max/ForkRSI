@@ -29,7 +29,8 @@ Commit code, task definitions, runtime records and protocol first; runners enfor
 source scripts/forkrsi_env.sh
 python scripts/check_forkrsi_budget.py --reserve-hours 2
 python scripts/run_forkrsi_source.py
-python scripts/audit_workflow_programs.py --runs runs/forkrsi/source-v1 --output runs/forkrsi/source-v1/program-audit.json
+python scripts/audit_workflow_programs.py --runs runs/forkrsi/source-v2 --output runs/forkrsi/source-v2/program-audit.json
+python scripts/package_forkrsi_sources.py
 python scripts/run_forkrsi_campaign.py search
 python scripts/run_forkrsi_campaign.py freeze
 python scripts/run_forkrsi_campaign.py final
@@ -50,3 +51,9 @@ Reset gives I0 and paired I1 the same C0, new tasks, pools, seeds and 2 proposal
 Final compares none, flat verified, original ForkMem, initial success-only C, initial paired C, evolved success-only C and evolved paired C. Original representations retain actual costs (6000-token cap); evolved arms share1500 cap. If evolved C selects C0, identical cells are reused and disclosed, never new replicates.
 
 Report full safe success, first validation success, negative transfer and total tokens by semantic task/seed. Separate source, extraction, proposal, development, selection, reset and final costs. Preserve all rejected/no-op/invalid candidates and regressions. Seeds do not guarantee deterministic GPU inference. Small pilot results may be positive, negative or uncertain; final C improvement alone cannot establish better I or validated RSI.
+
+## Source-side calibration record
+
+source-v1 is retained as the original public-agent-prompt trial. Qwen repeated source reads and did not reach useful modifying pivots. The shared next-action prompt was calibrated solely on these source-side observations and a logged one-request probe, before development/selection/reset/final outcomes. Source-v2 uses that same frozen public agent policy for all later controls. Failed trial tokens and rental time are included in the cost ledger. Compiler extraction uses one fixed seed per positive source across all C versions and evidence arms; identical prompt+seed results are reused, so C version IDs cannot introduce additional random samples. No-op proposals are retained and consume their slot but cannot be selected as a changed compiler.
+
+Source-v1 is a terminal failed trial, not a complete collection:16 failed tasks,2 full forks,4 falsified alternatives,0 positive alternatives; later Proposals exhausted strict JSON repair. The package builder preserves the failed state and includes only actual completed forks/recorded negatives. All trial costs are reported. Source-v2 uses bounded field-level repair diagnostics and the same strict schema/four-attempt cap for every route.

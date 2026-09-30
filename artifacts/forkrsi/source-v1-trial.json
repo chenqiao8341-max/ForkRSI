@@ -1,0 +1,12 @@
+{
+  "status": {
+    "state": "interrupted_or_failed",
+    "error_type": "ValueError",
+    "completed_episodes": 16
+  },
+  "completed_forks": 2,
+  "verified": 0,
+  "falsified": 4,
+  "corpus_snapshot_sha256": "4ab8e2f3614fb40f03e25f494dc5dffb5e52c4d6251bc5b5b1bb22b4bb47f1d2",
+  "termination": "four Proposals JSON repair attempts exhausted; original failed status preserved"
+}

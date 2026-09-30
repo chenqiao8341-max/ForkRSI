@@ -13,7 +13,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("phase", choices=("search", "freeze", "final"))
     parser.add_argument("--root", type=Path, default=Path("runs/forkrsi/campaign-v1"))
-    parser.add_argument("--source", type=Path, default=Path("runs/forkrsi/source-v1"))
+    parser.add_argument("--source", type=Path, default=Path("runs/forkrsi/source-package-v1"))
     parser.add_argument(
         "--protocol", type=Path, default=Path("configs/forkrsi/protocol-v1.json")
     )

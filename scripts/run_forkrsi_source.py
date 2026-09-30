@@ -14,7 +14,7 @@ from forkmem.environment import digest
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("runs/forkrsi/source-v1"))
+    parser.add_argument("--output", type=Path, default=Path("runs/forkrsi/source-v2"))
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     subprocess.run(

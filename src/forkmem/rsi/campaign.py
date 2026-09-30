@@ -571,6 +571,12 @@ class Campaign:
             )
             child = await self.evaluate(split, candidate, mode, split)
             results = comparison(parent, child)
+            results["nonempty_compiler_changes"] = bool(proposal["actual_changes"])
+            if not proposal["actual_changes"]:
+                results["candidate_selected"] = False
+                results["selection_reason"] = (
+                    "no-op consumes proposal slot; no changed compiler to select"
+                )
             proposal_cost = {
                 k: usage(self.client.log_path)[k] - before[k] for k in before
             }
@@ -673,7 +679,12 @@ class Campaign:
             candidate_ids = list(
                 dict.fromkeys(
                     [self.c0]
-                    + [r["candidate_c"] for r in history if r.get("candidate_c")]
+                    + [
+                        r["candidate_c"]
+                        for r in history
+                        if r.get("candidate_c")
+                        and r.get("proposal", {}).get("actual_changes")
+                    ]
                 )
             )
             selection_results = []
