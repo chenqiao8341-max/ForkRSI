@@ -1,0 +1,9 @@
+task_manifest: configs/forkrsi/source-manifest.json
+training_seeds: [1701, 1702]
+evaluation_seeds: []
+modes: []
+max_steps: 8
+branches: 2
+concurrency: 1
+episode_concurrency: 1
+request_budget: 500

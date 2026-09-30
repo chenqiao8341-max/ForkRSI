@@ -1,0 +1,77 @@
+{
+  "version": "forkrsi-source-v1",
+  "tasks": [
+    {
+      "task_id": "resumable_release_train_000",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_000.json",
+      "sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "semantic_context": "release-000",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_release_train_011",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_011.json",
+      "sha256": "4beb9f6cf1a38c1bde1b32914f8f51971c06fbcd35f576693f0730dd135523b8",
+      "semantic_context": "release-011",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_release_train_101",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_101.json",
+      "sha256": "2cc6002289da426cd2d2856391d47fdbaf90017aa937c28db07381589db4c4b4",
+      "semantic_context": "release-101",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_release_train_110",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_110.json",
+      "sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "semantic_context": "release-110",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_ingestion_train_000",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+      "sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "semantic_context": "ingestion-000",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_ingestion_train_011",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_011.json",
+      "sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "semantic_context": "ingestion-011",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_ingestion_train_101",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_101.json",
+      "sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "semantic_context": "ingestion-101",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    },
+    {
+      "task_id": "resumable_ingestion_train_110",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_110.json",
+      "sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "semantic_context": "ingestion-110",
+      "note": "reused source context; new Qwen executions required",
+      "split": "train"
+    }
+  ]
+}

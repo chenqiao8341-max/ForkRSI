@@ -1,0 +1,237 @@
+{
+  "version": "forkrsi-semantic-v1",
+  "status": "frozen before model inference",
+  "unit": "semantic task; recovery cases are nested observations",
+  "engine_sha256": "2ea69ba81b234bf6ba6491dce2b9ea96836583c97f003a2caee43e7a075762b1",
+  "recovery_sha256": "33def6595c50c108c0cfe75f9598e9a3cb1c69ca45c2752b584b829d4d0b925f",
+  "source_tasks": [
+    {
+      "task_id": "resumable_release_train_000",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_000.json",
+      "sha256": "ec6e8e5a18fe5893bc7dcedcc37afd3f8acd3a050c439e3c42fe18c36e798031",
+      "semantic_context": "release-000",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_release_train_011",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_011.json",
+      "sha256": "4beb9f6cf1a38c1bde1b32914f8f51971c06fbcd35f576693f0730dd135523b8",
+      "semantic_context": "release-011",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_release_train_101",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_101.json",
+      "sha256": "2cc6002289da426cd2d2856391d47fdbaf90017aa937c28db07381589db4c4b4",
+      "semantic_context": "release-101",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_release_train_110",
+      "family": "workflow_release",
+      "path": "data/v2/workflow_dev1/resumable_release_train_110.json",
+      "sha256": "5cd8804f860c75db50464b20a8019130bcabfcd52baae0ec7e7e37aca3001b91",
+      "semantic_context": "release-110",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_ingestion_train_000",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_000.json",
+      "sha256": "506a8e134704feae3571bd2f445db5ca526395ea563bc36a4b475667c419716a",
+      "semantic_context": "ingestion-000",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_ingestion_train_011",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_011.json",
+      "sha256": "10215ac38fefa582cddcc8dc1c867f33b8c1c0c06ea368fcd8e3e4bd35bb764c",
+      "semantic_context": "ingestion-011",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_ingestion_train_101",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_101.json",
+      "sha256": "5c860ae36e4c8149487d8a2461a19c5f90ea177eaf340464a21bcec547e6d6b4",
+      "semantic_context": "ingestion-101",
+      "note": "reused source context; new Qwen executions required"
+    },
+    {
+      "task_id": "resumable_ingestion_train_110",
+      "family": "workflow_ingestion",
+      "path": "data/v2/workflow_dev1/resumable_ingestion_train_110.json",
+      "sha256": "b2051642911def4c6d3d22ed7e132e46cbb0d6717b243e0c71f9f7edfbf7afd8",
+      "semantic_context": "ingestion-110",
+      "note": "reused source context; new Qwen executions required"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "forkrsi_development_release-000-fresh-audit1",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/forkrsi/semantic_v1/forkrsi_development_release-000-fresh-audit1.json",
+      "sha256": "e6e85f414035c162b394e23569fd75ddebb5ed5cca0f78e289910938f2457a57",
+      "semantic_context": "release-000-fresh-audit1",
+      "runtime_case_count": 16
+    },
+    {
+      "task_id": "forkrsi_development_release-110-warm-audit0",
+      "family": "workflow_release",
+      "split": "development",
+      "path": "data/forkrsi/semantic_v1/forkrsi_development_release-110-warm-audit0.json",
+      "sha256": "0d76ad9b628416b7ab535b69238a552353678841f62c66749b4f4b2f8e40a97a",
+      "semantic_context": "release-110-warm-audit0",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "forkrsi_development_ingestion-010-applied-audit0",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/forkrsi/semantic_v1/forkrsi_development_ingestion-010-applied-audit0.json",
+      "sha256": "353a424cfaf1055f8069c6d039d422082e373b182286a1b269b243aa30467bc1",
+      "semantic_context": "ingestion-010-applied-audit0",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "forkrsi_development_ingestion-001-fresh-audit1",
+      "family": "workflow_ingestion",
+      "split": "development",
+      "path": "data/forkrsi/semantic_v1/forkrsi_development_ingestion-001-fresh-audit1.json",
+      "sha256": "fb4bb889272f1c039f9f55a764b6e2f0700f8f99d8ddad8dbe08a7f92659211e",
+      "semantic_context": "ingestion-001-fresh-audit1",
+      "runtime_case_count": 20
+    },
+    {
+      "task_id": "forkrsi_selection_release-111-warm-audit0",
+      "family": "workflow_release",
+      "split": "selection",
+      "path": "data/forkrsi/semantic_v1/forkrsi_selection_release-111-warm-audit0.json",
+      "sha256": "fe133aaaaed1117e318eb794286aa84c1fe643c8926be7e9b4e6224da955a961",
+      "semantic_context": "release-111-warm-audit0",
+      "runtime_case_count": 8
+    },
+    {
+      "task_id": "forkrsi_selection_ingestion-001-delivered-audit0",
+      "family": "workflow_ingestion",
+      "split": "selection",
+      "path": "data/forkrsi/semantic_v1/forkrsi_selection_ingestion-001-delivered-audit0.json",
+      "sha256": "9b7212d4c698a30dd073fcf48eae23de5ce355a40f56c532a05ef0fec2e024f8",
+      "semantic_context": "ingestion-001-delivered-audit0",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "forkrsi_reset_release-100-switched-audit0",
+      "family": "workflow_release",
+      "split": "reset",
+      "path": "data/forkrsi/semantic_v1/forkrsi_reset_release-100-switched-audit0.json",
+      "sha256": "8544f228e3c6bc3d596711822021e452bda2b340fab04f47276303ecc6120114",
+      "semantic_context": "release-100-switched-audit0",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "forkrsi_reset_release-011-aborted-audit1",
+      "family": "workflow_release",
+      "split": "reset",
+      "path": "data/forkrsi/semantic_v1/forkrsi_reset_release-011-aborted-audit1.json",
+      "sha256": "a348dfcae53460c5a05e8fab729605d55a08972b904907e6c77862914c21872a",
+      "semantic_context": "release-011-aborted-audit1",
+      "runtime_case_count": 2
+    },
+    {
+      "task_id": "forkrsi_reset_ingestion-000-outbox-audit0",
+      "family": "workflow_ingestion",
+      "split": "reset",
+      "path": "data/forkrsi/semantic_v1/forkrsi_reset_ingestion-000-outbox-audit0.json",
+      "sha256": "8d964bfce7c54299e3cb20ece86df4e7005f95ad6579408c5caee4dd928d7d81",
+      "semantic_context": "ingestion-000-outbox-audit0",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "forkrsi_reset_ingestion-011-delivered-audit1",
+      "family": "workflow_ingestion",
+      "split": "reset",
+      "path": "data/forkrsi/semantic_v1/forkrsi_reset_ingestion-011-delivered-audit1.json",
+      "sha256": "4a640baee16304005672a8764854f32fd3fbb486ef8516fbf6e4bdd0cc6d697f",
+      "semantic_context": "ingestion-011-delivered-audit1",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "forkrsi_final_release-110-switched-audit1",
+      "family": "workflow_release",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_release-110-switched-audit1.json",
+      "sha256": "534064a56b56eb3f696d3dd08079f76df8a42f02a22694668dea41ba43349160",
+      "semantic_context": "release-110-switched-audit1",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "forkrsi_final_release-101-retired-audit1",
+      "family": "workflow_release",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_release-101-retired-audit1.json",
+      "sha256": "26107793b6f0f695e51d9413d0911347ae780202cb0ba1bb80e78f4f7d7ea213",
+      "semantic_context": "release-101-retired-audit1",
+      "runtime_case_count": 2
+    },
+    {
+      "task_id": "forkrsi_final_release-010-aborted-audit1",
+      "family": "workflow_release",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_release-010-aborted-audit1.json",
+      "sha256": "935d6b60b02af9db1f2819d102acc4127894221106e2f180e7d7f517f74f1fad",
+      "semantic_context": "release-010-aborted-audit1",
+      "runtime_case_count": 4
+    },
+    {
+      "task_id": "forkrsi_final_release-001-warm-audit1",
+      "family": "workflow_release",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_release-001-warm-audit1.json",
+      "sha256": "a26adc25f49a1cdd04f93bd8d09a8e72443befd9328a5e707af0a4772ef2d610",
+      "semantic_context": "release-001-warm-audit1",
+      "runtime_case_count": 6
+    },
+    {
+      "task_id": "forkrsi_final_ingestion-000-applied-audit1",
+      "family": "workflow_ingestion",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_ingestion-000-applied-audit1.json",
+      "sha256": "45e20419c05ebe4d23ee264b6d08d5b6493e76357564655f7864c6724da3e4c2",
+      "semantic_context": "ingestion-000-applied-audit1",
+      "runtime_case_count": 14
+    },
+    {
+      "task_id": "forkrsi_final_ingestion-010-outbox-audit1",
+      "family": "workflow_ingestion",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_ingestion-010-outbox-audit1.json",
+      "sha256": "ded52696dc481b362337384f000a5d5432b2d54863e198fe394c013263879249",
+      "semantic_context": "ingestion-010-outbox-audit1",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "forkrsi_final_ingestion-001-committed-audit1",
+      "family": "workflow_ingestion",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_ingestion-001-committed-audit1.json",
+      "sha256": "ccccecd9188737a2de98f060e7957d24485fa8c4a79f2088b626137e0c6d8546",
+      "semantic_context": "ingestion-001-committed-audit1",
+      "runtime_case_count": 10
+    },
+    {
+      "task_id": "forkrsi_final_ingestion-011-acknowledged-audit1",
+      "family": "workflow_ingestion",
+      "split": "final",
+      "path": "data/forkrsi/semantic_v1/forkrsi_final_ingestion-011-acknowledged-audit1.json",
+      "sha256": "991f262c5bb1df425f616788c7c9585d617e1b8f03f8e5b62982bcd023b0cafc",
+      "semantic_context": "ingestion-011-acknowledged-audit1",
+      "runtime_case_count": 4
+    }
+  ]
+}

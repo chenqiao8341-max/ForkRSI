@@ -1,6 +1,10 @@
-import pathlib, subprocess, json
-root=pathlib.Path('runs/forkrsi/sandbox-probe'); root.mkdir(exist_ok=True)
-source=root/'verifier.py'
+import json
+import pathlib
+import subprocess
+
+root = pathlib.Path("runs/forkrsi/sandbox-probe")
+root.mkdir(exist_ok=True)
+source = root / "verifier.py"
 source.write_text("""import os, socket
 assert os.getuid() == 65534
 assert not os.path.exists('/root/autodl-tmp/ForkRSI')
@@ -20,8 +24,34 @@ for name, fn in [
 with open('/tmp/check', 'w') as handle: handle.write('allowed scratch')
 print('PROBE_OK')
 """)
-guard=root/'guard.py'; guard.write_text("import runpy; runpy.run_path('/verifier.py', run_name='__main__')\n")
-args=['/root/miniconda3/bin/python','src/forkmem/chroot_sandbox.py','--unshare-all','--die-with-parent','--new-session','--ro-bind',str(source.resolve()),'/verifier.py','--ro-bind',str(guard.resolve()),'/guard.py','--tmpfs','/tmp','--dir','/task','--chdir','/task','/usr/bin/python3','-B','/guard.py']
-r=subprocess.run(args,capture_output=True,text=True,timeout=90)
-print(r.stdout); print(r.stderr); print('EXIT',r.returncode)
-(root/'result.json').write_text(json.dumps({'exit':r.returncode,'stdout':r.stdout,'stderr':r.stderr},indent=2))
+guard = root / "guard.py"
+guard.write_text("import runpy; runpy.run_path('/verifier.py', run_name='__main__')\n")
+args = [
+    "/root/miniconda3/bin/python",
+    "src/forkmem/chroot_sandbox.py",
+    "--unshare-all",
+    "--die-with-parent",
+    "--new-session",
+    "--ro-bind",
+    str(source.resolve()),
+    "/verifier.py",
+    "--ro-bind",
+    str(guard.resolve()),
+    "/guard.py",
+    "--tmpfs",
+    "/tmp",
+    "--dir",
+    "/task",
+    "--chdir",
+    "/task",
+    "/usr/bin/python3",
+    "-B",
+    "/guard.py",
+]
+r = subprocess.run(args, capture_output=True, text=True, timeout=90, check=False)
+print(r.stdout)
+print(r.stderr)
+print("EXIT", r.returncode)
+(root / "result.json").write_text(
+    json.dumps({"exit": r.returncode, "stdout": r.stdout, "stderr": r.stderr}, indent=2)
+)

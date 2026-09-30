@@ -6,8 +6,8 @@ import hashlib
 import json
 import os
 import signal
-import sys
 import subprocess
+import sys
 import time
 from pathlib import Path
 from uuid import uuid4
@@ -133,7 +133,10 @@ class RepoEnvironment:
         if backend == "bubblewrap":
             launcher = ["bwrap"]
         elif backend == "chroot-seccomp":
-            launcher = [sys.executable, str(Path(__file__).with_name("chroot_sandbox.py"))]
+            launcher = [
+                sys.executable,
+                str(Path(__file__).with_name("chroot_sandbox.py")),
+            ]
         else:
             raise ValueError("unknown sandbox backend: " + backend)
         cmd = [

@@ -1,0 +1,52 @@
+{
+  "version": "forkrsi-protocol-v1",
+  "status": "pre-inference design; runtime and source corpus must be sealed before campaign",
+  "manifest": "data/forkrsi/semantic_v1/manifest.json",
+  "model": "Qwen3.5-4B",
+  "model_path": "/root/autodl-tmp/models/Qwen3.5-4B",
+  "source_seeds": [
+    1701,
+    1702
+  ],
+  "task_seeds": [
+    2701
+  ],
+  "max_steps": 8,
+  "candidate_budget": {
+    "initial_I": 2,
+    "evolved_I": 1,
+    "reset_per_I": 2
+  },
+  "compiler_token_cap": 1500,
+  "original_token_cap": 6000,
+  "candidate_pool_limit": 2,
+  "source_branches": 2,
+  "episode_concurrency": 1,
+  "request_budget": 1800,
+  "search_selection": "lexicographic full successes, first validation successes, lower measured episode total tokens; keep parent on exact tie",
+  "final_modes": [
+    "none",
+    "flat_verified",
+    "fork_verified",
+    "success_only_initial",
+    "paired_initial",
+    "success_only_evolved",
+    "paired_evolved"
+  ],
+  "control_alignment": "same public retrieval positive program IDs, tasks, initial code, seed, model, actions, wall limit; evolved arms use same proposals and cap",
+  "cost_separation": [
+    "source_collection",
+    "compiler_extraction",
+    "C_proposals",
+    "I_proposals",
+    "development_execution",
+    "selection_execution",
+    "reset_execution",
+    "final_execution"
+  ],
+  "final_policy": "after freezing selected C/I, source corpus, tasks/verifiers and runtime/model protocol, final outcomes cannot change strategies or selection",
+  "evidence": "only complete authenticated source branches are positive; preserve rejected and falsified evidence",
+  "statistics": "semantic task is unit; seeds and recovery cases clustered within task; exploratory small pilot",
+  "selection": "generate only on development feedback; select among C0 and all actual candidates on a separate 2-task selection set, same objective and no further proposals",
+  "wall_seconds": 240
+}

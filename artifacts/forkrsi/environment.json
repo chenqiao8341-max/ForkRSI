@@ -4,11 +4,29 @@
   "workspace": "/root/autodl-tmp/ForkRSI",
   "baseline_revision": "9f97940382ac7d7f51f73b751957dbc849557e4d",
   "kernel": "5.15.0-94-generic",
-  "orchestrator_runtime": "Python3.13 install pending",
+  "orchestrator_runtime": "Python 3.12.3 research venv; original >=3.13 metadata unchanged",
   "task_runtime": "Python 3.10.12",
   "sandbox_backend": "chroot-seccomp",
   "native_bubblewrap": "namespace creation prohibited",
   "model_path": "/root/autodl-tmp/models/Qwen3.5-4B",
   "gpu": "RTX3090 24GiB",
-  "created_utc": "2026-09-30T15:22:03.453678+00:00"
+  "created_utc": "2026-09-30T15:22:03.453678+00:00",
+  "runtime_path": "/root/autodl-tmp/forkrsi-runtime",
+  "transformers": "5.17.0",
+  "torch": "2.8.0+cu128",
+  "dependencies": "artifacts/forkrsi/runtime312-freeze.txt",
+  "infrastructure_validation": {
+    "existing_tests": "73 passed",
+    "added_tests": "2 passed",
+    "strict_mypy": "7 source files passed",
+    "task_witnesses": 18,
+    "nested_witness_cases": 146,
+    "archived_replay_branches": 4,
+    "archived_replay_all_match": true,
+    "model_smoke": "Action/Proposals parsed first attempt; 6000 max_tokens supported",
+    "model_smoke_completion_tps": [
+      15.606,
+      20.895
+    ]
+  }
 }
