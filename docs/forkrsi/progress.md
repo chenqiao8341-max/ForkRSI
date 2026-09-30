@@ -58,3 +58,7 @@ source-v2 的16个训练任务均已完整执行，2个通过，14个失败。�
 ### 2026-09-30T19:19:49.566117+00:00 实际旧批次终止及修复源运行
 
 核对旧 worker21968 时它已因 no distinct valid candidate 自行终止；未发信号、没有新引入的取消调用。source-v2 16训练/2完整通过/14失败，154调用均有usage，无完整新分叉。source-v3 worker27869、loaded revision61b7ad88，104新请求上限，引用14失败父任务不是新训练。公共v2全回归82 passed in49.79s，记录在checks-current.json。C/I搜索、重置及最终尚未开始，目标继续active。
+
+### 2026-10-01 低频订阅辅助的共用源提案
+
+source-v1/v2无合格正向分叉，修复v2的source-v3首槽仍耗尽严格解析。按照启动文档允许的GPT订阅低频辅助，为两个家族各一个真实失败父任务记录一组两分支假说：最小修复的剩余风险与按独立义务重构。输入只用原检查点公共README/deployment/solution和实际失败；未复制见证程序，不读取最终结果。准确提示/输出与哈希保存于configs/forkrsi/subscription-source-v1。source-v4-subscription以原检查点/剩余动作预算实际执行全部完整恢复用例；原父任务引用不算新训练。提案明确标记subscription_assistant，任务Qwen冻结不变；所选pivot后已无继续动作，无新增Qwen请求。只有实际完整通过且人工契约审查合格的程序进入所有对照共用候选池。订阅推理token不可测，报告为未知而非零；这是辅助系统实验，不能声称完全自主Qwen源改进。

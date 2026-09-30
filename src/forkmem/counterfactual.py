@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from forkmem.agent import AgentRunner
 from forkmem.environment import RepoEnvironment, git, git_blob
@@ -39,7 +39,18 @@ async def fork_episode(
     *,
     branches: int = 3,
     cached_proposals: Proposals | None = None,
+    cached_proposal_origin: Literal[
+        "recovered_model_response", "subscription_assistant"
+    ] = "recovered_model_response",
+    cached_proposal_record: dict[str, Any] | None = None,
 ) -> Path:
+    if cached_proposals is None and (
+        cached_proposal_origin != "recovered_model_response"
+        or cached_proposal_record is not None
+    ):
+        raise ValueError(
+            "cached proposal provenance requires recorded cached proposals"
+        )
     if not 2 <= branches <= 8:
         raise ValueError("execute between 2 and 8 branches")
     episode = episode.resolve()
@@ -200,7 +211,12 @@ async def fork_episode(
             "episode": str(episode),
             "seed": metadata["seed"],
             "origin": "model_episode",
-            "proposal_origin": "recovered_model_response"
+            **(
+                {"proposal_record": cached_proposal_record}
+                if cached_proposal_record is not None
+                else {}
+            ),
+            "proposal_origin": cached_proposal_origin
             if cached_proposals
             else "live_model_response",
         },

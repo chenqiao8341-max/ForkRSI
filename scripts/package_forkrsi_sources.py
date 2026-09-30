@@ -23,6 +23,7 @@ def main() -> None:
             Path("runs/forkrsi/source-v1"),
             Path("runs/forkrsi/source-v2"),
             Path("runs/forkrsi/source-v3"),
+            Path("runs/forkrsi/source-v4-subscription"),
         ],
     )
     parser.add_argument(
