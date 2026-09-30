@@ -105,3 +105,8 @@ python3 scripts/verify_forkrsi_model.py
 ~~~
 
 The verifier reads all 14 files in artifacts/forkrsi/model-files.json, including both safetensors shards, and checks sizes plus full SHA256. The listed files total 9,342,905,771 bytes; both weight shards total 9,319,828,096 bytes. The downloader also wrote .gitattributes, outside that original 14-file manifest. Current full verification is recorded in runs/forkrsi/model-verification-latest.json. These disk hashes and the server's weights_frozen/inference-mode startup record establish separate parts of the fixed-model evidence.
+
+
+### Pre-final selection eligibility correction
+
+The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired independent selection after its development RuleSet extraction exhausted JSON repair. The predeclared policy requires all actual changed C candidates. Selection now reads typed content/parent from the append-only ledger, so a later evaluation failure cannot erase a generated candidate. The original search-result cut and failure are preserved; resume reuses every existing proposal, I version, completed selection/reset cell and cost. Only this missing candidate receives its originally required selection attempt. No new proposal slots, changed objectives, source IDs, prompts or task budgets. Final outcomes remain unopened.

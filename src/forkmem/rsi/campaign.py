@@ -142,6 +142,24 @@ def score(rows: list[Json]) -> tuple[int, int, int]:
     )
 
 
+def selection_candidates(
+    ledger: StrategyLedger, initial: str, history: list[Json]
+) -> list[str]:
+    candidates = [initial]
+    for record in history:
+        identifier = record.get("candidate_c")
+        if not identifier:
+            continue
+        version = ledger.get(identifier)
+        if version["kind"] != "C" or version["parent_id"] != record["parent_c"]:
+            raise ValueError("selection candidate has a different strategy parent")
+        # A valid generated C remains eligible if later development extraction
+        # or task evaluation failed. That failure does not erase the proposal.
+        if version["content"] != ledger.get(record["parent_c"])["content"]:
+            candidates.append(identifier)
+    return list(dict.fromkeys(candidates))
+
+
 def comparison(parent: Json, child: Json) -> Json:
     before = {(r["task_id"], r["seed"]): r for r in parent["rows"]}
     after = {(r["task_id"], r["seed"]): r for r in child["rows"]}
@@ -691,17 +709,7 @@ class Campaign:
                 )
                 history.append(record)
             histories[mode] = {"candidates": history, "I_evolution": i_record}
-            candidate_ids = list(
-                dict.fromkeys(
-                    [self.c0]
-                    + [
-                        r["candidate_c"]
-                        for r in history
-                        if r.get("candidate_c")
-                        and r.get("proposal", {}).get("actual_changes")
-                    ]
-                )
-            )
+            candidate_ids = selection_candidates(self.ledger, self.c0, history)
             selection_results = []
             selected = self.c0
             selected_score = None

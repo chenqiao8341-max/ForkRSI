@@ -100,3 +100,8 @@ campaign-v2 worker31328 存活，统一 JSON 实例协议 v3，实验核心 load
 ### 2026-09-30T20:53:57.839700+00:00 权重下载记录及完整文件复核
 
 原 ModelScope 下载工具为 modelscope-hub==0.4.5 / ms-hub download，独立环境；已归档原脚本、安装/下载日志、完成状态和依赖版本。14个原记录文件全量 SHA256 复核一致，包括两片 safetensors，共9342905771字节；权重两片9319828096字节。原下载未捕获不可变 hub commit，按默认 master 获取；复现必须满足记录哈希，不允许静默替换。新增只读 verify_forkrsi_model.py，缺失/哈希错误/路径越界/空清单均被负向检查拒绝。此为复现与冻结证据，不是策略效果。
+
+
+### Pre-final selection eligibility correction
+
+The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired independent selection after its development RuleSet extraction exhausted JSON repair. The predeclared policy requires all actual changed C candidates. Selection now reads typed content/parent from the append-only ledger, so a later evaluation failure cannot erase a generated candidate. The original search-result cut and failure are preserved; resume reuses every existing proposal, I version, completed selection/reset cell and cost. Only this missing candidate receives its originally required selection attempt. No new proposal slots, changed objectives, source IDs, prompts or task budgets. Final outcomes remain unopened.
