@@ -24,7 +24,8 @@ async def run(manifest_path: Path, output: Path) -> None:
             "subscription source execution requires clean committed code"
         )
     manifest = json.loads(manifest_path.read_text())
-    subprocess.run(
+    await asyncio.to_thread(
+        subprocess.run,
         ["python", "scripts/check_forkrsi_budget.py", "--reserve-hours", "1"],
         check=True,
     )
