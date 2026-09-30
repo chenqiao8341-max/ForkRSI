@@ -46,3 +46,7 @@ code without isolation; verify isolation probes and archived replay first.
 - [Fragility of self-improving agents](https://arxiv.org/abs/2608.18066)
   highlights variance, task ordering and underspecification. Record all
   seeds/orderings and limitations; a fixed seed alone is insufficient.
+
+## Runtime evidence update — 2026-10-01
+
+The local frozen Qwen3.5-4B service passed actual Action/Proposals JSON smoke tests. Chroot-seccomp probes and archived workflow branch replays passed; the current full regression suite reports 81 passing tests. Source collection is executing new Qwen episodes; these readiness results are distinct from C/I search and final transfer evidence. The official model card and the primary papers above remain design references, not proof of ForkRSI efficacy.

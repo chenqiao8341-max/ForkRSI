@@ -42,3 +42,7 @@ Terminal batch recovery also preserves cancelled sibling episodes. benchmark res
 
 持久目标仍 active；后续继续源分叉、C/I 演化、公平对照、I 重置比较、冻结最终评测与研究报告，不以当前训练通过宣称 RSI。
 <!-- FORKRSI_CURRENT_STATE_END -->
+
+### 2026-10-01 完整回归验证
+
+协议失败终止、原生检查点恢复和安全成功资格判定的当前实现完整回归：81 passed in 46.83s。原 verifier 未修改。日志及哈希见 artifacts/forkrsi/checks-current.json；这些结果仅证明基础实现的回归检查，不作为 C/I 自改进效果。

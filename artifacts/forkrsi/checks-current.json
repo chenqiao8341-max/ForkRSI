@@ -1,0 +1,12 @@
+{
+  "checked_utc": "2026-09-30T18:13:00.444859+00:00",
+  "revision": "a9265b8f4c81d24791ddf4372b3bc65ed10f66b1",
+  "pytest": {
+    "command": "source scripts/forkrsi_env.sh; python -m pytest -q",
+    "passed": 81,
+    "duration_seconds": 46.83,
+    "log": "/root/autodl-tmp/ForkRSI/runs/forkrsi/pytest-current.log",
+    "sha256": "32c96ec46f7bce1e0f5379e42babee8a3d9542633d03d3c79aaf29d56f19f78b"
+  },
+  "scope": "full existing suite plus response failure/native recovery/contract qualification; infrastructure validation, not recursive improvement evidence"
+}
