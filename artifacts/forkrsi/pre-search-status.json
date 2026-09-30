@@ -1,0 +1,53 @@
+{
+  "checked_utc": "2026-09-30T18:00:20.361858+00:00",
+  "code_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
+  "remote_workspace": "/root/autodl-tmp/ForkRSI",
+  "model": "Qwen3.5-4B",
+  "source_v1": "terminal failed original prompt trial; all records and costs preserved",
+  "source_v2_status": {
+    "completed_episodes": 6,
+    "last": {
+      "episode_id": "resumable_release_train_110-f5d0f12aa862",
+      "task_id": "resumable_release_train_110",
+      "task_path": "/root/autodl-tmp/ForkRSI/data/v2/workflow_dev1/resumable_release_train_110.json",
+      "split": "train",
+      "family": "workflow_release",
+      "mode": "none",
+      "seed": 1701,
+      "model": "Qwen3.5-4B",
+      "max_steps": 8,
+      "verifier": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/verifier.py",
+      "repo": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110/repo",
+      "success": false,
+      "steps": 8,
+      "code_commit": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe",
+      "decision_failure": null,
+      "phase": "training",
+      "episode_dir": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/training/seed_1701/none/resumable_release_train_110",
+      "experiment_revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+    },
+    "state": "running"
+  },
+  "source_v2_worker": {
+    "pid": 21968,
+    "revision": "f928c164ad7fce361c67ec2f9f9a8f86b55545fe"
+  },
+  "completed_training_tasks": 6,
+  "training_full_successes": 2,
+  "C_I_campaign": "not started; awaiting eligible actual fork corpus",
+  "final_outcomes_opened": false,
+  "runtime_tests": "8 relevant e2e tests passed; rsi qualification/compiler/ledger 5 passed; strict mypy agent/benchmark/rsi passed",
+  "budget": {
+    "limit_cny": 200.0,
+    "hourly_cny": 1.5,
+    "user_reported_spent_cny": 0.0,
+    "prior_runtime_hours": 0.5,
+    "conservative_accrued_baseline_cny": 0.75,
+    "baseline_utc": "2026-09-30T15:02:07.476404+00:00",
+    "billing_start_utc": "2026-09-30T14:32:07.476404+00:00",
+    "hard_deadline_utc": "2026-10-06T03:52:07.476404+00:00",
+    "phase_wall_limit_hours": 6,
+    "status": "active",
+    "basis": "User report, 2026-09-30; use conservative accrued cost; verify before every experiment batch."
+  }
+}

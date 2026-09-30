@@ -34,3 +34,11 @@ source-v2 在第4个训练任务耗尽四次 Action JSON 修复预算（输出�
 Contract qualification is fixed before C/I search and final outcomes: the unchanged original AST screen and recorded boolean/rationale review gate positive source eligibility. Failed programs and all raw verifier results remain recorded. Final and first-validation safe success exclude actual reviewed contract violations, with raw verifier success separately reported. Search/selection records retain the predeclared verifier objective; audit qualification never triggers post-final strategy tuning or reselection. No AST-screen result is claimed to prove adversarial Python safety.
 
 Terminal batch recovery also preserves cancelled sibling episodes. benchmark resumes their matching native graph/filesystem checkpoint into a new directory, keeping the same remaining action budget and seed; the existing resume API grants a fresh per-invocation wall timeout. Full trajectory prefixes retain original execution references and are not counted as extra replicates. Source-v2 had two newly created release101 repositories with zero executed actions when its sibling failed; the original folders remain intact.
+
+<!-- FORKRSI_CURRENT_STATE_BEGIN -->
+## 当前状态（2026-09-30T18:00:20.361858+00:00）
+
+权威工作目录：/root/autodl-tmp/ForkRSI；已提交版本：f928c164ad7fce361c67ec2f9f9a8f86b55545fe。ModelScope Qwen3.5-4B 权重已下载完整，冻结单卡本地服务运行中。source-v1 失败校准记录及成本保留；source-v2 当前状态 running，已完整执行 6 个训练任务，其中 2 个完整通过。训练成功尚不等于同检查点正向分叉；C/I 比较和最终评测尚未开始，等待真实分叉的合格证据。协议耗尽与原生检查点恢复均已实现并通过相关集成测试，原验证器未更改。原始 verifier 通过和审查后安全成功分别报告。最新预算与阶段详情见 artifacts/forkrsi/budget.json 与 artifacts/forkrsi/pre-search-status.json。
+
+持久目标仍 active；后续继续源分叉、C/I 演化、公平对照、I 重置比较、冻结最终评测与研究报告，不以当前训练通过宣称 RSI。
+<!-- FORKRSI_CURRENT_STATE_END -->
