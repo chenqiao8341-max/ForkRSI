@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import signal
+import sys
 import subprocess
 import time
 from pathlib import Path
@@ -128,8 +129,15 @@ class RepoEnvironment:
             + ")\n"
         )
         # Do not expose .git (which references host directories), logs, home, or credentials.
+        backend = os.getenv("FORKMEM_SANDBOX_BACKEND", "bubblewrap")
+        if backend == "bubblewrap":
+            launcher = ["bwrap"]
+        elif backend == "chroot-seccomp":
+            launcher = [sys.executable, str(Path(__file__).with_name("chroot_sandbox.py"))]
+        else:
+            raise ValueError("unknown sandbox backend: " + backend)
         cmd = [
-            "bwrap",
+            *launcher,
             "--unshare-all",
             "--die-with-parent",
             "--new-session",

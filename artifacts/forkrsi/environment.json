@@ -1,0 +1,14 @@
+{
+  "host": "connect.nmb2.seetacloud.com",
+  "port": 40890,
+  "workspace": "/root/autodl-tmp/ForkRSI",
+  "baseline_revision": "9f97940382ac7d7f51f73b751957dbc849557e4d",
+  "kernel": "5.15.0-94-generic",
+  "orchestrator_runtime": "Python3.13 install pending",
+  "task_runtime": "Python 3.10.12",
+  "sandbox_backend": "chroot-seccomp",
+  "native_bubblewrap": "namespace creation prohibited",
+  "model_path": "/root/autodl-tmp/models/Qwen3.5-4B",
+  "gpu": "RTX3090 24GiB",
+  "created_utc": "2026-09-30T15:22:03.453678+00:00"
+}

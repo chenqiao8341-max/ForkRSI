@@ -1,0 +1,3 @@
+# ForkRSI persistent workspace
+
+Work on the remote SSH host in /root/autodl-tmp/ForkRSI. The goal and constraints are in ForkRSI_目标文档.md; preserve its main research objective. Maintain docs/forkrsi/progress.md and artifacts/forkrsi/budget.json. Never treat historical summary-only evidence as a new execution. Never modify the verifier, evidence authenticity checks, or frozen final evaluation to improve measured results. Record all compiler C and improver I versions, parents, evidence, proposals, comparisons and costs; keep strategy comparisons distinct from task-code DecisionForks. Use one frozen local Qwen3.5-4B, no paid API or training. Check budget before experiment batches. Keep raw runs on this data disk. Document protocol changes before final evaluation.

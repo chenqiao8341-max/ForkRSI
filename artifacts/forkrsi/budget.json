@@ -1,0 +1,13 @@
+{
+  "limit_cny": 200.0,
+  "hourly_cny": 1.5,
+  "user_reported_spent_cny": 0.0,
+  "prior_runtime_hours": 0.5,
+  "conservative_accrued_baseline_cny": 0.75,
+  "baseline_utc": "2026-09-30T15:02:07.476404+00:00",
+  "billing_start_utc": "2026-09-30T14:32:07.476404+00:00",
+  "hard_deadline_utc": "2026-10-06T03:52:07.476404+00:00",
+  "phase_wall_limit_hours": 6,
+  "status": "active",
+  "basis": "User report, 2026-09-30; use conservative accrued cost; verify before every experiment batch."
+}
