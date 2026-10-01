@@ -375,6 +375,38 @@ def main() -> None:
                 )
             },
         }
+    runtime_probe_costs = [
+        {
+            "path": str(root.parent / name),
+            "usage": usage(root.parent / name / "llm.jsonl"),
+            "scope": "infrastructure/calibration before strategy comparisons",
+        }
+        for name in ("model-smoke", "agent-calibration")
+    ]
+    phase_usages = (
+        [r["usage"] for r in source_runs]
+        + [r["strategy_usage"] for r in prior_campaign_trials]
+        + list(strategy_costs.values())
+        + list(execution_costs.values())
+        + [r["usage"] for r in runtime_probe_costs]
+    )
+    phase_tokens = {
+        key: sum(r[key] for r in phase_usages)
+        for key in ("prompt_tokens", "completion_tokens", "total_tokens")
+    }
+    service_usage = usage(root.parent / "model-service/requests.jsonl")
+    service_difference = {
+        key: service_usage[key] - phase_tokens[key] for key in phase_tokens
+    }
+    if any(value < 0 for value in service_difference.values()):
+        raise ValueError("phase costs exceed actual model-service token ledger")
+    reconciliation = {
+        "recorded_phase_tokens_including_probes_and_cancelled_completion": phase_tokens,
+        "actual_model_service_usage": service_usage,
+        "server_tokens_not_assigned_to_recorded_phases": service_difference,
+        "all_model_tokens_assigned": not any(service_difference.values()),
+        "policy": "aggregate tokenizer usage only; service has no request IDs, so this is not a per-request ID join; subscription provider tokens remain unknown",
+    }
     corpus = load(source / "corpus.json")
     forks = [DecisionFork.model_validate(f) for f in corpus["forks"]]
     source_summary = {
@@ -407,6 +439,8 @@ def main() -> None:
         "source_collection_costs_including_failed_calibration": source_runs,
         "prior_campaign_trials_including_failed_extraction": prior_campaign_trials,
         "strategy_costs_by_schema": strategy_costs,
+        "runtime_probe_costs": runtime_probe_costs,
+        "model_service_cost_reconciliation": reconciliation,
         "execution_costs_by_stage": execution_costs,
         "C0": search["C0"],
         "I0": search["I0"],

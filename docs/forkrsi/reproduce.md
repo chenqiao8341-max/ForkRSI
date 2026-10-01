@@ -110,3 +110,6 @@ The verifier reads all 14 files in artifacts/forkrsi/model-files.json, including
 ### Pre-final selection eligibility correction
 
 The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired independent selection after its development RuleSet extraction exhausted JSON repair. The predeclared policy requires all actual changed C candidates. Selection now reads typed content/parent from the append-only ledger, so a later evaluation failure cannot erase a generated candidate. The original search-result cut and failure are preserved; resume reuses every existing proposal, I version, completed selection/reset cell and cost. Only this missing candidate receives its originally required selection attempt. No new proposal slots, changed objectives, source IDs, prompts or task budgets. Final outcomes remain unopened.
+
+
+Cost reporting also includes the two model JSON smoke requests (901 Qwen tokens) and one source-side agent calibration request (467 tokens). Aggregate phase usage, including failed trials and the cancelled source completion supplement, is reconciled against the full model-service tokenizer ledger. A service without request IDs supports aggregate reconciliation only, not a request-ID join; subscription assistance usage remains unknown.
