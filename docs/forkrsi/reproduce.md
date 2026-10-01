@@ -126,3 +126,30 @@ Cost reporting also includes the two model JSON smoke requests (901 Qwen tokens)
 后台任务开始前提交新增部署文件、保持代码干净，确认原worker已关闭及新服务空闲。python scripts/run_forkrsi_parallel_final.py freeze --concurrency 8 使用提供的冻结记忆输入；然后 python -u scripts/run_forkrsi_parallel_final.py final。按新封存后端统一执行七组，不改变既选策略及提示。若恢复，只有已完整认证的cell可复用；有目录而无metrics时入口拒绝自动重跑，先审计原生检查点与剩余动作/请求。统计单位仍为八语义任务，恢复病例及另一后端的重复不能当作独立任务。
 
 适配层预先用原Transformers tokenizer构造token IDs，并检查引擎报告输入tokens严格吻合。response_format不转发，四次严格JSON修复仍在原LLMClient。带种子请求使用vLLM native sampler，与该版本源码默认seeded path一致；FlashAttention2、Triton/FLA、连续批处理、prefix caching、CUDA graphs仍由vLLM执行。固定种子不保证数值或GPU位级复现。文献支持参照 [Qwen3.5-4B官方说明](https://huggingface.co/Qwen/Qwen3.5-4B) 与 [vLLM官方GPU安装文档](https://docs.vllm.ai/en/latest/getting_started/installation/gpu/)。
+
+
+### 已完成结果的认证汇总和全量交付
+
+本轮统一vLLM网格在2026-10-01 02:46 UTC正常结束，56个独立cell齐全；源码冻结提交d4dbb5107317793db51d178297206e0ae9357049。后续报告代码不是新的策略或执行规则。仅需统计复核时使用：
+
+~~~
+cd /root/autodl-tmp/ForkRSI
+source scripts/forkrsi_env.sh
+python scripts/summarize_forkrsi_vllm.py
+~~~
+
+该入口必须有完整原始runs：包括campaign-v2的策略SQLite、源包、两个服务日志、迁移记录及直接引擎吞吐JSON/JSONL；原始生成/筛查/资格化不被替换。它先运行campaign-vllm-final-v1/audit_final_inputs.py --require-complete，再用原AST与reviewed_flags接口核验所有实际来源/下游写入。所有完整通过代码都有独立人工阅读记录。436个最终请求按客户端ID及串行修复次序连接真实服务请求，逐提示/输出哈希、精确token IDs和usage一致。不能漏算不经适配层的7808长输出测试tokens。
+
+全量交付目录ForkRSI_delivery_20261001包含forkrsi-records.tar.gz、forkrsi-history.bundle和manifest.json；包外acceptance-final.json记录实际传输、逐tar entry/整包SHA256、bundle verify/clone及13项目标验收。manifest是归档时点的完整快照；线上服务后续运行产生的日志增长不属于该快照。模型权重不包含，先按本说明ModelScope下载后逐文件SHA验证。
+
+~~~
+git clone forkrsi-history.bundle /root/autodl-tmp/ForkRSI
+tar -xzf forkrsi-records.tar.gz -C /root/autodl-tmp/ForkRSI
+cd /root/autodl-tmp/ForkRSI
+source scripts/forkrsi_env.sh
+python scripts/summarize_forkrsi_vllm.py
+~~~
+
+需在目标机器重新建立记录的两个独立运行环境（系统CUDA/驱动也需兼容）；bundle/tar不会打包venv或GPU驱动。历史轨迹、SQLite与checkpoint含绝对路径，以上原根最可靠。重新执行封存评估必须先恢复冻结提交、符合封存backend startup/输入条件，不能在报告提交或更换在线服务epoch后直接新跑。已有不完整目录不得自动从头重试。归档主要保证所有输入、代码与原始执行证据可核验，不承诺跨硬件/采样器位级再生相同输出。
+
+本轮结论与限制见report.md，包括同任务后端复测而非新未见样本、配对演化最终正向输入、预算充足及重置负结果。

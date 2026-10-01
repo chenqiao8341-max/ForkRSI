@@ -1,0 +1,306 @@
+[
+  {
+    "program_id": "30e09029cf1148438c46d89d2e2b8550:d4e3dc5c32334147aec63a94729b2e27",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    # Initial state: capacity=false, sticky_sessions=false, healthy=false, blue=true\n    # Need to pause workers first (requires capacity=false, workers_paused=false)\n    \n    # Step 1: Pause batch workers\n    api.apply('pause_batch_workers')\n    \n    # Step 2: Verify artifact (required for allocate_green)\n    api.apply('verify_artifact')\n    \n    # Step 3: Allocate green (requires capacity=true, signed=true)\n    api.apply('allocate_green')\n    \n    # Step 4: Warm green (requires green=true)\n    api.apply('warm_green')\n    \n    # Step 5: Probe health (requires warm=true)\n    api.apply('probe_health')\n    \n    # Step 6: Check state to determine path\n    state = api.inspect('state')\n    \n    # Step 7: If healthy, switch traffic and retire blue; if not, discard green\n    if state.get('healthy', False):\n        api.apply('switch_traffic')\n        api.apply('retire_blue')\n        # Resume workers after release (requires blue=false)\n        api.apply('resume_workers_after_release')\n    else:\n        api.apply('discard_green')\n        # Resume workers after abort (requires green=false, blue=true)\n        api.apply('resume_workers_after_abort')\n    \n    # Step 8: Final check to ensure workers are resumed\n    state = api.inspect('state')\n    if state.get('workers_paused', False):\n        api.apply('resume_workers_after_release')\n    \n    return True",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "df3a867f30d3b26c758fe8033e9d82e8d743bf28",
+        "execution_id": "a3dec3b9e92e4c59addaddb4e7f514c8",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/release/factual_logs/a3dec3b9e92e4c59addaddb4e7f514c8.log",
+        "output_sha256": "9503430eae07f33f55fd88854e19d51456deb77e196093777fe290d00c13389c",
+        "tree_sha256": "c32d64ea69c30b3e1b70d3cadb1bb8dac090baeb675c6d34d52a3d2e378fd3a0",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "30e09029cf1148438c46d89d2e2b8550:5649df76693e4890bc361bc48949b5e0",
+    "code": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"probed\"] and not s[\"green\"] and not s[\"workers_paused\"]:\n        return\n    if not s[\"signed\"]:\n        s = api.apply(\"verify_artifact\")\n    if not s[\"probed\"]:\n        s = api.apply(\"pause_batch_workers\")\n        s = api.apply(\"allocate_green\")\n        s = api.apply(\"warm_green\")\n        s = api.apply(\"probe_health\")\n    if s[\"healthy\"]:\n        if s[\"sticky_sessions\"] and not s[\"drained\"]:\n            s = api.apply(\"drain_sticky_sessions\")\n        if not s[\"new_traffic\"]:\n            s = api.apply(\"switch_traffic\")\n        if s[\"blue\"]:\n            s = api.apply(\"retire_blue\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_release\")\n    else:\n        if s[\"green\"]:\n            s = api.apply(\"discard_green\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_abort\")\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "df3a867f30d3b26c758fe8033e9d82e8d743bf28",
+        "execution_id": "37f510a832f0423eabd3a3a121dfbcab",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/release/alternative_0_logs/37f510a832f0423eabd3a3a121dfbcab.log",
+        "output_sha256": "ef81581f93ff1c67da804392ea122f3113ac885e7c06731d546979679d50dd29",
+        "tree_sha256": "0bbb4b313726380ffa71205e3898765b254a84683f789afe481165310b62b18c",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "30e09029cf1148438c46d89d2e2b8550:ea835d93e278439bbce46830fb7f0c49",
+    "code": "def run(api):\n    s = api.inspect(\"state\")\n    if not s[\"signed\"]:\n        s = api.apply(\"verify_artifact\")\n    if not s[\"probed\"]:\n        if not s[\"capacity\"]:\n            s = api.apply(\"pause_batch_workers\")\n        if not s[\"green\"]:\n            s = api.apply(\"allocate_green\")\n        if not s[\"warm\"]:\n            s = api.apply(\"warm_green\")\n        s = api.apply(\"probe_health\")\n    if s[\"healthy\"]:\n        if s[\"sticky_sessions\"] and not s[\"drained\"]:\n            s = api.apply(\"drain_sticky_sessions\")\n        if not s[\"new_traffic\"]:\n            s = api.apply(\"switch_traffic\")\n        if s[\"blue\"]:\n            s = api.apply(\"retire_blue\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_release\")\n    else:\n        if s[\"green\"]:\n            s = api.apply(\"discard_green\")\n        if s[\"workers_paused\"]:\n            s = api.apply(\"resume_workers_after_abort\")\n",
+    "status": "replay_verified",
+    "outcomes": [
+      {
+        "success": true,
+        "reward": 1.0,
+        "exit_code": 0,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "df3a867f30d3b26c758fe8033e9d82e8d743bf28",
+        "execution_id": "f5aee36ef6cf43fb95633ae2a48ac431",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/release/alternative_1_logs/f5aee36ef6cf43fb95633ae2a48ac431.log",
+        "output_sha256": "81a8e2509f716081e6265fdd5ee8f9a13d57f07e3afdfc29d8e349956ac92d6b",
+        "tree_sha256": "d128fb468f6bd2a0e17cd29a6e3b214846e2fcb2ffcf1945f0309d04aebe498a",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "6f6fe4c8b9b04eb89d7b504e523a82e3:b8ff18c040c84ed3b0f80bc1541c2f4e",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    if not state.get('leased', False):\n        api.claim()\n    \n    if state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.begin()\n    \n    if state.get('transaction', False) and not state.get('applied', False):\n        api.apply_transactional()\n    elif not state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.apply_direct()\n    \n    if state.get('applied', False) and not state.get('committed', False):\n        api.stage_outbox()\n    \n    if state.get('transaction', False) and state.get('outbox', False):\n        api.commit_transaction()\n    elif not state.get('transactional', False) and state.get('outbox', False):\n        api.persist_direct()\n    \n    if state.get('committed', False) and state.get('deduplicating_sink', False):\n        api.deliver_idempotently()\n    \n    if state.get('committed', False):\n        api.check_delivery_receipt()\n    \n    if state.get('committed', False) and not state.get('delivered', False):\n        api.deliver_once()\n    \n    if state.get('leased', False) and state.get('committed', False) and state.get('delivered', False):\n        api.acknowledge()\n        api.release_lease()\n",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "3943e9a01c6d75960930135915b9a1a2490f627a",
+        "execution_id": "c0e0857322974a38afe46f55c40ced8e",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/forks/seed_1701_resumable_ingestion_train_000/factual_logs/c0e0857322974a38afe46f55c40ced8e.log",
+        "output_sha256": "0297b122a478f111f24ff7a3d211a93afe642703ff13ca8baef50b26169eae9c",
+        "tree_sha256": "bd1236e35cead55c5f591309848ddeeafc9e42958d96ab876761dd1b730a8ea1",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "6f6fe4c8b9b04eb89d7b504e523a82e3:2cdc7ef3d7b44a6d81cce7a0427648ef",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    if not state.get('leased', False):\n        api.claim()\n    \n    if state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.begin()\n    \n    if state.get('transaction', False) and not state.get('applied', False):\n        api.apply_transactional()\n    elif not state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.apply_direct()\n    \n    if state.get('applied', False) and not state.get('committed', False):\n        api.stage_outbox()\n    \n    if state.get('transaction', False) and state.get('outbox', False):\n        api.commit_transaction()\n    elif not state.get('transactional', False) and state.get('outbox', False):\n        api.persist_direct()\n    \n    if state.get('committed', False) and state.get('deduplicating_sink', False):\n        api.deliver_idempotently()\n    \n    if state.get('committed', False):\n        api.check_delivery_receipt()\n    \n    if state.get('committed', False) and not state.get('delivered', False):\n        api.deliver_once()\n    \n    if state.get('leased', False) and state.get('committed', False) and not state.get('delivered', False):\n        api.acknowledge()\n        api.release_lease()\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "3943e9a01c6d75960930135915b9a1a2490f627a",
+        "execution_id": "e143ea6616564ad28844cd38b142fb28",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/forks/seed_1701_resumable_ingestion_train_000/alternative_0_logs/e143ea6616564ad28844cd38b142fb28.log",
+        "output_sha256": "0297b122a478f111f24ff7a3d211a93afe642703ff13ca8baef50b26169eae9c",
+        "tree_sha256": "d22b72be86abd93642ce9f43d126c8525b0ac0a5a7a9719aaca60f939bd879c6",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "8789c69d3dc447f79955ca89fc58e916:270e9e2d76b94fd496f50721e8d96db3",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    # Initial state assumptions based on deployment.json\n    # capacity: true, sticky_sessions: true, healthy: false\n    # migration: true, blue: true, workers_paused: false\n    # green: false, warm: false, probed: false, drained: false, new_traffic: false\n    # signed: false, healthy: false (from deployment)\n    \n    # Step 1: Verify artifact (required before allocate_green)\n    api.apply('verify_artifact')\n    \n    # Step 2: Pause batch workers (capacity is true, workers_paused is false)\n    api.apply('pause_batch_workers')\n    \n    # Step 3: Allocate green (capacity is true, signed is true)\n    api.apply('allocate_green')\n    \n    # Step 4: Warm green (green is true)\n    api.apply('warm_green')\n    \n    # Step 5: Probe health (warm is true)\n    api.apply('probe_health')\n    \n    # Step 6: Check state to determine next path\n    state = api.inspect('state')\n    \n    # Check if green is healthy\n    if state.get('healthy', False):\n        # Path: Green is healthy, proceed with traffic switch\n        # Step 7: Drain sticky sessions (probed is true, blue is true)\n        api.apply('drain_sticky_sessions')\n        \n        # Step 8: Switch traffic (probed is true, healthy is true)\n        api.apply('switch_traffic')\n        \n        # Step 9: Retire blue (new_traffic is true)\n        api.apply('retire_blue')\n        \n        # Step 10: Resume workers after release (blue is false)\n        api.apply('resume_workers_after_release')\n    else:\n        # Path: Green is unhealthy, discard green and resume workers\n        # Step 7: Discard green (probed is true, healthy is false, new_traffic is false)\n        api.apply('discard_green')\n        \n        # Step 8: Resume workers after abort (green is false, blue is true)\n        api.apply('resume_workers_after_abort')\n",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "43cd6d7dff6994ac7160c78dc6983a80e0d31132",
+        "execution_id": "f00411b32b444db6973ebc9939e26bde",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/forks/seed_1702_resumable_release_train_011/factual_logs/f00411b32b444db6973ebc9939e26bde.log",
+        "output_sha256": "6f6d03cc14bd5528c64b75662bab77e1fab17a35389e98bb0def97b6a70c6bcd",
+        "tree_sha256": "d11039d1bcb0cb3f79c64c3884f09d664510d514c8e345edc8e6b590964c8709",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "8789c69d3dc447f79955ca89fc58e916:f264d149c4724826bb9b9e2d4a23e512",
+    "code": "import json\n\nwith open('deployment.json', 'r') as f:\n    DEPLOYMENT = json.load(f)\n\ndef run(api):\n    state = api.inspect('state')\n    \n    # pause_batch_workers requires: capacity=false, workers_paused=false\n    # But deployment.json shows capacity: true, so we cannot pause initially\n    # We need to verify artifact first to get signed=true\n    api.apply('verify_artifact')\n    \n    # Now we have signed=true, but capacity is still true\n    # allocate_green requires: capacity=true, signed=true\n    api.apply('allocate_green')\n    \n    # warm_green requires: green=true\n    api.apply('warm_green')\n    \n    # probe_health requires: warm=true\n    api.apply('probe_health')\n    \n    # drain_sticky_sessions requires: probed=true, blue=true\n    api.apply('drain_sticky_sessions')\n    \n    # switch_traffic requires: probed=true, healthy=true\n    # But deployment.json shows healthy: false\n    # We need to discard green first since healthy is false\n    api.apply('discard_green')\n    \n    # resume_workers_after_abort requires: green=false, blue=true\n    api.apply('resume_workers_after_abort')",
+    "status": "replay_verified",
+    "outcomes": [
+      {
+        "success": true,
+        "reward": 1.0,
+        "exit_code": 0,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "43cd6d7dff6994ac7160c78dc6983a80e0d31132",
+        "execution_id": "f708bdae79604f05a20232312fdb3660",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v2/forks/seed_1702_resumable_release_train_011/alternative_0_logs/f708bdae79604f05a20232312fdb3660.log",
+        "output_sha256": "68b576591622b7e9ea6045cb1ff3f7e2aacc94fcb19b886fcecec9d57cc2b1f6",
+        "tree_sha256": "90ef610699af3d74fd8f41ab125ed392acfd023ed607f8f9dd9a38ff6f2978d3",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "90e9565354f145b7afffa6d888b8c36e:1d0b6db5a72d4a3b99223473eef2c5c4",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    # Handle initial state based on deployment profile\n    # If transactional is true, we need to go through transactional path\n    # If transactional is false, we need to go through direct path\n    \n    if state.get('transactional', False):\n        # Transactional path: claim -> begin -> apply_transactional -> stage_outbox -> commit_transaction -> deliver_idempotently -> acknowledge -> release_lease\n        if not state.get('leased', False):\n            api.claim()\n        \n        if state.get('leased', False) and not state.get('transaction', False):\n            api.begin()\n        \n        if state.get('transaction', False) and not state.get('applied', False):\n            api.apply_transactional()\n        \n        if state.get('applied', False) and not state.get('outbox', False):\n            api.stage_outbox()\n        \n        if state.get('outbox', False) and not state.get('committed', False):\n            api.commit_transaction()\n        \n        if state.get('committed', False) and not state.get('delivered', False):\n            api.deliver_idempotently()\n        \n        if state.get('delivered', False) and not state.get('acknowledged', False):\n            api.acknowledge()\n        \n        if state.get('acknowledged', False):\n            api.release_lease()\n    else:\n        # Direct path: claim -> apply_direct -> stage_outbox -> persist_direct -> deliver_idempotently -> acknowledge -> release_lease\n        if not state.get('leased', False):\n            api.claim()\n        \n        if state.get('leased', False) and not state.get('applied', False):\n            api.apply_direct()\n        \n        if state.get('applied', False) and not state.get('outbox', False):\n            api.stage_outbox()\n        \n        if state.get('outbox', False) and not state.get('committed', False):\n            api.persist_direct()\n        \n        if state.get('committed', False) and not state.get('delivered', False):\n            api.deliver_idempotently()\n        \n        if state.get('delivered', False) and not state.get('acknowledged', False):\n            api.acknowledge()\n        \n        if state.get('acknowledged', False):\n            api.release_lease()\n",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "dbba298683b1a46de5133612413f09340df2ca82",
+        "execution_id": "c1351732300443de889afe612fa0e030",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_011/factual_logs/c1351732300443de889afe612fa0e030.log",
+        "output_sha256": "5c294582e5ce3245d90b666eff734f2be7787e527d44ff4c4c94d24158fd082c",
+        "tree_sha256": "726036cbf124f629f426f87657fd629967f4e3f7092ed46b8e7608a68f7a6633",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "90e9565354f145b7afffa6d888b8c36e:f597d01a8e09417fba85810e27b63a32",
+    "code": "",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "dbba298683b1a46de5133612413f09340df2ca82",
+        "execution_id": "9ea725aabf33452a97a78caae309b777",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_011/alternative_0_logs/9ea725aabf33452a97a78caae309b777.log",
+        "output_sha256": "0faeab56b86ade54f0767d695750b0b2791e5dc29542a687221cefbab33739cb",
+        "tree_sha256": "a6b9c65810cd7149795a8eebd3d74ddf876fbb145b17bcc983dfecd364e7348f",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "90e9565354f145b7afffa6d888b8c36e:f0aa26ba41b24abcbf65a7a01f36f662",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    needs_transactional = state.get('transactional', False)\n    \n    # Handle initial state based on deployment profile\n    if needs_transactional:\n        # Transactional path: claim -> begin -> apply_transactional -> stage_outbox -> commit_transaction -> deliver_idempotently -> acknowledge -> release_lease\n        api.claim()  # Fallback to claim for testing if available, or remove if API requires specific check\n        if state.get('leased', False) and not state.get('transaction', False):\n            api.begin()\n        if state.get('transaction', False) and not state.get('applied', False):\n            api.apply_transactional()\n        if state.get('applied', False) and not state.get('outbox', False):\n            api.stage_outbox()\n        if state.get('outbox', False) and not state.get('committed', False):\n            api.commit_transaction()\n        if state.get('committed', False) and not state.get('delivered', False):\n            api.deliver_idempotently()\n        if state.get('delivered', False) and not state.get('acknowledged', False):\n            api.acknowledge()\n        if state.get('acknowledged', False):\n            api.release_lease()\n    else:\n        # Direct path: claim -> apply_direct -> stage_outbox -> persist_direct -> deliver_idempotently -> acknowledge -> release_lease\n        api.claim()  # Fallback\n        if state.get('leased', False) and not state.get('applied', False):\n            api.apply_direct()\n        if state.get('applied', False) and not state.get('outbox', False):\n            api.stage_outbox()\n        if state.get('outbox', False) and not state.get('committed', False):\n            api.persist_direct()\n        if state.get('committed', False) and not state.get('delivered', False):\n            api.deliver_idempotently()\n        if state.get('delivered', False) and not state.get('acknowledged', False):\n            api.acknowledge()\n        if state.get('acknowledged', False):\n            api.release_lease()\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "dbba298683b1a46de5133612413f09340df2ca82",
+        "execution_id": "db510afbbfd64bce97806d61f674da13",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_011/alternative_1_logs/db510afbbfd64bce97806d61f674da13.log",
+        "output_sha256": "5c294582e5ce3245d90b666eff734f2be7787e527d44ff4c4c94d24158fd082c",
+        "tree_sha256": "89c27649c4396567615f73d35d88fd400133f37e365895137c0a7ab70b2f277e",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "9c51c54128904aed8ab0d6485eafe69d:89af57179b2e409bbeb08644c2cf6246",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    if not state.get('leased', False):\n        api.claim()\n    \n    if state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.begin()\n    \n    if state.get('transaction', False) and not state.get('applied', False):\n        api.apply_transactional()\n    elif not state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.apply_direct()\n    \n    if state.get('applied', False) and not state.get('committed', False):\n        api.stage_outbox()\n    \n    if state.get('transaction', False) and state.get('outbox', False):\n        api.commit_transaction()\n    elif not state.get('transactional', False) and state.get('outbox', False):\n        api.persist_direct()\n    \n    if state.get('committed', False) and state.get('deduplicating_sink', False):\n        api.deliver_idempotently()\n    \n    if state.get('committed', False):\n        api.check_delivery_receipt()\n    \n    if state.get('committed', False) and not state.get('delivered', False):\n        api.deliver_once()\n    \n    if state.get('leased', False) and state.get('committed', False) and state.get('delivered', False):\n        api.acknowledge()\n        api.release_lease()\n",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "3943e9a01c6d75960930135915b9a1a2490f627a",
+        "execution_id": "777cc6c4bd004339b215ac320e879396",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/ingestion/factual_logs/777cc6c4bd004339b215ac320e879396.log",
+        "output_sha256": "0297b122a478f111f24ff7a3d211a93afe642703ff13ca8baef50b26169eae9c",
+        "tree_sha256": "bd1236e35cead55c5f591309848ddeeafc9e42958d96ab876761dd1b730a8ea1",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "9c51c54128904aed8ab0d6485eafe69d:9d8cdc999fc94220b9e6ceeb288b4fb8",
+    "code": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"acknowledged\"]:\n        if s[\"leased\"]:\n            api.apply(\"release_lease\")\n        return\n    if not s[\"leased\"]:\n        s = api.apply(\"claim\")\n    if not s[\"applied\"]:\n        if s[\"transactional\"]:\n            s = api.apply(\"begin\")\n            s = api.apply(\"apply_transactional\")\n        else:\n            s = api.apply(\"apply_direct\")\n        s = api.apply(\"stage_outbox\")\n        if s[\"transactional\"]:\n            s = api.apply(\"commit_transaction\")\n        else:\n            s = api.apply(\"persist_direct\")\n    if not s[\"delivered\"]:\n        if s[\"deduplicating_sink\"]:\n            s = api.apply(\"deliver_idempotently\")\n        else:\n            if not s[\"receipt_checked\"]:\n                s = api.apply(\"check_delivery_receipt\")\n            s = api.apply(\"deliver_once\")\n    s = api.apply(\"acknowledge\")\n    api.apply(\"release_lease\")\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "3943e9a01c6d75960930135915b9a1a2490f627a",
+        "execution_id": "733f2fd2971d42ad9cd646b9cf1fb18c",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/ingestion/alternative_0_logs/733f2fd2971d42ad9cd646b9cf1fb18c.log",
+        "output_sha256": "991a8b6dea49ca33a0b9cadced77eb6dfb498548f76085baf9bbdaaca201418f",
+        "tree_sha256": "2892d69aaa648a2ff1c8fe173e0c8557448af3b414e1366b3de0702ff014e401",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "9c51c54128904aed8ab0d6485eafe69d:8f8d3337f29d49d2af0825f5f182e9b2",
+    "code": "def run(api):\n    s = api.inspect(\"state\")\n    if s[\"acknowledged\"]:\n        if s[\"leased\"]:\n            api.apply(\"release_lease\")\n        return\n    if not s[\"leased\"]:\n        s = api.apply(\"claim\")\n    if not s[\"committed\"]:\n        if not s[\"applied\"]:\n            if s[\"transactional\"]:\n                if not s[\"transaction\"]:\n                    s = api.apply(\"begin\")\n                s = api.apply(\"apply_transactional\")\n            else:\n                s = api.apply(\"apply_direct\")\n        if not s[\"outbox\"]:\n            s = api.apply(\"stage_outbox\")\n        if s[\"transactional\"]:\n            s = api.apply(\"commit_transaction\")\n        else:\n            s = api.apply(\"persist_direct\")\n    if not s[\"delivered\"]:\n        if s[\"deduplicating_sink\"]:\n            s = api.apply(\"deliver_idempotently\")\n        else:\n            if not s[\"receipt_checked\"]:\n                s = api.apply(\"check_delivery_receipt\")\n            s = api.apply(\"deliver_once\")\n    if not s[\"acknowledged\"]:\n        s = api.apply(\"acknowledge\")\n    if s[\"leased\"]:\n        api.apply(\"release_lease\")\n",
+    "status": "replay_verified",
+    "outcomes": [
+      {
+        "success": true,
+        "reward": 1.0,
+        "exit_code": 0,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "3943e9a01c6d75960930135915b9a1a2490f627a",
+        "execution_id": "ccf0d47cf26046fb90180d4012968691",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v4-subscription/forks/ingestion/alternative_1_logs/ccf0d47cf26046fb90180d4012968691.log",
+        "output_sha256": "5499d12b0c5a0c0b00f064195af48754dba8aff0b8fda0cd456dab50a0275905",
+        "tree_sha256": "f6e7fb969fd31bbb1d0b5cc232230ccf474c2c10affcc471f199f0859aadfad6",
+        "seed": 1701
+      }
+    ]
+  },
+  {
+    "program_id": "d58525ea1d1c4c26a456a5507f16b43b:5019a1bba0e94b47b9e443f318272518",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    # Handle recovery: if committed, complete the delivery chain\n    if state.get('committed', False):\n        api.deliver_idempotently()\n        api.check_delivery_receipt()\n        api.deliver_once()\n        api.acknowledge()\n        api.release_lease()\n    \n    # Handle transactional flow if needed\n    if state.get('transactional', False) and state.get('leased', False):\n        api.apply_transactional()\n    \n    api.inspect('state')",
+    "status": "observed",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "b1442eab19c04cff420227ac84a32ef749db5440",
+        "execution_id": "f3db809bdae74d82bf54bc5ebb706dff",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_000/factual_logs/f3db809bdae74d82bf54bc5ebb706dff.log",
+        "output_sha256": "2f4431809fefe563c74f2887d5020ad4acfa7852a89637a8d6dea89b980139f8",
+        "tree_sha256": "768ce1e9a2bf6d8c95f111fd55d8c54ae527aa630a6369ae15281b491a082464",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "d58525ea1d1c4c26a456a5507f16b43b:ace743c235c6497db32471c7b3c8d5ce",
+    "code": "def run(api):\n    # Initial state inspection to handle recovery scenarios\n    state = api.inspect('state')\n    \n    # Release lease if active (safe to release even if already released, assuming idempotent release or check inside)\n    # However, based on predicates, release_lease requires 'acknowledged'. \n    # We must only release if acknowledged. Check state.\n    if state.get('acknowledged', False):\n        api.release_lease()\n    \n    # Only process committed events if we are committed and have the sink\n    if state.get('committed', False):\n        if state.get('deduplicating_sink', False):\n            api.deliver_idempotently()\n        if state.get('receipt_checked', False) or not state.get('delivered', False):\n            # If not yet delivered, check receipt first if available, then deliver\n            if state.get('receipt_checked', False):\n                api.deliver_once()\n            else:\n                api.check_delivery_receipt()\n            if state.get('delivered', False):\n                api.acknowledge()\n        \n        # Release lease only if we acknowledged (already handled above) or if we can safely release\n        # The chain is: delivered -> acknowledge -> release. \n        # If we didn't deliver/acknowledge, we shouldn't release yet.\n        # Re-evaluating: The original code released immediately on committed. \n        # But acknowledge requires delivered, released, committed. \n        # If we don't deliver, we can't acknowledge, so we can't release. \n        # Thus, the correct flow is conditional.\n        pass\n    \n    # Handle transactional flow if in transaction mode\n    if state.get('transactional', False) and state.get('leased', False) and not state.get('applied', False):\n        api.begin()\n        if not state.get('transaction', False):\n            # If begin didn't set it (unlikely given effects), check again\n            # Actually, begin sets transaction=True. \n            # The condition for apply_transactional is transaction=True and applied=False.\n            # So we need to ensure we are in transaction mode. \n            # If we have state.get('transaction', False) after begin, we can apply.\n            pass\n        # Note: The original code had api.apply_transactional() which likely assumes transaction=True is set.\n        # But the condition requires 'transactional' profile. \n        # If profile is transactional, and we have a lease, we should begin then apply.\n        # However, the provided code snippet in the 'Recent candidate' tried api.apply_transactional() directly.\n        # That might fail if 'transaction' flag isn't set. \n        # Let's assume the safe path: if transactional profile and leased, begin then apply.\n        if not state.get('transaction', False):\n            api.begin()\n        if state.get('transaction', False) and not state.get('applied', False):\n            api.apply_transactional()\n    \n    # Final inspection to ensure cleanup/completion\n    api.inspect('state')\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "b1442eab19c04cff420227ac84a32ef749db5440",
+        "execution_id": "022ac12a5bdd4ce0bd38b5094fffce7c",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_000/alternative_0_logs/022ac12a5bdd4ce0bd38b5094fffce7c.log",
+        "output_sha256": "2f4431809fefe563c74f2887d5020ad4acfa7852a89637a8d6dea89b980139f8",
+        "tree_sha256": "a6cd09e8690ce2d3b088d9c2aec00675581997fd3da294aebf711cc2631758f4",
+        "seed": 1702
+      }
+    ]
+  },
+  {
+    "program_id": "d58525ea1d1c4c26a456a5507f16b43b:9cac68c246a641889bf415db6c5a94e6",
+    "code": "def run(api):\n    state = api.inspect('state')\n    \n    # Step 1: Handle Lease Release (Requires acknowledged)\n    if state.get('acknowledged', False):\n        api.release_lease()\n    \n    # Step 2: Handle Committed Event Processing\n    if state.get('committed', False):\n        # Only proceed if sink is available for idempotent delivery\n        if state.get('deduplicating_sink', False):\n            api.deliver_idempotently()\n        \n        # Check receipt if not checked yet\n        if not state.get('receipt_checked', False):\n            api.check_delivery_receipt()\n        \n        # Deliver if not already delivered\n        if not state.get('delivered', False):\n            api.deliver_once()\n        \n        # Acknowledge if delivered (and we have the lease, which we checked/need to ensure)\n        # Note: release_lease requires acknowledged. So we acknowledge first.\n        if state.get('delivered', False):\n            api.acknowledge()\n    \n    # Step 3: Handle Transactional Flow (If profile is transactional)\n    if state.get('transactional', False) and state.get('leased', False):\n        # Ensure we are in a transaction before applying\n        if not state.get('transaction', False):\n            api.begin()\n        # Now apply if not already applied\n        if state.get('transaction', False) and not state.get('applied', False):\n            api.apply_transactional()\n    \n    # Final check\n    api.inspect('state')\n",
+    "status": "falsified",
+    "outcomes": [
+      {
+        "success": false,
+        "reward": 0.0,
+        "exit_code": 1,
+        "verifier": "microrepo-v2-completion",
+        "checkpoint": "b1442eab19c04cff420227ac84a32ef749db5440",
+        "execution_id": "a687415900384c2cb309f1aa1e43658c",
+        "log_path": "/root/autodl-tmp/ForkRSI/runs/forkrsi/source-v1/forks/seed_1702_resumable_ingestion_train_000/alternative_1_logs/a687415900384c2cb309f1aa1e43658c.log",
+        "output_sha256": "2f4431809fefe563c74f2887d5020ad4acfa7852a89637a8d6dea89b980139f8",
+        "tree_sha256": "85f5fb009a89528c5fe57f388985df737ee833e9fa74f13663b632e8312e6d4f",
+        "seed": 1702
+      }
+    ]
+  }
+]
