@@ -153,3 +153,9 @@ python scripts/summarize_forkrsi_vllm.py
 需在目标机器重新建立记录的两个独立运行环境（系统CUDA/驱动也需兼容）；bundle/tar不会打包venv或GPU驱动。历史轨迹、SQLite与checkpoint含绝对路径，以上原根最可靠。重新执行封存评估必须先恢复冻结提交、符合封存backend startup/输入条件，不能在报告提交或更换在线服务epoch后直接新跑。已有不完整目录不得自动从头重试。归档主要保证所有输入、代码与原始执行证据可核验，不承诺跨硬件/采样器位级再生相同输出。
 
 本轮结论与限制见report.md，包括同任务后端复测而非新未见样本、配对演化最终正向输入、预算充足及重置负结果。
+
+## 本地 Git 仓库整理
+
+2026-10-01 按用户要求将完整提交历史恢复为本地 `/home/qiao/work/ForkRSI`，GitHub 远端为 `git@github.com:chenqiao8341-max/ForkRSI.git`。研究交付提交 `ba8d30deed590589f818cae00814263484a88f46` 保存在 `forkrsi-prototype`，`main` 仅补充仓库入口、ForkRSI 接口变量示例及实际运行辅助脚本原样快照。原 ForkMem README 保存在根目录 README.forkmem.md。
+
+原始下载/部署/迁移/封存辅助脚本另收录于 `artifacts/forkrsi/operational-scripts/`，清单逐文件 SHA 与已验证交付目录一致；不从快照新路径运行这些历史脚本。全量原始记录仍在 `/home/qiao/work/ForkRSI_delivery_20261001`，不将 `runs/`、模型权重或虚拟环境上传 Git。恢复记录和封存复核仍遵守以上原绝对路径及原代码提交；仓库整理不构成新的实验、策略版本或最终封存。

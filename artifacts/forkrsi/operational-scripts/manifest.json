@@ -1,0 +1,103 @@
+{
+  "source_revision": "ba8d30deed590589f818cae00814263484a88f46",
+  "source_delivery": "ForkRSI_delivery_20261001",
+  "purpose": "Unmodified operational script snapshots; historical runs and absolute paths are still required.",
+  "files": [
+    {
+      "original_path": "runs/forkrsi/model-download/download-qwen3.5-4b.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/model-download/download-qwen3.5-4b.sh",
+      "sha256": "b331bdd4bc45e8a6ba0299a606e9f2b370f07384868be4dd65c6ce21b14f38b4",
+      "bytes": 688
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/benchmark_concurrency.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/benchmark_concurrency.py",
+      "sha256": "25e05584aca57682667184d21fe7605a6f84cf870f5713aa264948bcd808bb90",
+      "bytes": 2929
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/freeze_task_memories.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/freeze_task_memories.py",
+      "sha256": "8d08ba1fece25a811ee7f33e2fcd062e0721677a7a1a0898d52d46e497414388",
+      "bytes": 2651
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/install-vllm.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/install-vllm.sh",
+      "sha256": "d011915bff42b7f388f5f4972704229cc17f9b2c11af4574a1936a7a532022a9",
+      "bytes": 868
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/pause_at_task_boundary.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/pause_at_task_boundary.py",
+      "sha256": "dabd391a4f7101f3d768ee4e5ba2e53fb0f17fed725b0b2245ca00fdef4d5707",
+      "bytes": 3139
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/run_forkrsi_parallel_final.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/run_forkrsi_parallel_final.py",
+      "sha256": "764a45514c0e31dcf60ad569b0f2234bfe10f8e18a26ed458928bd394d98a5ea",
+      "bytes": 14173
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/serve_vllm_adapter.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/serve_vllm_adapter.py",
+      "sha256": "7be8b7cebf82fbd431507752630dfa34cdec4a432d88b7fbd31faed10cec067e",
+      "bytes": 5674
+    },
+    {
+      "original_path": "runs/forkrsi/vllm-deployment/start_vllm.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/vllm-deployment/start_vllm.sh",
+      "sha256": "5cb505c97344626ecdc2d90afc9bceba1d7cdf9377c736c7dda848887d09b9d3",
+      "bytes": 1110
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-v2/audit_final_inputs.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-v2/audit_final_inputs.py",
+      "sha256": "f2990aacb402723b3ab14e2edb57867779c6c525f763fe4ab0c8a56da2e6e9ec",
+      "bytes": 9502
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-v2/final-launch-v1.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-v2/final-launch-v1.sh",
+      "sha256": "7a9dd92fd891f0bc8fa6e847c93b59f37332ba3b1241c7d6c459e7fc8e0e4631",
+      "bytes": 474
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-v2/selection-fix-launch.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-v2/selection-fix-launch.sh",
+      "sha256": "af456d9bc5ffff83702f9c4556ec7132967a1ac87448e94c39735923d87693c8",
+      "bytes": 492
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-v2/snapshot_final_progress.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-v2/snapshot_final_progress.py",
+      "sha256": "5139a23612ab1a27d7d86a9f9685cef9a793d7ea1e09ebaa7b3c8b67206c5b3a",
+      "bytes": 5220
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-vllm-final-v1/audit_final_inputs.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-vllm-final-v1/audit_final_inputs.py",
+      "sha256": "e2fe59ce63d827c2cc635494efbc063a76550b2496c5812a317b24468d5086ea",
+      "bytes": 11286
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-vllm-final-v1/launch-final.sh",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-vllm-final-v1/launch-final.sh",
+      "sha256": "35408265ae1afc40ad197b262051707ad3453ab033837e9fc9aa3b05fde63c8d",
+      "bytes": 508
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-vllm-final-v1/snapshot_final_progress.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-vllm-final-v1/snapshot_final_progress.py",
+      "sha256": "f4c7953b3e8c8b279e4fec44b98f29403063226ab65abf6cbaf183a545ec0908",
+      "bytes": 5579
+    },
+    {
+      "original_path": "runs/forkrsi/campaign-vllm-final-v1/summarize_forkrsi_vllm.py",
+      "snapshot_path": "artifacts/forkrsi/operational-scripts/campaign-vllm-final-v1/summarize_forkrsi_vllm.py",
+      "sha256": "0bd2b8415f854f7c17fb6a33bea3ae0c678b1294ee66da2456faf594ee63436b",
+      "bytes": 27523
+    }
+  ]
+}
