@@ -117,3 +117,17 @@ The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired i
 同 C0、新4任务、每个 I 各2修改预算的重置已完成：I0后代2/4完整及首次通过、123003任务tokens；演化paired I1后代1/4完整及首次通过、113634 tokens；I1第二槽为无实质修改，费用和实际执行保留、不替换预算。只能作小样本负向/不确定观察。
 62真实搜索执行（28开发/14选择/20重置），8完整通过执行已逐程序核对；120提交程序版本含13 AST标记均审查为未公开 API 直接方法，不改写原始结果。84项完整回归通过52.31秒，严格类型检查通过。351万以下累计实测 Qwen tokens 精确数3497408，与851条服务完成日志全量对齐；订阅辅助 token 仍未知。
 当前最终任务执行数0，封存策略和新最终8任务/七对照即将启动；完成后仍须全部安全审查、最终统计、简短研究报告及实际完整归档，目标 active。最近保守租卡累计 14.3496 元，剩余 185.6504 元，6小时预留允许。
+
+## 用户要求的 vLLM 后端迁移（2026-10-01）
+
+原服务为 Transformers 5.17.0 / Torch 2.8.0+cu128、bf16、按请求串行采样。用户在原最终评估期间明确要求改用 vLLM 及高并发。原 worker 在第32个完整 cell 的原子 metrics 写入后暂停并关闭；已完成四组各8任务，保留原结果、全部费用和一个尚未开始模型动作的后续初始化目录。旧服务1107条完成日志共4770667 Qwen tokens，与3497408前期+1273259部分最终执行精确对应，关闭边界无新增/取消模型调用。原七组网格没有完成，不混入 vLLM 后端结果。
+
+已安装独立 /root/autodl-tmp/forkrsi-vllm-runtime，固定 vllm==0.21.0 / Torch2.11.0+cu130 / Transformers4.57.6；与任务/编译程序仍用的 Python3.12.3/Transformers5.17.0 环境隔离。GPU引擎以 bf16、单卡、text-only、32768总上下文、16活动序列、8192分块prefill、0.90显存比例运行，开启prefix caching/CUDA graphs。带请求种子时 vLLM 本来使用 native sampler；显式 VLLM_USE_FLASHINFER_SAMPLER=0 避免无用的无种子FlashInfer预热编译。启动失败原日志保留，PATH已包括环境ninja及CUDA工具；无量化或权重修改，14文件全量SHA再次一致。
+
+服务入口 http://127.0.0.1:8000/v1 经8并发异步适配层进入 http://127.0.0.1:8002/v1 的vLLM引擎。适配层用原tokenizer生成精确thinking-disabled提示token IDs，调用vLLM completions接口；固定seed/temperature/top_p及EOS248044，无top-k截断及惩罚；不转发原客户端response_format，因为原服务也忽略它。保持提示式JSON与原严格四次修复，不引入guided JSON解码。
+
+并发复测固定原已选C/I、成功源IDs、全部56个记忆正文/元数据、任务/verifier/初始代码、seed2701、8动作及名义240秒预算。封存输入 runs/forkrsi/vllm-deployment/frozen-task-memories.json，值SHA fff20303bd07cda6c7183bf33edaa7711d609b472466287290eaf2d91f07e2d3，封存时0模型调用。32个原src文件与原冻结提交逐字相同，输入/网格/选中策略篡改守卫通过。C提炼复用已有Transformers输出，最终任务推理由vLLM统一完成，不追加C/I提案或选择。新入口 scripts/run_forkrsi_parallel_final.py，独立 runs/forkrsi/campaign-vllm-final-v1。按任务轮换七组，最多8个独立任务同时运行，任务计时在取得并发槽后开始；单任务内部模型/工具动作仍按依赖顺序。未完成目录必须做原生检查点审计，不静默新建重跑。
+
+这是用户要求的同任务、既选策略后端复测；原最终结果已经部分打开，不能称作一组新未见任务或新的独立语义样本。原评估及新评估按后端分别报告并合计全系统费用。新后端完成后仍需完整认证、逐程序审查、报告和全量归档；目标保持active。
+
+2026-10-01 02:32 UTC：vLLM原始Action/Proposals解析通过。固定八个合成长输出请求（各256输出token）实测1/4/8并发墙钟25.1468/6.7211/3.5722秒，输出吞吐81.44/304.71/573.32 token/s；8并发相对该vLLM串行测量约7.04倍，不是Transformers对vLLM的直接比较，也不是任务准确率或RSI收益。基于该测量选择已预定的8并发完整复测；此前短请求测量仅2输出token，不作为持续解码吞吐证据。长输出测试7808 tokens以独立原始记录补入费用。

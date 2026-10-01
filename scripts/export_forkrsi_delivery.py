@@ -49,7 +49,10 @@ def main() -> None:
         raise ValueError("the research report must be written before delivery")
     worker = json.loads((campaign / "worker.json").read_text())
     proc = Path(f"/proc/{worker['pid']}/cmdline")
-    if proc.exists() and b"run_forkrsi_campaign.py" in proc.read_bytes():
+    if proc.exists() and any(
+        name in proc.read_bytes()
+        for name in (b"run_forkrsi_campaign.py", b"run_forkrsi_parallel_final.py")
+    ):
         raise ValueError("wait for the campaign worker to finish closing its records")
     if subprocess.check_output(["git", "status", "--porcelain"], text=True).strip():
         raise ValueError("commit the final research artifacts before packaging")

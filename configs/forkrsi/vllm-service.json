@@ -1,0 +1,30 @@
+{
+  "backend": "vllm",
+  "version": "0.21.0",
+  "model": "/root/autodl-tmp/models/Qwen3.5-4B",
+  "served_model_name": "Qwen3.5-4B",
+  "dtype": "bfloat16",
+  "quantization": null,
+  "tensor_parallel_size": 1,
+  "language_model_only": true,
+  "max_model_len": 32768,
+  "max_num_seqs": 16,
+  "max_num_batched_tokens": 8192,
+  "gpu_memory_utilization": 0.9,
+  "prefix_caching": true,
+  "generation_config": "vllm",
+  "engine_url": "http://127.0.0.1:8002",
+  "compatible_url": "http://127.0.0.1:8000/v1",
+  "adapter_request_concurrency": 8,
+  "prompt_token_limit": 24000,
+  "max_output_tokens": 8192,
+  "stop_token_ids": [
+    248044
+  ],
+  "thinking": false,
+  "structured_output": "prompt only, response_format ignored as in original service",
+  "seeded_sampler": "vLLM native path; VLLM_USE_FLASHINFER_SAMPLER=0",
+  "task_memory_snapshot_sha256": "fff20303bd07cda6c7183bf33edaa7711d609b472466287290eaf2d91f07e2d3",
+  "source_compilation_backend": "reuse unchanged previously extracted Transformers memories",
+  "policy": "Backend replication of preselected strategies on the same final task grid; no reselection; separate all earlier partial results and costs."
+}

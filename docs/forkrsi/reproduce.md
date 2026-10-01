@@ -113,3 +113,16 @@ The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired i
 
 
 Cost reporting also includes the two model JSON smoke requests (901 Qwen tokens) and one source-side agent calibration request (467 tokens). Aggregate phase usage, including failed trials and the cancelled source completion supplement, is reconciled against the full model-service tokenizer ledger. A service without request IDs supports aggregate reconciliation only, not a request-ID join; subscription assistance usage remains unknown.
+
+
+### vLLM 单卡服务与并发后端复测
+
+用户明确要求迁移后，旧 Transformers 最终网格在32完整cell处封存为部分结果；不得用其余vLLM cell补成一个混合后端的56网格。已有C/I与56个记忆输入不变，不根据已打开最终结果产生新提案或重新选择。完整迁移、原始失败及费用见 runs/forkrsi/vllm-deployment/ 和 campaign-v2/transformers-backend-closed-cost.json。
+
+独立安装可参照 runs/forkrsi/vllm-deployment/install-vllm.sh 和 artifacts/forkrsi/vllm-runtime-freeze.txt；安装时选择CUDA13.0 PyTorch wheel，服务器驱动580.76.05。任务代码仍用原 scripts/forkrsi_env.sh 环境，vLLM包不装入该环境。原权重保持同一ModelScope快照，先运行 scripts/verify_forkrsi_model.py。
+
+在 /root/autodl-tmp/ForkRSI，以 screen/nohup 持久启动 bash scripts/start_forkrsi_vllm.sh（引擎8002），再用原运行环境 python scripts/serve_forkrsi_vllm.py（兼容入口8000）。服务只监听本机。启动参数与环境见 configs/forkrsi/vllm-service.json；首次可能需要CUDA/Triton编译。保留原始启动日志。接口 /health 必须 ready=true、backend=vllm；/tokenize保留原tokenizer行为。python scripts/benchmark_forkrsi_vllm.py 是短输出接口探针，实际每条只生成2 token，不能用于持续解码吞吐结论。python scripts/benchmark_forkrsi_vllm_long.py 使用相同八提示和种子，在引擎8002直接测1/4/8并发，每条强制生成256 token；min_tokens/ignore_eos仅用于合成吞吐测量，不进入研究任务。结果及逐请求原始内容见 concurrency-long-output.json 和 concurrency-long-output-requests.jsonl；该直接引擎测试的7808 tokens绕过适配层用量日志，汇总费用时必须单独加一次。
+
+后台任务开始前提交新增部署文件、保持代码干净，确认原worker已关闭及新服务空闲。python scripts/run_forkrsi_parallel_final.py freeze --concurrency 8 使用提供的冻结记忆输入；然后 python -u scripts/run_forkrsi_parallel_final.py final。按新封存后端统一执行七组，不改变既选策略及提示。若恢复，只有已完整认证的cell可复用；有目录而无metrics时入口拒绝自动重跑，先审计原生检查点与剩余动作/请求。统计单位仍为八语义任务，恢复病例及另一后端的重复不能当作独立任务。
+
+适配层预先用原Transformers tokenizer构造token IDs，并检查引擎报告输入tokens严格吻合。response_format不转发，四次严格JSON修复仍在原LLMClient。带种子请求使用vLLM native sampler，与该版本源码默认seeded path一致；FlashAttention2、Triton/FLA、连续批处理、prefix caching、CUDA graphs仍由vLLM执行。固定种子不保证数值或GPU位级复现。文献支持参照 [Qwen3.5-4B官方说明](https://huggingface.co/Qwen/Qwen3.5-4B) 与 [vLLM官方GPU安装文档](https://docs.vllm.ai/en/latest/getting_started/installation/gpu/)。
