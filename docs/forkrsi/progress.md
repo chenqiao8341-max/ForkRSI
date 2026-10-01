@@ -105,3 +105,15 @@ campaign-v2 worker31328 存活，统一 JSON 实例协议 v3，实验核心 load
 ### Pre-final selection eligibility correction
 
 The terminal first search omitted valid C-023548c3f9f6215213c7bb69 from paired independent selection after its development RuleSet extraction exhausted JSON repair. The predeclared policy requires all actual changed C candidates. Selection now reads typed content/parent from the append-only ledger, so a later evaluation failure cannot erase a generated candidate. The original search-result cut and failure are preserved; resume reuses every existing proposal, I version, completed selection/reset cell and cost. Only this missing candidate receives its originally required selection attempt. No new proposal slots, changed objectives, source IDs, prompts or task budgets. Final outcomes remain unopened.
+
+
+### 2026-10-01T00:08:18.768625+00:00 完整搜索审计及最终封存前状态
+
+## 当前状态（2026-10-01T00:08:18.768625+00:00）
+
+主工作目录固定 /root/autodl-tmp/ForkRSI，源包6完整分叉/3正向程序（Qwen1、订阅辅助2），所有失败/取消成本保留。冻结单卡 Qwen3.5-4B 服务运行，14个记录文件最新全量 SHA256 一致，原 ModelScope 下载完整日志、工具版本与复现入口已纳入归档。
+两条真实 C/I 开发路线均完成各3个 C 提案；两个改变后的 I 均在实际原始请求/响应中生成改变的 C，14策略版本/12生成版本全部内容、父版本、证据与哈希核验。两条新 I 后代各产生一次开发退步（1/4→0/4），不是改进方法改善的证据。
+独立选择已对每路 C0和全部3实际改变候选尝试：可评测候选均0/2；paired首候选的提炼/选择 JSON 耗尽，保留失败，无可评测得分。曾遗漏该候选的记录入口缺陷已在最终打开前修复，原搜索切片及全部原结果保留，未追加任何 C/I 提案。按预定次级 tokens 规则选择 success-only C-a46dece9de0a834edf84632b（65155）、paired C-b7a2faf01a4854e94dc3ee28（72700）。
+同 C0、新4任务、每个 I 各2修改预算的重置已完成：I0后代2/4完整及首次通过、123003任务tokens；演化paired I1后代1/4完整及首次通过、113634 tokens；I1第二槽为无实质修改，费用和实际执行保留、不替换预算。只能作小样本负向/不确定观察。
+62真实搜索执行（28开发/14选择/20重置），8完整通过执行已逐程序核对；120提交程序版本含13 AST标记均审查为未公开 API 直接方法，不改写原始结果。84项完整回归通过52.31秒，严格类型检查通过。351万以下累计实测 Qwen tokens 精确数3497408，与851条服务完成日志全量对齐；订阅辅助 token 仍未知。
+当前最终任务执行数0，封存策略和新最终8任务/七对照即将启动；完成后仍须全部安全审查、最终统计、简短研究报告及实际完整归档，目标 active。最近保守租卡累计 14.3496 元，剩余 185.6504 元，6小时预留允许。
